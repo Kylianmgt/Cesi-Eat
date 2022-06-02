@@ -3,13 +3,8 @@
     :show-menu-button="false"
   >
     <ion-text>
-      <h1>Landing
-      </h1>
+      <h1>Les Restos autour de chez vous</h1>
     </ion-text>
-    <Button text="Router redirect"
-    color="medium"
-    :to="{ name: 'login' }"/>
-    <ion-icon name="fast-food-outline" size="large"></ion-icon>
     </base-layout>
 </template>
 
@@ -24,27 +19,19 @@ import {
   IonIcon,
   IonText,
 } from '@ionic/vue';
-import Button from '../components/Button.vue';
 import { useRouter } from 'vue-router';
 
-// const router = useRouter();
 
-const moveToLogin = () =>{
-   this.router.push('/login');
-}
 
 export default {
-    name:'Landing',
+    name:'Restos',
     components:{
         IonIcon,
-        Button,
-        IonText,
     },
     setup() {
     
   },
     methods: {
-        moveToLogin
     },
     
 };
