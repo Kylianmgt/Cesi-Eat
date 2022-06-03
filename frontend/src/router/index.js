@@ -2,11 +2,18 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 
 import client from './authenticated/client';
 import admin from './authenticated/admin';
+import delivery from './authenticated/delivery';
+import restaurant from './authenticated/restaurant';
 
 const routes = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/landing',
+  },
+  {
+    path: '/landing',
+    name: 'landing',
+    component: () => import('../pages/Landing.vue'),
   },
   {
     path: '/home',
@@ -15,6 +22,8 @@ const routes = [
   },
   ...client,
   ...admin,
+  ...delivery,
+  ...restaurant,
   {
     path: '/login',
     name: 'login',

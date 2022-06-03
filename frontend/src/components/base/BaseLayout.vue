@@ -30,6 +30,7 @@
     <ion-content :class="`ion-padding ${className}`" :scroll-events="true">
       <slot />
     </ion-content>
+    <Tabs />
   </ion-page>
 </template>
 
@@ -43,6 +44,7 @@ import {
   IonButtons,
   IonMenuButton,
 } from '@ionic/vue';
+import Tabs from './Tabs.vue';
 import { useRouter } from 'vue-router';
 
 export default {
@@ -77,6 +79,7 @@ export default {
     IonBackButton,
     IonButtons,
     IonMenuButton,
+    Tabs,
   },
   setup() {
     const router = useRouter();
