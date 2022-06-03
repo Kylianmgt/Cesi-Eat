@@ -15,11 +15,6 @@ export default [
     path: "/client/restos"
   },
   {
-    name: "/client/restaurant",
-    path: "/client/restaurant",
-    component: () => import('../../pages/client/Restaurant.vue'),
-  },
-  {
     name: "/client/profile",
     placeholder: "Profile",
     icon: "person",
