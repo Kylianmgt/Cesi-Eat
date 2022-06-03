@@ -12,7 +12,7 @@
       </ion-text>
       <ion-content scroll-y="true">
         <ion-list class="">
-          <RestaurantCard v-for="restaurant in data" />
+          <RestaurantCard v-for="restaurant in data" :data="restaurant" />
         </ion-list>
       </ion-content>
     </ion-page>
