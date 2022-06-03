@@ -20,7 +20,7 @@
             color="primary"
             v-show="showMenuButton"
           ></ion-menu-button>
-        <ion-text class="ml-4 font-weight-bold">{{ pageTitle }}</ion-text>
+          <ion-text class="ml-4 font-weight-bold">{{ pageTitle }}</ion-text>
         </ion-buttons>
         <ion-buttons class="ml-auto" slot="end">
           <slot name="actions-end"></slot>
@@ -28,9 +28,13 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :class="`ion-padding ${className}`" :scroll-events="true">
-      <slot />
+      <slot> </slot>
     </ion-content>
-    <Tabs />
+    <ion-footer collapse="fade">
+      <ion-toolbar>
+        <Tabs />
+      </ion-toolbar>
+    </ion-footer>
   </ion-page>
 </template>
 
@@ -42,34 +46,34 @@ import {
   IonContent,
   IonBackButton,
   IonButtons,
-  IonMenuButton,
-} from '@ionic/vue';
-import Tabs from './Tabs.vue';
-import { useRouter } from 'vue-router';
+  IonMenuButton
+} from "@ionic/vue";
+import Tabs from "./Tabs.vue";
+import { useRouter } from "vue-router";
 
 export default {
-  name: 'BaseLayout',
+  name: "BaseLayout",
   props: {
     pageTitle: {
       type: String,
-      required: false,
+      required: false
     },
     pageDefaultBackLink: {
       type: String,
-      required: false,
+      required: false
     },
     showMenuButton: {
       type: Boolean,
-      default: true,
+      default: true
     },
     ignoreHistory: {
       type: Boolean,
-      default: false,
+      default: false
     },
     className: {
       type: String,
-      required: false,
-    },
+      required: false
+    }
   },
   components: {
     IonPage,
@@ -79,19 +83,19 @@ export default {
     IonBackButton,
     IonButtons,
     IonMenuButton,
-    Tabs,
+    Tabs
   },
   setup() {
     const router = useRouter();
 
     return {
-      router,
+      router
     };
   },
   methods: {
     back() {
       this.router.push(this.pageDefaultBackLink);
-    },
-  },
+    }
+  }
 };
 </script>

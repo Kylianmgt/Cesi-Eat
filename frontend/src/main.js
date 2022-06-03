@@ -12,6 +12,8 @@ import Utils from './utils/index';
 import redirectToHome from './composition/redirectToHome';
 
 import BaseLayout from './components/base/BaseLayout.vue';
+import { DynamicScroller } from 'vue-virtual-scroller';
+import VueVirtualScroller from 'vue-virtual-scroller';
 import ErrorMessage from './components/ErrorMessage.vue';
 import Loading from './components/Loading.vue';
 
@@ -30,6 +32,7 @@ import '@ionic/vue/css/text-alignment.css';
 import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
 
 /* Theme variables */
 import './theme/index.css';
@@ -88,7 +91,8 @@ router.beforeEach(async (to, from, next) => {
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
-  .use(store);
+  .use(store)
+  .use(VueVirtualScroller);
 
 app.config.globalProperties.emitter = mitt();
 app.config.globalProperties.$validate = Utils.validations;
@@ -96,6 +100,7 @@ app.config.globalProperties.$validate = Utils.validations;
 app.component('base-layout', BaseLayout);
 app.component('error-message', ErrorMessage);
 app.component('loading', Loading);
+app.component('DynamicScroller', DynamicScroller);
 
 router.isReady()
   .then(() => {
