@@ -19,7 +19,12 @@ export default [
     placeholder: "Profile",
     icon: "person",
     path: "/client/profile",
-    component: () => import('../../pages/client/Profile.vue'),
+    component: () => import('../../pages/Profile.vue'),
+  },
+  {
+    name: "/client/order-check",
+    path: "/client/order-check",
+    component: () => import('../../pages/client/OrderCheck.vue'),
   },
 ];
 

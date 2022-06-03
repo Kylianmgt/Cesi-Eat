@@ -5,7 +5,7 @@ import admin from './authenticated/admin';
 import delivery from './authenticated/delivery';
 import restaurant from './authenticated/restaurant';
 
-const routes = [
+export const routes = [
   {
     path: '/',
     redirect: '/landing',
@@ -28,6 +28,23 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('../pages/Login.vue'),
+  },
+  {
+    path: '/edit-profile',
+    name: 'edit-profile',
+    component: () => import('../pages/EditProfile.vue'),
+  },
+  {
+    path: '/orders',
+    name: 'orders',
+    placeholder: 'Orders',
+    icon: 'restaurant',
+    component: () => import('../pages/Orders.vue'),
+  },
+  {
+    path: '/order',
+    name: 'order',
+    component: () => import('../pages/Order.vue'),
   },
   {
     path: '/recovery-password',
