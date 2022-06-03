@@ -28,14 +28,14 @@ import {
   IonTabs
 } from "@ionic/vue";
 import { calendar, personCircle } from "ionicons/icons";
-import client from "../../router/authenticated/client";
+import { routes } from "../../router/index";
 
 export default defineComponent({
   components: { IonIcon, IonLabel, IonPage, IonTabBar, IonTabButton, IonTabs },
   setup() {
     const getTabs = () => {
       const tabs = [];
-      client.map(route => {
+      routes.map(route => {
         if (route.icon) {
           tabs.push({
             name: route.name,
@@ -60,7 +60,6 @@ export default defineComponent({
       personCircle,
       beforeTabChange,
       afterTabChange,
-      client,
       getTabs
     };
   }

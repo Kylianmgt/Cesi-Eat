@@ -1,16 +1,8 @@
 <template>
   <ion-card :click="goToRestaurantPage()">
     <ion-card-header>
-      <ion-thumbnail>
-        <Image
-          src="https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg"
-        />
-        <ion-img
-          src="https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg"
-        ></ion-img>
-      </ion-thumbnail>
       <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>{{ data.name }}</ion-card-title>
+      <ion-card-title>Order</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       Keep close to Nature's heart... and break clear away, once in awhile, and
@@ -66,7 +58,7 @@ export default defineComponent({
     const router = useRouter();
   },
   methods: {
-    goToRestaurantPage() {
+    goToOrder() {
       console.log("goToRestaurantPage");
       // this.$router.push({
       //   name: "RestaurantPage",
