@@ -1,28 +1,46 @@
 <template>
   <base-layout :show-menu-button="false">
     <ion-page>
-      <ion-grid>
-        <ion-row>
-          <ion-img :src="data.image" width="10px" height="10px"></ion-img>
-        </ion-row>
-        <ion-row>
-          <ion-text>
-            <h1>{{ data.name }}</h1>
-          </ion-text>
-        </ion-row>
-        <ion-row>
-          <ion-text color="Dark ">
-            <h3>{{ data.description }}</h3>
-            <h3>{{ data.address }}</h3>
-          </ion-text>
-        </ion-row>
-        <ion-row>
-          <ion-text color="Dark ">
-            <h3>{{ data.distance }}</h3>
-            <h3>{{ data.rating }}</h3>
-          </ion-text>
-        </ion-row>
-      </ion-grid>
+      <ion-content scroll-y="true">
+        <ion-grid>
+          <ion-row>
+            <ion-img :src="data.image" width="10px" height="10px"></ion-img>
+          </ion-row>
+          <ion-row>
+            <ion-text>
+              <h1>{{ data.name }}</h1>
+            </ion-text>
+          </ion-row>
+          <ion-row>
+            <ion-text color="Dark ">
+              <h3>{{ data.description }}</h3>
+              <h3>{{ data.address }}</h3>
+            </ion-text>
+          </ion-row>
+          <ion-row>
+            <ion-text color="Dark ">
+              <h3>{{ data.distance }}</h3>
+              <h3>{{ data.rating }}</h3>
+            </ion-text>
+          </ion-row>
+          <ion-grid>
+            <ion-text color="Dark ">
+              <h3>Menus</h3>
+            </ion-text>
+            <ion-row>
+              <MenuCard v-for="menu in data.menus" :data="menu" />
+            </ion-row>
+          </ion-grid>
+          <ion-grid>
+            <ion-text color="Dark ">
+              <h3>Articles</h3>
+            </ion-text>
+            <ion-row>
+              <ArticleCard v-for="article in data.articles" :data="article" />
+            </ion-row>
+          </ion-grid>
+        </ion-grid>
+      </ion-content>
       <!-- <ion-img :src="data.image" width="10px" height="10px"></ion-img> -->
     </ion-page>
   </base-layout>
@@ -39,10 +57,15 @@ import {
   IonIcon,
   IonText
 } from "@ionic/vue";
+
 import { useRouter } from "vue-router";
+import MenuCard from "@/components/molecules/restaurant/MenuCard";
+import ArticleCard from "@/components/molecules/restaurant/ArticleCard";
+
 export default {
   name: "Restaurant",
   components: {
+    MenuCard,
     IonIcon,
     IonText,
     IonPage
@@ -122,6 +145,7 @@ export default {
         }
       ]
     };
+    props: [data.articles];
     return {
       router,
       data
