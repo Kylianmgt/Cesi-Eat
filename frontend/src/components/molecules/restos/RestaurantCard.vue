@@ -1,5 +1,5 @@
 <template>
-  <ion-card>
+  <ion-card (click)="goToRestaurantPage()">
     <ion-card-header>
       <ion-thumbnail>
         <ion-img
@@ -55,6 +55,16 @@ export default defineComponent({
       required: false
     }
   },
-  setup() {}
+  setup() {},
+  methods: {
+    goToRestaurantPage() {
+      this.$router.push({
+        name: "RestaurantPage",
+        params: {
+          id: this.data.id
+        }
+      });
+    }
+  }
 });
 </script>
