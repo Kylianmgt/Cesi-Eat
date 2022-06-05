@@ -15,11 +15,11 @@ export default function () {
       .then((response) => {
         openToast('Logged with sucess', 'success', 'top');
 
-        redirectTo(
-          response.data.userType,
-          { anyCustomParams: response.customParams },
-          true,
-        );
+        // redirectTo(
+        //   response.data.userType,
+        //   { anyCustomParams: response.customParams },
+        //   true,
+        // );
 
         return Promise.resolve();
       })

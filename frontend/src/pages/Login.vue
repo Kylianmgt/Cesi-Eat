@@ -70,9 +70,7 @@
 </template>
 
 <script>
-import {
-  enterOutline, mail, key, logIn, eye, eyeOff,
-} from 'ionicons/icons';
+import { enterOutline, mail, key, logIn, eye, eyeOff } from "ionicons/icons";
 
 import {
   IonInput,
@@ -81,20 +79,20 @@ import {
   IonItem,
   IonLabel,
   IonIcon,
-  IonText,
-} from '@ionic/vue';
+  IonText
+} from "@ionic/vue";
 
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { useRouter } from "vue-router";
+import { ref } from "vue";
 
-import Button from '../components/Button.vue';
-import useToast from '../composition/useToast';
-import login from '../composition/login';
+import Button from "../components/Button.vue";
+import useToast from "../composition/useToast";
+import login from "../composition/login";
 
 export default {
-  name: 'Login',
+  name: "Login",
   components: {
     Button,
     IonInput,
@@ -103,7 +101,7 @@ export default {
     IonItem,
     IonLabel,
     IonIcon,
-    IonText,
+    IonText
   },
   setup() {
     const { openToast } = useToast();
@@ -118,17 +116,17 @@ export default {
       eye,
       eyeOff,
       logIn,
-      enterOutline,
+      enterOutline
     });
 
     const Fields = ref({
-      email: '',
-      password: '',
+      email: "kylianmigot@km.com",
+      password: "Test1234"
     });
 
     const ErrorMessages = ref({
-      email: '',
-      password: '',
+      email: "",
+      password: ""
     });
 
     const loading = ref(false);
@@ -141,11 +139,11 @@ export default {
       router,
       Fields,
       Icon,
-      showPassword,
+      showPassword
     };
   },
   methods: {
-    ...mapActions('login', ['login']),
+    ...mapActions("login", ["login"]),
     loginUser() {
       if (!this.validateFields()) {
         return;
@@ -155,7 +153,7 @@ export default {
 
       this.userLogin(this.Fields)
         .then(() => {
-          this.emitter.emit('logged');
+          this.emitter.emit("logged");
         })
         .finally(() => {
           this.loading = false;
@@ -165,21 +163,21 @@ export default {
       let valid = true;
 
       if (!this.Fields.email) {
-        this.ErrorMessages.email = 'Email invalid';
+        this.ErrorMessages.email = "Email invalid";
         valid = false;
       }
 
       if (!this.Fields.password) {
-        this.ErrorMessages.password = 'Password invalid';
+        this.ErrorMessages.password = "Password invalid";
         valid = false;
       }
 
       return valid;
     },
     redirectToRecoveryPassword() {
-      this.router.push({ name: 'recovery-password' });
-    },
-  },
+      this.router.push({ name: "recovery-password" });
+    }
+  }
 };
 </script>
 

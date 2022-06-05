@@ -54,7 +54,7 @@ export const routes = [
   {
     path: '/register',
     name: 'register',
-    component: () => import('../pages/Error404.vue'),
+    component: () => import('../pages/Signup.vue'),
   },
   {
     path: '/contact',
