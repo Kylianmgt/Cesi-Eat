@@ -1,6 +1,6 @@
 {
-  "name": "app-boilerplate",
-  "description": "An Ionic project",
+  "name": "cesi-eat",
+  "description": "CesiEat is a platform for students to order food from the best restaurants in the city.",
   "version": "0.0.1",
   "private": false,
   "scripts": {

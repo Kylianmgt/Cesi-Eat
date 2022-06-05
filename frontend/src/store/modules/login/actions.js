@@ -20,8 +20,8 @@ async function setUserData(userData) {
 }
 
 export default {
-  login({}, userCredentials) {
-    return api.post('/login', userCredentials)
+  login({ }, userCredentials) {
+    return api.post('/auth/login', userCredentials)
       .then(async (response) => {
         await setToken(response.token);
         await setUserData(response.data);

@@ -1,6 +1,6 @@
 {
-  "appId": "com.app.boilerplate",
-  "appName": "Ionic Vue Boilerplate",
+  "appId": "com.app.cesi-eat",
+  "appName": "CesiEat by CesiGang",
   "bundledWebRuntime": false,
   "webDir": "dist",
   "npmClient": "npm",
