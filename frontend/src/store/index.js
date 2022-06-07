@@ -6,6 +6,7 @@ import files from './modules/files/index';
 import user from './modules/user/index';
 import menu from './modules/menu/index';
 import register from './modules/register/index';
+import profil from './modules/profil/index';
 
 const store = createStore({
   modules: {
@@ -15,6 +16,7 @@ const store = createStore({
     user,
     menu,
     register,
+    profil,
   },
 });
 
