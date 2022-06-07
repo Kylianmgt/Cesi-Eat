@@ -46,12 +46,11 @@ export default {
     const router = useRouter();
     const data = [
       {
-        id: "1",
         name: "MyTacos",
         address: "1 rue de la paix",
         description: "Tacos de la meilleure qualité",
         image:
-          "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+          "https://www.telerama.fr/sites/tr_master/files/styles/simplecrop1000/public/fauves13_0.jpg?itok=SAX57ak4",
         rating: 4.5,
         distance: 2,
         ville: 3,
@@ -95,7 +94,7 @@ export default {
             name: "Menu 1",
             description: "Menu de la meilleure qualité",
             image:
-              "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+              "https://images.rtl.fr/~c/770v513/rtl/www/1460953-un-hamburger-image-d-illustration.jpg",
             price: 10,
             articles: [1, 2]
           },
@@ -104,7 +103,7 @@ export default {
             name: "Menu 2",
             description: "Menu de la meilleure qualité",
             image:
-              "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+              "https://www.peugeot-saveurs.com/wp/wp-content/uploads/2021/02/IMG_0063-1024x0.jpg",
             price: 10,
             articles: [1, 2]
           },
@@ -113,7 +112,7 @@ export default {
             name: "Menu 3",
             description: "Menu de la meilleure qualité",
             image:
-              "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+              "https://www.peugeot-saveurs.com/wp/wp-content/uploads/2021/02/IMG_0063-1024x0.jpg",
             price: 10,
             articles: [1, 2]
           }
