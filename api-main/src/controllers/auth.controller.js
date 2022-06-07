@@ -33,7 +33,7 @@ const login = catchAsync(async (req, res) => {
   switch (user.role) {
     case 'client':
       profil = await clientService.getClientProfil(user.id);
-      logger.info(`Client ${user.id} registered`);
+      logger.info(`Client ${user.id} loggin`);
       logger.info(profil);
       break;
     case 'delivery':
