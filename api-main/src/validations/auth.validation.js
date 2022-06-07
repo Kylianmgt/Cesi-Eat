@@ -1,13 +1,37 @@
 const Joi = require('joi');
 const { password } = require('./custom.validation');
 
+const clientProfil = {
+  name: Joi.string().required(),
+  firstName: Joi.string().required(),
+  address: Joi.string().required(),
+};
+
+const deliveryProfil = {
+  name: Joi.string().required(),
+  firstName: Joi.string().required(),
+  address: Joi.string().required(),
+}
+
+const restaurantProfil = {
+  name: Joi.string().required(),
+  address: Joi.string().required(),
+
+}
+
 const register = {
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required().custom(password),
-    name: Joi.string(),
+    user: Joi.object().keys({
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+      role: Joi.string().required(),
+    }),
+    profil: Joi.alternatives().try(clientProfil, deliveryProfil, restaurantProfil),
   }),
 };
+
+
+
 
 const login = {
   body: Joi.object().keys({
