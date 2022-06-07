@@ -4,9 +4,10 @@
       <ion-row>
         <ion-col size="15">
           <ion-card-header>
-            <ion-thumbnail>
-              <ion-img :src="data.image"></ion-img>
-            </ion-thumbnail>
+            <ion-img
+              style="width: 200px; height: 200px;"
+              :src="data.image"
+            ></ion-img>
             <ion-card-title>{{ data.name }}</ion-card-title>
           </ion-card-header>
         </ion-col>
@@ -20,9 +21,9 @@
           <ion-card-footer>Articles : {{ data.articles }}</ion-card-footer>
         </ion-col>
         <ion-col size="15">
-          <ion-button shape="round">+</ion-button>
-          <h3>0</h3>
-          <ion-button shape="round">-</ion-button>
+          <ion-button shape="round" @click="increase()">+</ion-button>
+          <h3>{{ count }}</h3>
+          <ion-button shape="round" @click="decrease()">-</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import {
   IonIcon,
   IonThumbnail,
@@ -47,6 +48,7 @@ import {
 import Button from "../../Button.vue";
 
 export default defineComponent({
+  data: () => ({ count: 0 }),
   components: {
     IonIcon,
     IonLabel,
@@ -69,6 +71,14 @@ export default defineComponent({
       required: false
     }
   },
-  setup() {}
+  setup() {},
+  methods: {
+    increase: function() {
+      this.count++;
+    },
+    decrease: function() {
+      if (this.count > 0) this.count--;
+    }
+  }
 });
 </script>

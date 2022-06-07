@@ -3,26 +3,28 @@
     <ion-page>
       <ion-content scroll-y="true">
         <ion-grid>
-          <ion-row>
-            <ion-img :src="data.image" width="10px" height="10px"></ion-img>
-          </ion-row>
-          <ion-row>
-            <ion-text>
-              <h1>{{ data.name }}</h1>
-            </ion-text>
-          </ion-row>
-          <ion-row>
-            <ion-text color="Dark ">
-              <h3>{{ data.description }}</h3>
-              <h3>{{ data.address }}</h3>
-            </ion-text>
-          </ion-row>
-          <ion-row>
-            <ion-text color="Dark ">
-              <h3>{{ data.distance }}</h3>
-              <h3>{{ data.rating }}</h3>
-            </ion-text>
-          </ion-row>
+          <ion-grid>
+            <ion-row>
+              <ion-img :src="data.image" width="10px" height="10px"></ion-img>
+            </ion-row>
+            <ion-row>
+              <ion-text>
+                <h1>{{ data.name }}</h1>
+              </ion-text>
+            </ion-row>
+            <ion-row>
+              <ion-text color="Dark ">
+                <h3>{{ data.description }}</h3>
+                <h3>{{ data.address }}</h3>
+              </ion-text>
+            </ion-row>
+            <ion-row>
+              <ion-text color="Dark ">
+                <h3>{{ data.distance }}</h3>
+                <h3>{{ data.rating }}</h3>
+              </ion-text>
+            </ion-row>
+          </ion-grid>
           <ion-grid>
             <ion-text color="Dark ">
               <h3>Menus</h3>
@@ -39,6 +41,7 @@
               <ArticleCard v-for="article in data.articles" :data="article" />
             </ion-row>
           </ion-grid>
+          <ion-button shape="round">Passer commande</ion-button>
         </ion-grid>
       </ion-content>
       <!-- <ion-img :src="data.image" width="10px" height="10px"></ion-img> -->
@@ -66,6 +69,7 @@ export default {
   name: "Restaurant",
   components: {
     MenuCard,
+    ArticleCard,
     IonIcon,
     IonText,
     IonPage
@@ -121,7 +125,7 @@ export default {
           name: "Menu 1",
           description: "Menu de la meilleure qualité",
           image:
-            "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+            "https://images.rtl.fr/~c/770v513/rtl/www/1460953-un-hamburger-image-d-illustration.jpg",
           price: 10,
           articles: [1, 2]
         },
@@ -130,7 +134,7 @@ export default {
           name: "Menu 2",
           description: "Menu de la meilleure qualité",
           image:
-            "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+            "https://www.peugeot-saveurs.com/wp/wp-content/uploads/2021/02/IMG_0063-1024x0.jpg",
           price: 10,
           articles: [1, 2]
         },
@@ -139,7 +143,7 @@ export default {
           name: "Menu 3",
           description: "Menu de la meilleure qualité",
           image:
-            "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+            "https://www.peugeot-saveurs.com/wp/wp-content/uploads/2021/02/IMG_0063-1024x0.jpg",
           price: 10,
           articles: [1, 2]
         }
