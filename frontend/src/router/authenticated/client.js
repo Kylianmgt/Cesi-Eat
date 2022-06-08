@@ -28,7 +28,7 @@ export default [
   },
   {
     name: "/client/order-check",
-    path: "/client/order-check",
+    path: "/client/OrderCheck",
     component: () => import('../../pages/client/OrderCheck.vue'),
   },
 ];

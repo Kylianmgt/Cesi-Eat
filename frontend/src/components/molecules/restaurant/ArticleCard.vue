@@ -20,9 +20,9 @@
           <ion-card-footer>Articles : {{ data.articles }}</ion-card-footer>
         </ion-col>
         <ion-col size="15">
-          <ion-button shape="round" @click="increase()">+</ion-button>
+          <ion-button shape="round" @click="increase(data.id)">+</ion-button>
           <h3>{{ count }}</h3>
-          <ion-button shape="round" @click="decrease()">-</ion-button>
+          <ion-button shape="round" @click="decrease(data.id)">-</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -67,15 +67,41 @@ export default defineComponent({
     className: {
       type: String,
       required: false
+    },
+    order: {
+      type: Array,
+      required: false
     }
   },
   setup() {},
   methods: {
-    increase: function() {
+    increase: function(id) {
+      //increase counter
       this.count++;
+      //add to order variable the selected item and amount
+      const searchIndex = this.order.findIndex(
+        obj => obj.type === "article" && obj.id === id
+      );
+      if (searchIndex != -1) {
+        this.order[searchIndex].amount++;
+      } else {
+        this.order.push({ type: "article", id: id, amount: 1 });
+      }
+      console.log("now increase : ", this.order);
     },
-    decrease: function() {
+    decrease: function(id) {
       if (this.count > 0) this.count--;
+
+      const searchIndex = this.order.findIndex(
+        obj => obj.type === "article" && obj.id === id
+      );
+      if (searchIndex != -1) {
+        if (this.order[searchIndex].amount > 0)
+          this.order[searchIndex].amount--;
+      } else {
+        this.order.push({ type: "article", id: id, amount: 0 });
+      }
+      console.log("now decrease : ", this.order);
     }
   }
 });

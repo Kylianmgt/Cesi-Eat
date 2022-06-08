@@ -71,7 +71,6 @@ export default defineComponent({
   methods: {
     goToRestaurantPage() {
       console.log("goToRestaurantPage");
-      console.log("data : ", this.data);
       this.$router.push({
         name: "/client/restaurant",
         params: {
