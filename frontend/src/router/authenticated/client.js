@@ -2,10 +2,9 @@ import UserTypes from '../../enums/UserTypes';
 
 export default [
   {
-    path: '/client/home',
-    name: 'client-home',
-    component: () => import('../../pages/client/Home.vue'),
-    meta: { userType: UserTypes.CLIENT },
+    name: 'client',
+    path: '/client',
+    redirect: '/client/restos',
   },
   {
     name: "/client/restos",
@@ -15,11 +14,11 @@ export default [
     path: "/client/restos"
   },
   {
-    name: "/client/profile",
-    placeholder: "Profile",
+    name: "/client/profil",
+    placeholder: "Profil",
     icon: "person",
-    path: "/client/profile",
-    component: () => import('../../pages/Profile.vue'),
+    path: "/client/profil",
+    component: () => import('../../pages/Profil.vue'),
   },
   {
     name: "/client/order-check",

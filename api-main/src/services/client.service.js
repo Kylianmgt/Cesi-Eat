@@ -2,7 +2,7 @@ const { Client } = require('../models');
 
 /**
  * Create a user
- * @param {Object} profil Object containing the user profile
+ * @param {Object} profil Object containing the user profil
  * @param {Object} userId Object containing the user id
  * @returns {Promise<User>}
  */

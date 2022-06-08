@@ -1,3 +1,4 @@
+import router from '../router';
 import redirectToHome from './redirectToHome';
 import useToast from './useToast';
 
@@ -14,13 +15,10 @@ export default function () {
     return this.$store.dispatch('login/login', data)
       .then((response) => {
         openToast('Logged with sucess', 'success', 'top');
-
-        // redirectTo(
-        //   response.data.userType,
-        //   { anyCustomParams: response.customParams },
-        //   true,
-        // );
-
+        this.$store.commit('user/setUserData', response);
+        console.log(response);
+        console.log(this.$store.state.user.userData);
+        router.push('/' + response.user.role);
         return Promise.resolve();
       })
       .catch(() => {

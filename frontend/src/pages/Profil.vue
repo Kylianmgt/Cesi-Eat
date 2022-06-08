@@ -4,7 +4,7 @@
       <ion-text>
         <h1>
           <ion-icon name="home" />
-          <span class="ml-2">Profile</span>
+          <span class="ml-2">Profil</span>
         </h1>
       </ion-text>
       <Button
@@ -12,10 +12,9 @@
         color="medium"
         :to="{ name: 'edit-profile' }"
       />
-      <ion-text> Name: {{ data.name }} </ion-text>
-      <ion-text> Email: {{ data.email }} </ion-text>
-      <ion-text> Phone: {{ data.phone }} </ion-text>
-      <ion-text> Address: {{ data.address }} </ion-text>
+      <ion-text> Name: {{ userData.profil.name }} </ion-text>
+      <ion-text> Email: {{ userData.user.email }} </ion-text>
+      <ion-text> Address: {{ userData.profil.address }} </ion-text>
     </ion-page>
   </base-layout>
 </template>
@@ -29,33 +28,37 @@ import {
   IonItem,
   IonLabel,
   IonIcon,
-  IonText
+  IonText,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
+import { mapGetters, mapState } from "vuex";
+import { Storage } from "@capacitor/storage";
+import { ref } from "vue";
+
 import Button from "../components/Button.vue";
 
 export default {
-  name: "Profile",
+  name: "Profil",
   components: {
     IonIcon,
     IonInput,
     IonText,
     IonPage,
-    Button
+    Button,
+  },
+  computed: {
+    userData() {
+      console.log(this.$store.state.user.userData);
+      return this.$store.state.user.userData;
+    },
   },
   setup() {
     const router = useRouter();
-    const data = {
-      name: "Kicum",
-      email: "kicum@kicum.com",
-      phone: "+33646326521",
-      address: "44 avenue du 11 novembre"
-    };
     return {
       router,
-      data
     };
   },
-  methods: {}
+  mounted() {},
+  methods() {},
 };
 </script>
