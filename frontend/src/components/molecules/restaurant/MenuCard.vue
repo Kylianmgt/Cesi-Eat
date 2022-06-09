@@ -87,7 +87,14 @@ export default defineComponent({
       if (searchIndex != -1) {
         this.order[searchIndex].amount++;
       } else {
-        this.order.push({ type: "menu", id: id, amount: 1 });
+        this.order.push({
+          type: "menu",
+          id: id,
+          amount: 1,
+          image: this.data.image,
+          title: this.data.name,
+          price: this.data.price
+        });
       }
       console.log("now increase : ", this.order);
     },
@@ -100,8 +107,6 @@ export default defineComponent({
       if (searchIndex != -1) {
         if (this.order[searchIndex].amount > 0)
           this.order[searchIndex].amount--;
-      } else {
-        this.order.push({ type: "menu", id: id, amount: 0 });
       }
       console.log("now decrease : ", this.order);
     }

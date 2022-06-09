@@ -85,7 +85,14 @@ export default defineComponent({
       if (searchIndex != -1) {
         this.order[searchIndex].amount++;
       } else {
-        this.order.push({ type: "article", id: id, amount: 1 });
+        this.order.push({
+          type: "article",
+          id: id,
+          amount: 1,
+          image: this.data.image,
+          title: this.data.name,
+          price: this.data.price
+        });
       }
       console.log("now increase : ", this.order);
     },

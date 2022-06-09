@@ -12,6 +12,9 @@
             <span class="ml-2">Your order</span>
           </h2>
         </ion-text>
+        <ion-grid>
+          <OrderCard v-for="order in orders" :order="order"></OrderCard>
+        </ion-grid>
       </ion-content>
       <ion-content>
         <ion-text>
@@ -41,7 +44,8 @@ import {
   IonText,
   IonButton
 } from "@ionic/vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
+import OrderCard from "@/components/molecules/orders/OrderCard.vue";
 
 export default {
   name: "Profile",
@@ -50,14 +54,21 @@ export default {
     IonInput,
     IonText,
     IonPage,
-    IonButton
+    IonButton,
+    OrderCard
   },
+  props: route => ({
+    user: userData,
+    ...route.params
+  }),
+
   setup() {
     const router = useRouter();
-    const data = {};
+    const route = useRoute();
+    const orders = JSON.parse(route.params.orders);
     return {
       router,
-      data
+      orders
     };
   },
   methods: {}

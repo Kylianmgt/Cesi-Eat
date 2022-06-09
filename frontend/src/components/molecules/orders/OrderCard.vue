@@ -1,13 +1,27 @@
 <template>
-  <ion-card :click="goToRestaurantPage()">
-    <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Order</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile, and
-      climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="15">
+          <ion-card-header>
+            <ion-img
+              style="width: 200px; height: 200px;"
+              :src="order.image"
+            ></ion-img>
+            <ion-card-title>{{ order.name }}</ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col size="15">
+          <h1>{{ order.price }}€</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row size="15">
+        <ion-col size="15">
+          <ion-button>supprimer</ion-button>
+          <!-- shape="round" @click="delete(order.id)" -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 </template>
 
@@ -28,7 +42,7 @@ import {
 } from "@ionic/vue";
 
 import Image from "../../Image.vue";
-import { useRouter } from "vue-router";
+// import { useRouter } from "vue-router";
 
 export default defineComponent({
   components: {
@@ -45,7 +59,7 @@ export default defineComponent({
     Image
   },
   props: {
-    data: {
+    order: {
       type: Object,
       required: false
     },
@@ -54,19 +68,10 @@ export default defineComponent({
       required: false
     }
   },
-  setup() {
-    const router = useRouter();
+  setup(props) {
+    console.log(props.order);
+    // const router = useRouter();
   },
-  methods: {
-    goToOrder() {
-      console.log("goToRestaurantPage");
-      // this.$router.push({
-      //   name: "RestaurantPage",
-      //   params: {
-      //     id: this.data.id
-      //   }
-      // });
-    }
-  }
+  methods: {}
 });
 </script>

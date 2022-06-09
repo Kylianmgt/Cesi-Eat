@@ -138,7 +138,7 @@ export default {
       this.$router.push({
         name: "/client/order-check",
         params: {
-          data: JSON.stringify(cleanOrder)
+          orders: JSON.stringify(cleanOrder)
         }
       });
     }
