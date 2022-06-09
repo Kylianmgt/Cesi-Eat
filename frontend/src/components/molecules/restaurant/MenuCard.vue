@@ -92,7 +92,7 @@ export default defineComponent({
           id: id,
           amount: 1,
           image: this.data.image,
-          title: this.data.name,
+          name: this.data.name,
           price: this.data.price
         });
       }

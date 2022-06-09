@@ -12,13 +12,12 @@
           </ion-card-header>
         </ion-col>
         <ion-col size="15">
-          <h1>{{ order.price }}€</h1>
-        </ion-col>
-      </ion-row>
-      <ion-row size="15">
-        <ion-col size="15">
-          <ion-button>supprimer</ion-button>
-          <!-- shape="round" @click="delete(order.id)" -->
+          <p>{{ order.price }}€ (unité)</p>
+          <h1>
+            {{ order.price }}x{{ order.amount }}={{
+              order.price * order.amount
+            }}€
+          </h1>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -72,6 +71,8 @@ export default defineComponent({
     console.log(props.order);
     // const router = useRouter();
   },
-  methods: {}
+  methods: {
+    deleteItem() {}
+  }
 });
 </script>
