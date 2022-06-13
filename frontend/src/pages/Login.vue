@@ -79,7 +79,7 @@ import {
   IonItem,
   IonLabel,
   IonIcon,
-  IonText
+  IonText,
 } from "@ionic/vue";
 
 import { mapActions } from "vuex";
@@ -101,7 +101,7 @@ export default {
     IonItem,
     IonLabel,
     IonIcon,
-    IonText
+    IonText,
   },
   setup() {
     const { openToast } = useToast();
@@ -116,17 +116,17 @@ export default {
       eye,
       eyeOff,
       logIn,
-      enterOutline
+      enterOutline,
     });
 
     const Fields = ref({
       email: "kylianmigot@km.com",
-      password: "Test1234"
+      password: "Test1234",
     });
 
     const ErrorMessages = ref({
       email: "",
-      password: ""
+      password: "",
     });
 
     const loading = ref(false);
@@ -139,7 +139,7 @@ export default {
       router,
       Fields,
       Icon,
-      showPassword
+      showPassword,
     };
   },
   methods: {
@@ -148,7 +148,6 @@ export default {
       if (!this.validateFields()) {
         return;
       }
-
       this.loading = true;
 
       this.userLogin(this.Fields)
@@ -176,8 +175,8 @@ export default {
     },
     redirectToRecoveryPassword() {
       this.router.push({ name: "recovery-password" });
-    }
-  }
+    },
+  },
 };
 </script>
 

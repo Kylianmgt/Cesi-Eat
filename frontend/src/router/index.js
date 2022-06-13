@@ -26,7 +26,7 @@ export const routes = [
   ...restaurant,
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: () => import('../pages/Login.vue'),
   },
   {
@@ -52,8 +52,13 @@ export const routes = [
     component: () => import('../pages/RecoverPassword.vue'),
   },
   {
+    path: '/choose-register-role',
+    name: 'choose-register-role',
+    component: () => import('../pages/RegisterRoleSelection.vue')
+  },
+  {
     path: '/register',
-    name: 'register',
+    name: 'Signup',
     component: () => import('../pages/Signup.vue'),
   },
   {

@@ -10,6 +10,7 @@ import store from './store';
 import Utils from './utils/index';
 
 import redirectToHome from './composition/redirectToHome';
+import { mapGetters } from 'vuex';
 
 import BaseLayout from './components/base/BaseLayout.vue';
 import { DynamicScroller } from 'vue-virtual-scroller';
@@ -40,53 +41,56 @@ import './theme/index.css';
 /* Bootstrap utilities */
 import './assets/css/bootstrap-grid.min.css';
 
-router.beforeEach(async (to, from, next) => {
-  const user = await Storage.get({ key: 'user' });
-  let lUserId = 0;
-  let lUserType = 0;
+// router.beforeEach(async (to, from, next) => {
+//   const userDataString = await Storage.get({ key: 'user' });
+//   console.log(userDataString);
+//   const user = JSON.parse(userDataString);
+//   let lUserId = 0;
+//   let lUserType = 0;
+//   console.log(user)
 
-  if (user.value) {
-    const { userId, userType } = JSON.parse(user.value);
-    lUserId = userId;
-    lUserType = userType;
-  }
+//   if (user.value) {
+//     const { userId, userType } = JSON.parse(user.value);
+//     lUserId = userId;
+//     lUserType = userType;
+//   }
 
-  if (['login', 'home', 'register'].includes(to.name) && user.value) {
-    next({ name: redirectToHome().routes[lUserType] });
-    return;
-  }
+//   if (['login', 'home', 'register'].includes(to.name) && user.value) {
+//     next({ name: redirectToHome().routes[lUserType] });
+//     return;
+//   }
 
-  if (!to.meta.userType) {
-    next();
-    return;
-  }
+//   if (!to.meta.userType) {
+//     next();
+//     return;
+//   }
 
-  if (!user.value) {
-    next({ name: 'logout' });
-    return;
-  }
+//   if (!user.value) {
+//     next({ name: 'logout' });
+//     return;
+//   }
 
-  if (!lUserId || !lUserType) {
-    next({ name: 'logout' });
-    return;
-  }
+//   if (!lUserId || !lUserType) {
+//     next({ name: 'logout' });
+//     return;
+//   }
 
-  to.matched.some((route) => {
-    if (typeof route.meta.userType === 'object') {
-      if (!route.meta.userType.some((type) => type === lUserType)) {
-        next({ name: 'not-authorized' });
-        return;
-      }
-    }
+//   to.matched.some((route) => {
+//     if (typeof route.meta.userType === 'object') {
+//       if (!route.meta.userType.some((type) => type === lUserType)) {
+//         next({ name: 'not-authorized' });
+//         return;
+//       }
+//     }
 
-    if (!route.meta.userType === lUserType) {
-      next({ name: 'not-authorized' });
-      return;
-    }
+//     if (!route.meta.userType === lUserType) {
+//       next({ name: 'not-authorized' });
+//       return;
+//     }
 
-    next();
-  });
-});
+//     next();
+//   });
+// });
 
 const app = createApp(App)
   .use(IonicVue)
