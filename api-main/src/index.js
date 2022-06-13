@@ -1,14 +1,54 @@
+
+// const websockets = require('websockets');
+
 const mongoose = require('mongoose');
 const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
+// var WebSocketServer = require("ws").Server;
+
 
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
   server = app.listen(config.port, () => {
     logger.info(`Listening to port ${config.port}`);
+
   });
+  const io = require('socket.io')(server, {
+    allowEIO3: true,
+    cors: {
+      origin: "http://localhost:8080",
+      methods: ["GET", "POST"],
+      allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
+      credentials: true,
+    }
+  });
+  io.on('connection', (socket) => {
+    logger.info('a user connected');
+    socket.on('disconnect', () => {
+      logger.info('user disconnected');
+    });
+  });
+
+
+
+  // var wss = new WebSocketServer({ port: 7007 });
+  // logger.info('WebSocketServer started');
+  // wss.broadcast = function broadcastMsg(msg) {
+  //   wss.clients.forEach(function each(client) {
+  //     client.send(msg);
+  //   });
+  // };
+  // wss.on('connection', function connection(ws) {
+  //   var remoteIp = ws.upgradeReq.connection.remoteAddress;
+  //   logger.info('WebSocketServer connection from ' + remoteIp);
+  //   ws.on('message', function incoming(message) {
+  //     logger.info('WebSocketServer received: ' + message);
+  //     wss.broadcast(message);
+  //   }
+  //   );
+  // });
 });
 
 const exitHandler = () => {

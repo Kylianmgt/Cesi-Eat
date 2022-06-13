@@ -1,4 +1,5 @@
 export default {
+  DEFAULT: 0,
   CLIENT: 1,
   ADMINISTRATOR: 2,
   DELIVERY: 3,
