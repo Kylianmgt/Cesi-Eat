@@ -1,4 +1,4 @@
-const { Restaurant } = require('../models');
+const { Restaurant, Order } = require('../models');
 
 /**
  * Create a user
@@ -7,18 +7,24 @@ const { Restaurant } = require('../models');
  * @returns {Promise<User>}
  */
 const createRestaurantProfil = async (userId, profil) => {
-    const client = {
+    const restaurant = {
         ...profil,
         user: userId,
     };
-    return Client.create(client);
+    return Restaurant.create(restaurant);
 };
 
 const getRestaurantProfil = async (userId) => {
-    return Client.findOne({ user: userId });
+    return Restaurant.findOne({ user: userId });
 };
+
+const getRestaurantOrders = async (restaurantId) => {
+    return Order.find({ restaurant: restaurantId }).populate('client');
+};
+
 
 module.exports = {
     createRestaurantProfil,
-    getRestaurantProfil
+    getRestaurantProfil,
+    getRestaurantOrders
 };

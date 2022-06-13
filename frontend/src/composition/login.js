@@ -16,9 +16,9 @@ export default function () {
       .then((response) => {
         openToast('Logged with sucess', 'success', 'top');
         this.$store.commit('user/setUserData', response);
-        console.log(response);
         console.log(this.$store.state.user.userData);
-        router.push('/' + response.user.role);
+        this.$store.commit('user/setUserType', response.user.role);
+        // router.push('/' + response.user.role);
         return Promise.resolve();
       })
       .catch(() => {
@@ -26,6 +26,7 @@ export default function () {
         Promise.reject();
       });
   }
+
 
   return {
     userLogin,

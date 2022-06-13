@@ -7,9 +7,7 @@
           <ion-col size="12">
             <ion-card>
               <ion-card-header>
-                <ion-card-title>
-                  Signup
-                </ion-card-title>
+                <ion-card-title> Signup </ion-card-title>
               </ion-card-header>
               <ion-card-content v-if="role === 'client'">
                 <ion-item>
@@ -143,7 +141,7 @@ import {
   IonButton,
   IonIcon,
   IonToast,
-  IonGrid
+  IonGrid,
 } from "@ionic/vue";
 import {
   person,
@@ -155,7 +153,7 @@ import {
   key,
   eye,
   eyeOff,
-  enterOutline
+  enterOutline,
 } from "ionicons/icons";
 
 import { mapActions } from "vuex";
@@ -193,7 +191,7 @@ export default {
     IonButton,
     IonIcon,
     IonToast,
-    IonGrid
+    IonGrid,
   },
   setup() {
     const { openToast } = useToast();
@@ -211,37 +209,36 @@ export default {
       eye,
       eyeOff,
       logIn,
-      enterOutline
+      enterOutline,
     });
 
     const userFields = ref({
       email: "kylianmigot@km.com",
       password: "Test1234",
       confirmPassword: "Test1234",
-      role: role
+      role: role,
     });
 
     const clientFields = ref({
       name: "Migot",
       firstName: "Kylian",
-      address: "44 avenue du 11 novembre"
+      address: "44 avenue du 11 novembre",
     });
 
     const restoFields = ref({
-      name: "Migot",
-      firstName: "Kylian",
-      address: "44 avenue du 11 novembre"
+      name: "MyKebab",
+      address: "44 avenue du 11 novembre",
     });
 
     const deliveryFields = ref({
       name: "Migot",
       firstName: "Kylian",
-      address: "44 avenue du 11 novembre"
+      address: "44 avenue du 11 novembre",
     });
 
     const ErrorMessages = ref({
       email: "",
-      password: ""
+      password: "",
     });
 
     const loading = ref(false);
@@ -257,7 +254,7 @@ export default {
       deliveryFields,
       ErrorMessages,
       loading,
-      role
+      role,
     };
   },
   methods: {
@@ -362,7 +359,7 @@ export default {
         default:
           break;
       }
-    }
-  }
+    },
+  },
 };
 </script>

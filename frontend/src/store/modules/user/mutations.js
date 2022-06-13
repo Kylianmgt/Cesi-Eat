@@ -8,4 +8,7 @@ export default {
   setUserType(state, userType) {
     state.userType = userType;
   },
+  setUserOrders(state, userOrders) {
+    state.userOrders = userOrders;
+  }
 };
