@@ -13,7 +13,11 @@
           </h2>
         </ion-text>
         <ion-grid>
-          <OrderCard v-for="order in orders" :order="order"></OrderCard>
+          <OrderedItemCard
+            v-for="order in orders"
+            :order="order"
+          ></OrderedItemCard>
+          <h1>Total : {{ totalCalculation() }}€</h1>
         </ion-grid>
       </ion-content>
       <ion-content>
@@ -45,17 +49,17 @@ import {
   IonButton
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
-import OrderCard from "@/components/molecules/orders/OrderCard.vue";
+import OrderedItemCard from "@/components/molecules/orders/OrderedItemCard.vue";
 
 export default {
-  name: "Profile",
+  name: "OrderCheck",
   components: {
     IonIcon,
     IonInput,
     IonText,
     IonPage,
     IonButton,
-    OrderCard
+    OrderedItemCard
   },
   props: route => ({
     user: userData,
@@ -71,6 +75,18 @@ export default {
       orders
     };
   },
-  methods: {}
+  methods: {
+    totalCalculation() {
+      var total = 0;
+      let res = this.orders;
+      console.log(res);
+      for (let i in res) {
+        console.log(i);
+        total += res[i].price * res[i].amount;
+        console.log(total);
+      }
+      return total;
+    }
+  }
 };
 </script>

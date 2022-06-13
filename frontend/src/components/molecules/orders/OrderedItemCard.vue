@@ -14,9 +14,10 @@
         <ion-col size="15">
           <p>{{ order.price }}€ (unité)</p>
           <h1>
-            {{ order.price }}x{{ order.amount }}={{
+            {{ order.price }}x {{ order.amount }}={{
               order.price * order.amount
-            }}€
+            }}
+            €
           </h1>
         </ion-col>
       </ion-row>
