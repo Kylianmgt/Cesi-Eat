@@ -133,14 +133,14 @@ export default {
       if (this.order.length == 0) {
         console.log("no item selected !");
         this.openToast("no item selected !", "danger", "0", 1500);
+      } else {
+        this.$router.push({
+          name: "/client/order-check",
+          params: {
+            orders: JSON.stringify(cleanOrder)
+          }
+        });
       }
-
-      this.$router.push({
-        name: "/client/order-check",
-        params: {
-          orders: JSON.stringify(cleanOrder)
-        }
-      });
     }
   }
 };

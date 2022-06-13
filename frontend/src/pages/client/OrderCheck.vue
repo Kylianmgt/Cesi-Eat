@@ -23,9 +23,38 @@
       <ion-content>
         <ion-text>
           <h2>
+            <span class="ml-2">Adresse de livraison</span>
+          </h2>
+        </ion-text>
+
+        <!-- FAIRE APPEL AU STORE POUR l'ADRESSE DU CLIENT + LIEN VERS LA PAGE PROFIL -->
+        <ion-card>
+          <p>Voie</p>
+          <p>Code postal</p>
+          <p>Indication</p>
+        </ion-card>
+        <ion-button size="small" color="light"
+          >Modifier l'adresse de livraison</ion-button
+        >
+      </ion-content>
+      <ion-content>
+        <ion-text>
+          <h2>
             <span class="ml-2">Payment method</span>
           </h2>
         </ion-text>
+
+        <ion-card
+          ><p>Type de carte</p>
+          <p>Numéro</p>
+          <p>Date de péremption</p>
+          <p>Nom</p>
+          <p>Prénom</p>
+        </ion-card>
+
+        <ion-button size="small" color="light"
+          >Modifier la méthode de paiement</ion-button
+        >
       </ion-content>
 
       <ion-button>
