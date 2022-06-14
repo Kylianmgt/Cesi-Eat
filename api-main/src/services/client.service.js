@@ -19,7 +19,7 @@ const getClientProfil = async (userId) => {
 };
 
 const getClientOrders = async (clientId) => {
-    return Order.find({ clientId: clientId }).populate('restaurant');
+    return Order.find({ client: clientId }).populate('restaurant');
 
 };
 

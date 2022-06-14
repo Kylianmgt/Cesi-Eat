@@ -8,7 +8,24 @@
             <span class="ml-2">Order summary</span>
           </h1>
         </ion-text>
+        <ion-list v-if="userData.user.role == 'delivery'">
+          <ion-text>
+            <h1>
+              <span class="ml-2">PendingOrders</span>
+            </h1>
+          </ion-text>
+          <ion-item v-for="pendingOrder in pendingOrders">
+            <OrderCard v-bind:order="pendingOrder"></OrderCard>
+            {{ pendingOrders }}
+          </ion-item>
+        </ion-list>
+
         <ion-list>
+          <ion-text>
+            <h1>
+              <span class="ml-2">MyOrders</span>
+            </h1>
+          </ion-text>
           <ion-item v-for="order in userOrders">
             <OrderCard v-bind:order="order"></OrderCard>
             {{ userOrders }}
@@ -66,10 +83,14 @@ export default {
   },
   mounted() {
     this.fetchOrders();
+    if (this.userData.user.role == "delivery") {
+      this.fetchPendingOrders();
+    }
   },
   computed: mapState({
     userOrders: (state) => state.user.userOrders,
     userData: (state) => state.user.userData,
+    pendingOrders: (state) => state.user.pendingOrders,
   }),
   sockets: {
     connect: function () {
@@ -80,6 +101,12 @@ export default {
     },
     update: function (data) {
       console.log("socket to notification channel updated");
+    },
+    ordersupdated: function () {
+      this.fetchOrders();
+      if (this.userData.user.role == "delivery") {
+        this.fetchPendingOrders();
+      }
     },
   },
   setup() {
@@ -97,6 +124,10 @@ export default {
   methods: {
     fetchOrders() {
       this.$store.dispatch("user/getUserOrders", this.userData.user.id);
+    },
+    fetchPendingOrders() {
+      this.$store.dispatch("user/getPendingOrders");
+      console.log(this.$store.state.user.pendingOrders);
     },
   },
 };
