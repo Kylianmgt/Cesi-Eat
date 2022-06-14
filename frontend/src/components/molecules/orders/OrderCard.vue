@@ -31,7 +31,7 @@ import {
   IonCardTitle,
   IonItem,
   IonLabel,
-  IonButton,
+  IonButton
 } from "@ionic/vue";
 
 import Image from "../../Image.vue";
@@ -50,20 +50,20 @@ export default defineComponent({
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
-    Image,
+    Image
   },
   computed: mapState({
-    userData: (state) => state.user.userData,
+    userData: state => state.user.userData
   }),
   props: {
     order: {
       type: Object,
-      required: false,
+      required: false
     },
     className: {
       type: String,
-      required: false,
-    },
+      required: false
+    }
   },
   setup() {
     const router = useRouter();
@@ -72,24 +72,24 @@ export default defineComponent({
         pending: { title: "Salut", action: {} },
         accepted: { title: "", action: {} },
         deliver: { title: "", action: {} },
-        done: { title: "", action: {} },
+        done: { title: "", action: {} }
       },
       delivery: {
         pending: { title: "", action: {} },
         accepted: { title: "", action: {} },
         deliver: { title: "", action: {} },
-        done: { title: "", action: {} },
+        done: { title: "", action: {} }
       },
       restaurant: {
         pending: { title: "", action: {} },
         accepted: { title: "", action: {} },
         deliver: { title: "", action: {} },
-        done: { title: "", action: {} },
-      },
+        done: { title: "", action: {} }
+      }
     };
     return {
       router,
-      actions,
+      actions
     };
   },
   methods: {
@@ -105,7 +105,7 @@ export default defineComponent({
     assignOrderToDelivery() {
       this.$socket.emit("assignDelivery", {
         orderId: this.order.id,
-        deliveryId: this.userData.user.id,
+        deliveryId: this.userData.user.id
       });
     },
     // markOrderAsTaken() {
@@ -117,12 +117,12 @@ export default defineComponent({
     markOrderAsDone() {
       this.$socket.emit("markOrderAsDone", {
         orderId: this.order.id,
-        deliveryId: this.userData.user.id,
+        deliveryId: this.userData.user.id
       });
     },
     fetchOrders() {
       return this.$store.dispatch("user/getUserOrders", this.userData.user.id);
-    },
-  },
+    }
+  }
 });
 </script>
