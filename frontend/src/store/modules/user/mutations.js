@@ -10,5 +10,8 @@ export default {
   },
   setUserOrders(state, userOrders) {
     state.userOrders = userOrders;
+  },
+  setPendingOrders(state, pendingOrders) {
+    state.pendingOrders = pendingOrders;
   }
 };

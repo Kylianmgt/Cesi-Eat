@@ -59,28 +59,27 @@ const getUserOrders = catchAsync(async (req, res) => {
     default:
       throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
-  res.status(httpStatus.OK).send();
 
 })
 
-const updateUserOrder = catchAsync(async (req, res) => {
-  // logger.info(req.session);
-  switch (req.body.action) {
+const updateUserOrder = async (action, orderId, deliveryId) => {
+  switch (action) {
     case 'accept':
-      deliveryService.acceptDelivery(req.params.orderId, req.body.deliveryId);
+      logger.info("J'accepte la ommande");
+      deliveryService.assignOrder(orderId, deliveryId);
       break;
     case 'take-from-restaurant':
-      deliveryService.takeFromRestaurant(req.params.orderId);
+      deliveryService.takeFromRestaurant(orderId);
       break;
     case 'deliver':
-      deliveryService.deliver(req.params.orderId);
+      deliveryService.markOrderAsDone(orderId);
       break;
     default:
-      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+      throw new ApiError(httpStatus.NOT_FOUND, 'Problem orders');
 
 
   }
-})
+}
 
 module.exports = {
   createUser,

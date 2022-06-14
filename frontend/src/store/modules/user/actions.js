@@ -18,6 +18,14 @@ export default {
       commit('setUserOrders', response.data);
       return response.data;
     });
+  },
+  getPendingOrders({ commit }) {
+    return api.get('/orders/').then((response) => {
+      commit('setPendingOrders', response.data);
+      return response.data;
+    })
+
   }
+
 
 };

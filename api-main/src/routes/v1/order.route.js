@@ -7,8 +7,8 @@ const orderValidation = require('../../validations/order.validation');
 
 const router = express.Router();
 
-router.route('/:orderId')
-    .post(validate(orderValidation.getOrder), userController.updateUserOrder)
+// router.route('/:orderId')
+//     .post(validate(orderValidation.getOrder), userController.updateUserOrder)
 
 
 

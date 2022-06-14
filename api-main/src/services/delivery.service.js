@@ -1,4 +1,5 @@
 const { Delivery, Order } = require('../models');
+const logger = require('../config/logger');
 
 /**
  * Create a user
@@ -26,9 +27,39 @@ const getPendingOrders = async () => {
     return Order.find({ status: 'pending' }).populate('client');
 }
 
+const assignOrder = async (orderId, deliveryId) => {
+    logger.debug('assigning order');
+    logger.debug(orderId);
+    logger.debug(deliveryId);
+    const profil = await Delivery.findById(deliveryId);
+    const order = await Order.findById(orderId);
+    order.delivery = profil;
+    order.status = 'accepted';
+    order.save();
+    return;
+
+}
+
+const takeFromRestaurant = async (orderId) => {
+    const order = await Order.findById(orderId);
+    order.status = 'deliver';
+    order.save();
+    return;
+}
+
+const markOrderAsDone = async (orderId) => {
+    const order = await Order.findById(orderId);
+    order.status = 'done';
+    order.save();
+    return;
+}
+
 module.exports = {
     createDeliveryProfil,
     getDeliveryProfil,
     getDeliveryOrders,
-    getPendingOrders
+    getPendingOrders,
+    assignOrder,
+    takeFromRestaurant,
+    markOrderAsDone
 };

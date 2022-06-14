@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
+const userController = require('./controllers/user.controller')
+
 // var WebSocketServer = require("ws").Server;
 
 
@@ -27,22 +29,31 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
       socket.on('disconnect', () => {
         logger.info('user disconnected');
       });
+      socket.on('assignDelivery', (data) => {
+        logger.info(data.orderId);
+        userController.updateUserOrder(action = 'accept', orderId = data.orderId, deliveryId = data.deliveryId);
+        socket.emit('ordersupdated');
+      }
+      );
+
+      socket.on('markOrderAsTaken', (data) => {
+        logger.info(data);
+        userController.updateUserOrder('take-from-restaurant', data.orderId);
+        socket.emit('ordersupdated');
+
+      }
+      );
+
+      socket.on('markOrderAsDone', (data) => {
+        logger.info(data);
+        userController.updateUserOrder('deliver', data.orderId);
+        socket.emit('ordersupdated');
+
+      }
+      );
     });
 
-    io.on('assignDelivery', (data) => {
-      logger.info(data);
-    }
-    );
 
-    io.on('markOrderAsTaken', (data) => {
-      logger.info(data);
-    }
-    );
-
-    io.on('markOrderAsDone', (data) => {
-      logger.info(data);
-    }
-    );
   });
 
 
