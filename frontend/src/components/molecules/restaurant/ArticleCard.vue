@@ -94,7 +94,6 @@ export default defineComponent({
           price: this.data.price
         });
       }
-      console.log("now increase : ", this.order);
     },
     decrease: function(id) {
       if (this.count > 0) this.count--;
@@ -108,7 +107,6 @@ export default defineComponent({
       } else {
         this.order.push({ type: "article", id: id, amount: 0 });
       }
-      console.log("now decrease : ", this.order);
     }
   }
 });

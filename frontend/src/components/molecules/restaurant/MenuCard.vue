@@ -96,7 +96,6 @@ export default defineComponent({
           price: this.data.price
         });
       }
-      console.log("now increase : ", this.order);
     },
     decrease: function(id) {
       if (this.count > 0) this.count--;
@@ -108,7 +107,6 @@ export default defineComponent({
         if (this.order[searchIndex].amount > 0)
           this.order[searchIndex].amount--;
       }
-      console.log("now decrease : ", this.order);
     }
   }
 });

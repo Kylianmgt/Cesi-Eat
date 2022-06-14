@@ -68,10 +68,7 @@ export default defineComponent({
       required: false
     }
   },
-  setup(props) {
-    console.log(props.order);
-    // const router = useRouter();
-  },
+  setup() {},
   methods: {
     deleteItem() {}
   }

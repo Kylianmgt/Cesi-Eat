@@ -122,16 +122,13 @@ export default {
   },
   methods: {
     validateOrder() {
-      console.log("before pop :", this.order);
       var cleanOrder = [];
       for (let i = 0; i < this.order.length; i++) {
         if (this.order[i].amount > 0) {
           cleanOrder.push(this.order[i]);
         }
       }
-      console.log("after pop :", cleanOrder);
       if (this.order.length == 0) {
-        console.log("no item selected !");
         this.openToast("no item selected !", "danger", "0", 1500);
       } else {
         this.$router.push({

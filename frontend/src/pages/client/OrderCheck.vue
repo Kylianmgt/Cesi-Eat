@@ -108,11 +108,8 @@ export default {
     totalCalculation() {
       var total = 0;
       let res = this.orders;
-      console.log(res);
       for (let i in res) {
-        console.log(i);
         total += res[i].price * res[i].amount;
-        console.log(total);
       }
       return total;
     }

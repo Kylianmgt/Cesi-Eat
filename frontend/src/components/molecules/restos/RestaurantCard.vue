@@ -70,7 +70,6 @@ export default defineComponent({
   },
   methods: {
     goToRestaurantPage() {
-      console.log("goToRestaurantPage");
       this.$router.push({
         name: "/client/restaurant",
         params: {
