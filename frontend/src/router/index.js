@@ -36,7 +36,7 @@ export const routes = [
   },
   {
     path: '/orders',
-    name: 'orders',
+    name: 'Orders',
     placeholder: 'Orders',
     icon: 'restaurant',
     component: () => import('../pages/Orders.vue'),

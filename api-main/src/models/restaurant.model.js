@@ -17,11 +17,6 @@ const restaurantSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
-        firstName: {
-            type: String,
-            required: true,
-            trim: true,
-        },
         address: {
             type: String,
             required: true,

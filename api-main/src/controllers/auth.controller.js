@@ -14,11 +14,11 @@ const register = catchAsync(async (req, res) => {
       logger.info(profil);
       break;
     case 'delivery':
-      profil = await deliveryService.createDelivery(user.id, req.body.delivery);
+      profil = await deliveryService.createDeliveryProfil(user.id, req.body.profil);
       logger.info(`Delivery ${user.id} created`);
       break;
     case 'restaurant':
-      profil = await restaurantService.createRestaurant(user.id, req.body.restaurant);
+      profil = await restaurantService.createRestaurantProfil(user.id, req.body.profil);
       break;
     default:
       break;

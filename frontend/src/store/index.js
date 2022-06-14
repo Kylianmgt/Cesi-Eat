@@ -7,6 +7,10 @@ import user from './modules/user/index';
 import menu from './modules/menu/index';
 import register from './modules/register/index';
 import profil from './modules/profil/index';
+import client from './modules/client/index';
+import restaurant from './modules/restaurant/index';
+import delivery from './modules/delivery/index';
+
 
 const store = createStore({
   modules: {
@@ -17,6 +21,9 @@ const store = createStore({
     menu,
     register,
     profil,
+    client,
+    restaurant,
+    delivery,
   },
 });
 

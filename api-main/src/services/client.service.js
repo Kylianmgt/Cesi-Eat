@@ -1,4 +1,4 @@
-const { Client } = require('../models');
+const { Client, Order } = require('../models');
 
 /**
  * Create a user
@@ -18,7 +18,13 @@ const getClientProfil = async (userId) => {
     return Client.findOne({ user: userId });
 };
 
+const getClientOrders = async (clientId) => {
+    return Order.find({ clientId: clientId }).populate('restaurant');
+
+};
+
 module.exports = {
     createClientProfil,
-    getClientProfil
+    getClientProfil,
+    getClientOrders
 };

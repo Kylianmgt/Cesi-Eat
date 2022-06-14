@@ -1,23 +1,23 @@
 const Joi = require('joi');
 const { password } = require('./custom.validation');
 
-const clientProfil = {
+const clientProfil = Joi.object().keys({
   name: Joi.string().required(),
   firstName: Joi.string().required(),
   address: Joi.string().required(),
-};
+});
 
-const deliveryProfil = {
+const deliveryProfil = Joi.object().keys({
   name: Joi.string().required(),
   firstName: Joi.string().required(),
   address: Joi.string().required(),
-}
+});
 
-const restaurantProfil = {
+const restaurantProfil = Joi.object().keys({
   name: Joi.string().required(),
   address: Joi.string().required(),
 
-}
+});
 
 const register = {
   body: Joi.object().keys({

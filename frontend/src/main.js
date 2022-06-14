@@ -8,6 +8,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import Utils from './utils/index';
+import VueSocketIO from 'vue-3-socket.io'
 
 import redirectToHome from './composition/redirectToHome';
 import { mapGetters } from 'vuex';
@@ -92,11 +93,21 @@ import './assets/css/bootstrap-grid.min.css';
 //   });
 // });
 
+const socket = new VueSocketIO({
+  debug: true,
+  connection: 'http://localhost:3000',
+  vuex: {
+    store,
+    actionPrefix: 'SOCKET_',
+    mutationPrefix: 'SOCKET_'
+  }
+});
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
   .use(store)
-  .use(VueVirtualScroller);
+  .use(socket)
 
 app.config.globalProperties.emitter = mitt();
 app.config.globalProperties.$validate = Utils.validations;

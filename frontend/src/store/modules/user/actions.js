@@ -13,4 +13,11 @@ export default {
   sendRecoveryPasswordEmail({ }, email) {
     return api.post('/recover-password', { email });
   },
+  getUserOrders({ commit }, userId) {
+    return api.get('/orders/' + userId).then((response) => {
+      commit('setUserOrders', response.data);
+      return response.data;
+    });
+  }
+
 };
