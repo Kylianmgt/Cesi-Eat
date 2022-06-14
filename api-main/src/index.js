@@ -13,23 +13,41 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
   server = app.listen(config.port, () => {
     logger.info(`Listening to port ${config.port}`);
-
-  });
-  const io = require('socket.io')(server, {
-    allowEIO3: true,
-    cors: {
-      origin: "http://localhost:8080",
-      methods: ["GET", "POST"],
-      allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
-      credentials: true,
-    }
-  });
-  io.on('connection', (socket) => {
-    logger.info('a user connected');
-    socket.on('disconnect', () => {
-      logger.info('user disconnected');
+    const io = require('socket.io')(server, {
+      allowEIO3: true,
+      cors: {
+        origin: "http://localhost:8080",
+        methods: ["GET", "POST"],
+        allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
+        credentials: true,
+      }
     });
+    io.on('connection', (socket) => {
+      logger.info('a user connected');
+      socket.on('disconnect', () => {
+        logger.info('user disconnected');
+      });
+    });
+
+    io.on('assignDelivery', (data) => {
+      logger.info(data);
+    }
+    );
+
+    io.on('markOrderAsTaken', (data) => {
+      logger.info(data);
+    }
+    );
+
+    io.on('markOrderAsDone', (data) => {
+      logger.info(data);
+    }
+    );
   });
+
+
+
+
 
 
 

@@ -108,12 +108,12 @@ export default defineComponent({
         deliveryId: this.userData.user.id,
       });
     },
-    markOrderAsTaken() {
-      this.$socket.emit("markOrderAsTaken", {
-        orderId: this.order.id,
-        deliveryId: this.userData.user.id,
-      });
-    },
+    // markOrderAsTaken() {
+    //   this.$socket.emit("markOrderAsTaken", {
+    //     orderId: this.order.id,
+    //     deliveryId: this.userData.user.id,
+    //   });
+    // },
     markOrderAsDone() {
       this.$socket.emit("markOrderAsDone", {
         orderId: this.order.id,
