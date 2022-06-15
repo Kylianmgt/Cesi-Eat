@@ -12,6 +12,18 @@ export default [
     component: () => import('../../pages/client/Restos.vue'),
     icon: "restaurant-outline",
     path: "/client/restos"
+  },{
+    name:"Restaurant",
+    component: () => import('../../pages/client/Restaurant.vue'),
+    path:"/client/restaurant"
+
+  },
+  {
+    name: "/client/profil",
+    placeholder: "Profil",
+    icon: "person",
+    path: "/client/profil",
+    component: () => import('../../pages/Profil.vue'),
   },
   {
     name: "/client/profil",

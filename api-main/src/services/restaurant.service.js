@@ -22,6 +22,9 @@ const getRestaurantOrders = async (restaurantId) => {
     return Order.find({ restaurant: restaurantId }).populate('client');
 };
 
+const getRestaurants = async()=>{
+    return Restaurant.find();
+}
 
 module.exports = {
     createRestaurantProfil,

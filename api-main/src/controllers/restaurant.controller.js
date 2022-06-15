@@ -8,6 +8,14 @@ const getRestaurantOrders = catchAsync(async (req, res) => {
     res.status(httpStatus.OK).send(orders);
 });
 
+const getRestaurants = catchAsync(async (req, res) => {
+    const restaurants = await restaurantService.getRestaurants();
+    res.status(httpStatus.OK).send(restaurants);
+});
+
+
+
+
 module.exports = {
     getRestaurantOrders
 };

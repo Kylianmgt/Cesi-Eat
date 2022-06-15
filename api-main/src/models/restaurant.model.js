@@ -3,7 +3,17 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
+const { string, required } = require('joi');
 
+const menu = mongoose.Schema(
+    {
+        name:{
+            type:string,
+            required: true,
+            trim: true,
+    }
+}    
+);
 
 const restaurantSchema = mongoose.Schema(
     {
@@ -22,6 +32,15 @@ const restaurantSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
+        menus :{
+            type: Object,
+            required: true,
+            trim: true,
+                    
+        },
+        articles: {
+
+        }
     },
     {
         timestamps: true,

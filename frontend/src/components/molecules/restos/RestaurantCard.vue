@@ -71,7 +71,7 @@ export default defineComponent({
   methods: {
     goToRestaurantPage() {
       this.$router.push({
-        name: "/client/Restaurant",
+        name: "Restaurant",
         params: {
           data: JSON.stringify(this.data)
         }
