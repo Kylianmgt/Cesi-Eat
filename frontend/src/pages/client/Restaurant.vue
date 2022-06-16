@@ -13,7 +13,7 @@
               </ion-text>
             </ion-row>
             <ion-row>
-              <ion-text color="Dark ">
+              <ion-text color="">
                 <h3>{{ data.description }}</h3>
                 <h3>{{ data.address }}</h3>
               </ion-text>
