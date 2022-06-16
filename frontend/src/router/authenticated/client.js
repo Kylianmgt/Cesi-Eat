@@ -21,6 +21,11 @@ export default [
     component: () => import('../../pages/Profil.vue'),
   },
   {
+    name: "Restaurant",
+    path: "/client/restaurant",
+    component: () => import('../../pages/client/Restaurant.vue')
+  },
+  {
     name: "/client/order-check",
     path: "/client/orderCheck",
     component: () => import('../../pages/client/OrderCheck.vue'),

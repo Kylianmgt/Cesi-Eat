@@ -5,13 +5,13 @@
 </style>
 
 <template>
-  <base-layout :show-menu-button="false">
+  <base-layout :show-menu-button="false" :showHeader="false">
     <ion-page>
       <ion-text>
-        <h1>Les Restos autour de chez vous</h1>
+        <h1 class="text-center text-4xl">Ta la dalle hein gros tas</h1>
       </ion-text>
-      <ion-content scroll-y="true">
-        <ion-list class="">
+      <ion-content scroll-y="true" class="">
+        <ion-list class="px-2">
           <RestaurantCard v-for="restaurant in data" :data="restaurant" />
         </ion-list>
       </ion-content>
@@ -28,7 +28,7 @@ import {
   IonItem,
   IonLabel,
   IonIcon,
-  IonText
+  IonText,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 
@@ -40,7 +40,7 @@ export default {
     RestaurantCard,
     IonIcon,
     IonText,
-    IonPage
+    IonPage,
   },
   setup() {
     const router = useRouter();
@@ -61,7 +61,7 @@ export default {
             description: "Tacos de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "2",
@@ -69,7 +69,7 @@ export default {
             description: "Burger de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "3",
@@ -77,7 +77,7 @@ export default {
             description: "Pizza de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "4",
@@ -85,8 +85,8 @@ export default {
             description: "Coca-Cola de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
-          }
+            price: 10,
+          },
         ],
         menus: [
           {
@@ -96,7 +96,7 @@ export default {
             image:
               "https://images.rtl.fr/~c/770v513/rtl/www/1460953-un-hamburger-image-d-illustration.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "2",
@@ -105,7 +105,7 @@ export default {
             image:
               "https://www.peugeot-saveurs.com/wp/wp-content/uploads/2021/02/IMG_0063-1024x0.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "3",
@@ -114,9 +114,9 @@ export default {
             image:
               "https://www.peugeot-saveurs.com/wp/wp-content/uploads/2021/02/IMG_0063-1024x0.jpg",
             price: 10,
-            articles: [1, 2]
-          }
-        ]
+            articles: [1, 2],
+          },
+        ],
       },
       {
         id: "2",
@@ -135,7 +135,7 @@ export default {
             description: "Tacos de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "2",
@@ -143,7 +143,7 @@ export default {
             description: "Burger de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "3",
@@ -151,7 +151,7 @@ export default {
             description: "Pizza de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "4",
@@ -159,8 +159,8 @@ export default {
             description: "Coca-Cola de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
-          }
+            price: 10,
+          },
         ],
         menus: [
           {
@@ -170,7 +170,7 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "2",
@@ -179,7 +179,7 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "3",
@@ -188,9 +188,9 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
-          }
-        ]
+            articles: [1, 2],
+          },
+        ],
       },
       {
         id: "2",
@@ -209,7 +209,7 @@ export default {
             description: "Tacos de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "2",
@@ -217,7 +217,7 @@ export default {
             description: "Burger de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "3",
@@ -225,7 +225,7 @@ export default {
             description: "Pizza de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "4",
@@ -233,8 +233,8 @@ export default {
             description: "Coca-Cola de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
-          }
+            price: 10,
+          },
         ],
         menus: [
           {
@@ -244,7 +244,7 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "2",
@@ -253,7 +253,7 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "3",
@@ -262,9 +262,9 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
-          }
-        ]
+            articles: [1, 2],
+          },
+        ],
       },
       {
         id: "3",
@@ -283,7 +283,7 @@ export default {
             description: "Tacos de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "2",
@@ -291,7 +291,7 @@ export default {
             description: "Burger de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "3",
@@ -299,7 +299,7 @@ export default {
             description: "Pizza de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "4",
@@ -307,8 +307,8 @@ export default {
             description: "Coca-Cola de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
-          }
+            price: 10,
+          },
         ],
         menus: [
           {
@@ -318,7 +318,7 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "2",
@@ -327,7 +327,7 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "3",
@@ -336,9 +336,9 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
-          }
-        ]
+            articles: [1, 2],
+          },
+        ],
       },
       {
         id: "4",
@@ -357,7 +357,7 @@ export default {
             description: "Tacos de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "2",
@@ -365,7 +365,7 @@ export default {
             description: "Burger de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "3",
@@ -373,7 +373,7 @@ export default {
             description: "Pizza de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
+            price: 10,
           },
           {
             id: "4",
@@ -381,8 +381,8 @@ export default {
             description: "Coca-Cola de la meilleure qualité",
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-            price: 10
-          }
+            price: 10,
+          },
         ],
         menus: [
           {
@@ -392,7 +392,7 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "2",
@@ -401,7 +401,7 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
+            articles: [1, 2],
           },
           {
             id: "3",
@@ -410,17 +410,17 @@ export default {
             image:
               "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
             price: 10,
-            articles: [1, 2]
-          }
-        ]
-      }
+            articles: [1, 2],
+          },
+        ],
+      },
     ];
 
     return {
       router,
-      data
+      data,
     };
   },
-  methods: {}
+  methods: {},
 };
 </script>

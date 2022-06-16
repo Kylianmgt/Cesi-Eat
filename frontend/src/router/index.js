@@ -8,7 +8,7 @@ import restaurant from './authenticated/restaurant';
 export const routes = [
   {
     path: '/',
-    redirect: '/landing',
+    redirect: '/login',
   },
   {
     path: '/landing',
@@ -53,7 +53,7 @@ export const routes = [
   },
   {
     path: '/choose-register-role',
-    name: 'choose-register-role',
+    name: 'RegisterRoleSelection',
     component: () => import('../pages/RegisterRoleSelection.vue')
   },
   {
