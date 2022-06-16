@@ -1,6 +1,10 @@
 // create a signup page for the user to signup with ionic components
 <template>
-  <base-layout :showHeader="true" pageDefaultBackLink="/choose-register-role">
+  <base-layout
+    :showHeader="true"
+    pageDefaultBackLink="/choose-register-role"
+    :showTabs="false"
+  >
     <ion-page>
       <ion-content>
         <ion-grid>
