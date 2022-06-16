@@ -89,19 +89,19 @@ import {
   IonItem,
   IonLabel,
   IonIcon,
-  IonText
+  IonText,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
-import Button from "../components/Button.vue";
+import Button from "../../components/Button.vue";
 
 export default {
-  name: "Profile",
+  name: "Restaurant",
   components: {
     IonIcon,
     IonInput,
     IonText,
     IonPage,
-    Button
+    Button,
   },
   setup() {
     const router = useRouter();
@@ -109,13 +109,13 @@ export default {
       name: "Kicum",
       email: "kicum@kicum.com",
       phone: "+33646326521",
-      address: "44 avenue du 11 novembre"
+      address: "44 avenue du 11 novembre",
     };
     return {
       router,
-      data
+      data,
     };
   },
-  methods: {}
+  methods: {},
 };
 </script>

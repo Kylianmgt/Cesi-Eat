@@ -25,30 +25,19 @@ import {
   IonPage,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
 } from "@ionic/vue";
 import { calendar, personCircle } from "ionicons/icons";
 import { routes } from "../../router/index";
 
 export default defineComponent({
   components: { IonIcon, IonLabel, IonPage, IonTabBar, IonTabButton, IonTabs },
+  computed: {
+    userData() {
+      return this.$store.state.user.userData;
+    },
+  },
   setup() {
-    const getTabs = () => {
-      const tabs = [];
-      routes.map(route => {
-        if (route.icon) {
-          tabs.push({
-            name: route.name,
-            url: route.url,
-            icon: route.icon,
-            placeholder: route.placeholder,
-            path: route.path
-          });
-        }
-      });
-      return tabs;
-    };
-
     const beforeTabChange = () => {
       // do something before tab change
     };
@@ -60,8 +49,28 @@ export default defineComponent({
       personCircle,
       beforeTabChange,
       afterTabChange,
-      getTabs
     };
-  }
+  },
+  methods: {
+    getTabs() {
+      const tabs = [];
+      routes.map((route) => {
+        if (route.icon) {
+          console.log(this.userData);
+          if (this.userData.user) {
+            if (route.role && route.role.includes(this.userData.user.role)) {
+              tabs.push({
+                name: route.name,
+                path: route.path,
+                icon: route.icon,
+                placeholder: route.placeholder,
+              });
+            }
+          }
+        }
+      });
+      return tabs;
+    },
+  },
 });
 </script>
