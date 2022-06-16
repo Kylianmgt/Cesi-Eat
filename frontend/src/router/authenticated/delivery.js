@@ -6,14 +6,11 @@ export default [
         redirect: '/orders'
     },
     {
-        name: 'Orders',
-        path: '/orders',
-        component: () => import('../../pages/Orders.vue'),
-    },
-    {
-        path: '/delivery/home',
-        name: 'delivery-home',
-        component: () => import('../../pages/delivery/Home.vue'),
-        meta: { userType: UserTypes.DELIVERY },
+        name: "/delivery/profil",
+        placeholder: "Profil",
+        icon: "person",
+        path: "/delivery/profil",
+        role: 'delivery',
+        component: () => import('../../pages/Profil.vue'),
     },
 ];

@@ -30,7 +30,7 @@
     <ion-content :class="`ion-padding ${className}`" :scroll-events="true">
       <slot> </slot>
     </ion-content>
-    <ion-footer collapse="fade" v-if="showTabs">
+    <ion-footer collapse="fade" v-if="userData && showTabs">
       <ion-toolbar>
         <Tabs />
       </ion-toolbar>
@@ -50,9 +50,16 @@ import {
 } from "@ionic/vue";
 import Tabs from "./Tabs.vue";
 import { useRouter } from "vue-router";
+import { mapState } from "vuex";
 
 export default {
   name: "BaseLayout",
+  computed: {
+    userData() {
+      console.log(this.$store.state.user.userData);
+      return this.$store.state.user.userData;
+    },
+  },
   props: {
     pageTitle: {
       type: String,
