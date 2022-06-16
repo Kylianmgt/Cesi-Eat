@@ -10,8 +10,8 @@
                 router.push({
                   name: 'Signup',
                   params: {
-                    role: 'client'
-                  }
+                    role: 'client',
+                  },
                 })
             "
             >ClientRegister</ion-button
@@ -25,8 +25,8 @@
                 router.push({
                   name: 'Signup',
                   params: {
-                    role: 'restaurant'
-                  }
+                    role: 'restaurant',
+                  },
                 })
             "
             >RestaurantRegister</ion-button
@@ -40,8 +40,8 @@
                 router.push({
                   name: 'Signup',
                   params: {
-                    role: 'delivery'
-                  }
+                    role: 'delivery',
+                  },
                 })
             "
             >DeliveryRegister</ion-button
@@ -49,18 +49,29 @@
         </ion-item>
       </ion-list>
     </ion-content>
+    <ion-content>
+      <ion-button
+        @click="
+          () =>
+            router.push({
+              name: 'Login',
+            })
+        "
+      >
+        You already have an account ? Go to Login
+      </ion-button>
+    </ion-content>
   </ion-page>
 </template>
 
 <script>
-//import ionic components used in template
 import {
   IonPage,
   IonContent,
   IonList,
   IonItem,
   IonButton,
-  IonLabel
+  IonLabel,
 } from "@ionic/vue";
 
 //import vue router
@@ -74,13 +85,13 @@ export default {
     IonList,
     IonItem,
     IonButton,
-    IonLabel
+    IonLabel,
   },
   setup() {
     const router = useRouter();
     return {
-      router
+      router,
     };
-  }
+  },
 };
 </script>

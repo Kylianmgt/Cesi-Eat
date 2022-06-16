@@ -6,8 +6,6 @@
       <ion-card-title>Order</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile, and
-      climb a mountain or spend a week in the woods. Wash your spirit clean.
       <ion-list>
         <ion-button
           @click="actions[userData.user.role][order.status].action()"

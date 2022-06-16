@@ -18,7 +18,7 @@ export default function () {
         this.$store.commit('user/setUserData', response);
         console.log(this.$store.state.user.userData);
         this.$store.commit('user/setUserType', response.user.role);
-        // router.push('/' + response.user.role);
+        router.push('/' + response.user.role);
         return Promise.resolve();
       })
       .catch(() => {

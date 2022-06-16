@@ -3,9 +3,8 @@
     <ion-page>
       <ion-content>
         <ion-text>
-          {{ userData }}
           <h1>
-            <span class="ml-2">Order summary</span>
+            <span class="text-4xl">My orders</span>
           </h1>
         </ion-text>
         <ion-list v-if="userData.user.role == 'delivery'">
@@ -16,36 +15,35 @@
           </ion-text>
           <ion-item v-for="pendingOrder in pendingOrders">
             <OrderCard v-bind:order="pendingOrder"></OrderCard>
-            {{ pendingOrders }}
           </ion-item>
         </ion-list>
-
-        <ion-list>
-          <ion-text>
-            <h1>
-              <span class="ml-2">MyOrders</span>
-            </h1>
-          </ion-text>
-          <ion-item v-for="order in userOrders">
-            <OrderCard v-bind:order="order"></OrderCard>
-            {{ userOrders }}
-          </ion-item>
-        </ion-list>
-      </ion-content>
-
-      <ion-content>
         <ion-text>
           <h2>
             <span class="ml-2">Your actual orders</span>
           </h2>
         </ion-text>
-      </ion-content>
-      <ion-content>
+
+        <ion-list>
+          <ion-item v-for="order in userOrders">
+            <OrderCard
+              v-bind:order="order"
+              v-if="order.status != 'done'"
+            ></OrderCard>
+          </ion-item>
+        </ion-list>
         <ion-text>
           <h2>
             <span class="ml-2">Your previous orders</span>
           </h2>
         </ion-text>
+        <ion-list>
+          <ion-item v-for="order in userOrders">
+            <OrderCard
+              v-bind:order="order"
+              v-if="order.status == 'done'"
+            ></OrderCard>
+          </ion-item>
+        </ion-list>
       </ion-content>
     </ion-page>
   </base-layout>

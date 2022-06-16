@@ -2,9 +2,13 @@ import UserTypes from '../../enums/UserTypes';
 
 export default [
     {
-        name: 'delivery',
         path: '/delivery',
-        redirect: '/delivery/home',
+        redirect: '/orders'
+    },
+    {
+        name: 'Orders',
+        path: '/orders',
+        component: () => import('../../pages/Orders.vue'),
     },
     {
         path: '/delivery/home',
