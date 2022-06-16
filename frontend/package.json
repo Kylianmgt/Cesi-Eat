@@ -29,6 +29,7 @@
     "axios": "^0.21.1",
     "cordova-plugin-websocket-server": "^1.6.0",
     "core-js": "^3.16.4",
+    "image-to-base64": "^2.2.0",
     "ionicons": "^5.5.3",
     "mitt": "^2.1.0",
     "vue": "^3.2.6",

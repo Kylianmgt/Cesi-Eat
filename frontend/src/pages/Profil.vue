@@ -16,6 +16,8 @@
         <ion-text> Name: {{ userData.profil.name }} </ion-text>
         <ion-text> Email: {{ userData.user.email }} </ion-text>
         <ion-text> Address: {{ userData.profil.address }} </ion-text>
+        <ion-img :src="userData.profil.image" v-if="userData.profil.image">
+        </ion-img>
       </ion-content>
     </ion-page>
   </base-layout>
@@ -31,6 +33,7 @@ import {
   IonLabel,
   IonIcon,
   IonText,
+  IonImage,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 import { mapGetters, mapState } from "vuex";
@@ -47,6 +50,7 @@ export default {
     IonText,
     IonPage,
     Button,
+    IonImage,
   },
   computed: {
     userData() {
