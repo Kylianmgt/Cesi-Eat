@@ -30,6 +30,25 @@
                     ></ion-input>
                   </ion-item>
                   <ion-item>
+                    <ion-label position="floating">Photo</ion-label>
+                    <File
+                      open-camera
+                      label="Open camera and gallery"
+                      @files="
+                        (files) => {
+                          clientFields.image = files[0];
+                        }
+                      "
+                    />
+                  </ion-item>
+                  <ion-item v-if="clientFields.image != ''">
+                    <ion-img
+                      :src="clientFields.image"
+                      width="10px"
+                      height="10px"
+                    ></ion-img>
+                  </ion-item>
+                  <ion-item>
                     <ion-label position="floating">Email</ion-label>
                     <ion-input
                       type="email"
@@ -73,6 +92,19 @@
                     ></ion-input>
                   </ion-item>
                   <ion-item>
+                    <ion-label position="floating">Photo</ion-label>
+                    <File
+                      open-camera
+                      label="Open camera and gallery"
+                      class="mb-2"
+                      @files="
+                        (files) => {
+                          restaurantFields.image = files[0];
+                        }
+                      "
+                    />
+                  </ion-item>
+                  <ion-item>
                     <ion-label position="floating">Password</ion-label>
                     <ion-input
                       required
@@ -100,6 +132,19 @@
                       type="email"
                       v-model="userFields.email"
                     ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Photo</ion-label>
+                    <File
+                      open-camera
+                      label="Open camera and gallery"
+                      class="mb-2"
+                      @files="
+                        (files) => {
+                          deliveryFields.image = files[0];
+                        }
+                      "
+                    />
                   </ion-item>
                   <ion-item>
                     <ion-label position="floating">Password</ion-label>
@@ -154,6 +199,7 @@ import {
   IonIcon,
   IonToast,
   IonGrid,
+  IonImage,
 } from "@ionic/vue";
 import {
   person,
@@ -175,6 +221,7 @@ import { useRouter, useRoute } from "vue-router";
 import { ref } from "vue";
 
 import Button from "../components/Button.vue";
+import File from "../components/inputs/File.vue";
 import useToast from "../composition/useToast";
 import register from "../composition/register";
 
@@ -204,6 +251,8 @@ export default {
     IonIcon,
     IonToast,
     IonGrid,
+    IonImage,
+    File,
   },
   setup() {
     const { openToast } = useToast();
@@ -235,17 +284,20 @@ export default {
       name: "Migot",
       firstName: "Kylian",
       address: "44 avenue du 11 novembre",
+      image: "",
     });
 
     const restoFields = ref({
       name: "MyKebab",
       address: "44 avenue du 11 novembre",
+      image: "",
     });
 
     const deliveryFields = ref({
       name: "Migot",
       firstName: "Kylian",
       address: "44 avenue du 11 novembre",
+      image: "",
     });
 
     const ErrorMessages = ref({
@@ -278,6 +330,7 @@ export default {
       this.loading = true;
       switch (this.role) {
         case "client":
+          console.log("userFields", this.clientFields);
           this.userRegister(this.userFields, this.clientFields).then(() => {
             // this.router.push("/login");
           });
