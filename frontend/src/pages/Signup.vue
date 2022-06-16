@@ -1,122 +1,130 @@
 // create a signup page for the user to signup with ionic components
 <template>
-  <ion-page>
-    <ion-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="12">
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title> Signup </ion-card-title>
-              </ion-card-header>
-              <ion-card-content v-if="role === 'client'">
-                <ion-item>
-                  <ion-label position="floating">FirstName</ion-label>
-                  <ion-input
-                    type="text"
-                    v-model="clientFields.firstName"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Name</ion-label>
-                  <ion-input
-                    type="text"
-                    v-model="clientFields.name"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Email</ion-label>
-                  <ion-input
-                    type="email"
-                    v-model="userFields.email"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Address</ion-label>
-                  <ion-input
-                    type="text"
-                    v-model="clientFields.address"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Password</ion-label>
-                  <ion-input
-                    required
-                    name="password"
-                    type="password"
-                    v-model="userFields.password"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input
-                    type="password"
-                    name="confirmPassword"
-                    v-model="userFields.confirmPassword"
-                  ></ion-input>
-                </ion-item>
-                <ion-button expand="block" @click="signup()">Signup</ion-button>
-              </ion-card-content>
-              <ion-card-content v-if="role === 'restaurant'">
-                <ion-item>
-                  <ion-label position="floating">Email</ion-label>
-                  <ion-input
-                    type="email"
-                    v-model="userFields.email"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Password</ion-label>
-                  <ion-input
-                    required
-                    name="password"
-                    type="password"
-                    v-model="userFields.password"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input
-                    type="password"
-                    name="confirmPassword"
-                    v-model="userFields.confirmPassword"
-                  ></ion-input>
-                </ion-item>
-                <ion-button expand="block" @click="signup()">Signup</ion-button>
-              </ion-card-content>
-              <ion-card-content v-if="role === 'delivery'">
-                <ion-item>
-                  <ion-label position="floating">Email</ion-label>
-                  <ion-input
-                    type="email"
-                    v-model="userFields.email"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Password</ion-label>
-                  <ion-input
-                    required
-                    name="password"
-                    type="password"
-                    v-model="userFields.password"
-                  ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input
-                    type="password"
-                    name="confirmPassword"
-                    v-model="userFields.confirmPassword"
-                  ></ion-input>
-                </ion-item>
-                <ion-button expand="block" @click="signup()">Signup</ion-button>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-content>
-  </ion-page>
+  <base-layout :showHeader="true" pageDefaultBackLink="/choose-register-role">
+    <ion-page>
+      <ion-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-title> Signup </ion-card-title>
+                </ion-card-header>
+                <ion-card-content v-if="role === 'client'">
+                  <ion-item>
+                    <ion-label position="floating">FirstName</ion-label>
+                    <ion-input
+                      type="text"
+                      v-model="clientFields.firstName"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Name</ion-label>
+                    <ion-input
+                      type="text"
+                      v-model="clientFields.name"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input
+                      type="email"
+                      v-model="userFields.email"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Address</ion-label>
+                    <ion-input
+                      type="text"
+                      v-model="clientFields.address"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input
+                      required
+                      name="password"
+                      type="password"
+                      v-model="userFields.password"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input
+                      type="password"
+                      name="confirmPassword"
+                      v-model="userFields.confirmPassword"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-button expand="block" @click="signup()"
+                    >Signup</ion-button
+                  >
+                </ion-card-content>
+                <ion-card-content v-if="role === 'restaurant'">
+                  <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input
+                      type="email"
+                      v-model="userFields.email"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input
+                      required
+                      name="password"
+                      type="password"
+                      v-model="userFields.password"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input
+                      type="password"
+                      name="confirmPassword"
+                      v-model="userFields.confirmPassword"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-button expand="block" @click="signup()"
+                    >Signup</ion-button
+                  >
+                </ion-card-content>
+                <ion-card-content v-if="role === 'delivery'">
+                  <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input
+                      type="email"
+                      v-model="userFields.email"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input
+                      required
+                      name="password"
+                      type="password"
+                      v-model="userFields.password"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input
+                      type="password"
+                      name="confirmPassword"
+                      v-model="userFields.confirmPassword"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-button expand="block" @click="signup()"
+                    >Signup</ion-button
+                  >
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+    </ion-page>
+  </base-layout>
 </template>
 
 <script>
