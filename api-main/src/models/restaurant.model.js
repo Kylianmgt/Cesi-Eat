@@ -27,10 +27,6 @@ const restaurantSchema = mongoose.Schema(
             type:String,
             required:false,
         },
-        image: {
-            type:String,
-            required:false,
-        },
         rating: {
             type:Number,
             required:false
@@ -38,7 +34,11 @@ const restaurantSchema = mongoose.Schema(
         city: {
             type:String,
             required:true
-        }
+        },
+        image: {
+            type: String,
+            required: false,
+        },
     },
     {
         timestamps: true,

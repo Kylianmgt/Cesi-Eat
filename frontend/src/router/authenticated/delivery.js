@@ -2,14 +2,15 @@ import UserTypes from '../../enums/UserTypes';
 
 export default [
     {
-        name: 'delivery',
         path: '/delivery',
-        redirect: '/delivery/home',
+        redirect: '/orders'
     },
     {
-        path: '/delivery/home',
-        name: 'delivery-home',
-        component: () => import('../../pages/delivery/Home.vue'),
-        meta: { userType: UserTypes.DELIVERY },
+        name: "/delivery/profil",
+        placeholder: "Profil",
+        icon: "person",
+        path: "/delivery/profil",
+        role: 'delivery',
+        component: () => import('../../pages/Profil.vue'),
     },
 ];

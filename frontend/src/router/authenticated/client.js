@@ -11,6 +11,7 @@ export default [
     placeholder: "Restos",
     component: () => import('../../pages/client/Restos.vue'),
     icon: "restaurant-outline",
+    role: ["client"],
     path: "/client/restos"
   },{
     name:"Restaurant",
@@ -26,11 +27,9 @@ export default [
     component: () => import('../../pages/Profil.vue'),
   },
   {
-    name: "/client/profil",
-    placeholder: "Profil",
-    icon: "person",
-    path: "/client/profil",
-    component: () => import('../../pages/Profil.vue'),
+    name: "Restaurant",
+    path: "/client/restaurant",
+    component: () => import('../../pages/client/Restaurant.vue')
   },
   {
     name: "/client/order-check",

@@ -3,6 +3,8 @@
     page-default-back-link="/home"
     :show-menu-button="false"
     :ignore-history="true"
+    :showTabs="false"
+    :showHeader="false"
   >
     <ion-row>
       <!-- <ion-col size="12">
@@ -63,6 +65,12 @@
       <ion-col size="12">
         <ion-text color="tertiary" @click="redirectToRecoveryPassword()">
           Forgot password?
+        </ion-text>
+        <ion-text
+          color="tertiary"
+          @click="() => router.push({ name: 'RegisterRoleSelection' })"
+        >
+          Register
         </ion-text>
       </ion-col>
     </ion-row>

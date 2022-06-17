@@ -1,20 +1,24 @@
 <template>
-  <base-layout :show-menu-button="false">
+  <base-layout :show-menu-button="false" :showHeader="false">
     <ion-page>
-      <ion-text>
+      <ion-text class="text-4xl">
         <h1>
           <ion-icon name="home" />
-          <span class="ml-2">Profil</span>
+          <span class="ml-2">My profil</span>
         </h1>
       </ion-text>
-      <Button
-        text="Router redirect"
-        color="medium"
-        :to="{ name: 'edit-profile' }"
-      />
-      <ion-text> Name: {{ userData.profil.name }} </ion-text>
-      <ion-text> Email: {{ userData.user.email }} </ion-text>
-      <ion-text> Address: {{ userData.profil.address }} </ion-text>
+      <ion-content>
+        <Button
+          text="Edit my profil"
+          color="medium"
+          :to="{ name: 'edit-profile' }"
+        />
+        <ion-text> Name: {{ userData.profil.name }} </ion-text>
+        <ion-text> Email: {{ userData.user.email }} </ion-text>
+        <ion-text> Address: {{ userData.profil.address }} </ion-text>
+        <ion-img :src="userData.profil.image" v-if="userData.profil.image">
+        </ion-img>
+      </ion-content>
     </ion-page>
   </base-layout>
 </template>
@@ -29,6 +33,7 @@ import {
   IonLabel,
   IonIcon,
   IonText,
+  IonImage,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 import { mapGetters, mapState } from "vuex";
@@ -45,6 +50,7 @@ export default {
     IonText,
     IonPage,
     Button,
+    IonImage,
   },
   computed: {
     userData() {

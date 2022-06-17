@@ -1,100 +1,106 @@
 // create a signup page for the user to signup with ionic components
 <template>
-  <ion-page>
-    <ion-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="12">
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title> Signup </ion-card-title>
-              </ion-card-header>
-              <ion-card-content v-if="role === 'client'">
-                <ion-item>
-                  <ion-label position="floating">FirstName</ion-label>
-                  <ion-input type="text" v-model="clientFields.firstName"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Name</ion-label>
-                  <ion-input type="text" v-model="clientFields.name"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Email</ion-label>
-                  <ion-input type="email" v-model="userFields.email"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Address</ion-label>
-                  <ion-input type="text" v-model="clientFields.address"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Password</ion-label>
-                  <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
-                </ion-item>
-                <ion-button expand="block" @click="signup()">Signup</ion-button>
-              </ion-card-content>
-              <ion-card-content v-if="role === 'restaurant'">
-                <ion-item>
-                  <ion-label position="floating">Email</ion-label>
-                  <ion-input type="email" v-model="userFields.email"></ion-input>
-                </ion-item>
-                <ion-input type="email" v-model="userFields.email"></ion-input>
-
-                <ion-item>
-                  <ion-label position="floating">Password</ion-label>
-                  <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="floating">Restaurant name</ion-label>
-                  <ion-input required name="restaurant_name" type="name" v-model="restoFields.name"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Address</ion-label>
-                  <ion-input required name="password" type="street-address" v-model="restoFields.Addres"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="floating">Description</ion-label>
-                  <ion-input required name="password" type="name" v-model="restoFields.Description"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="floating">Image</ion-label>
-                  <ion-input required name="password" type="photo" v-model="restoFields.Image"></ion-input>
-                </ion-item>
-
-                <ion-button expand="block" @click="signup()">Signup</ion-button>
-              </ion-card-content>
-              <ion-card-content v-if="role === 'delivery'">
-                <ion-item>
-                  <ion-label position="floating">Email</ion-label>
-                  <ion-input type="email" v-model="userFields.email"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Password</ion-label>
-                  <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
-                </ion-item>
-                <ion-button expand="block" @click="signup()">Signup</ion-button>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-content>
-  </ion-page>
+  <base-layout :showHeader="true" pageDefaultBackLink="/choose-register-role" :showTabs="false">
+    <ion-page>
+      <ion-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-title> Signup </ion-card-title>
+                </ion-card-header>
+                <ion-card-content v-if="role === 'client'">
+                  <ion-item>
+                    <ion-label position="floating">FirstName</ion-label>
+                    <ion-input type="text" v-model="clientFields.firstName"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Name</ion-label>
+                    <ion-input type="text" v-model="clientFields.name"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Photo</ion-label>
+                    <File open-camera label="Open camera and gallery" @files="
+                      (files) => {
+                        clientFields.image = files[0];
+                      }
+                    " />
+                  </ion-item>
+                  <ion-item v-if="clientFields.image != ''">
+                    <ion-img :src="clientFields.image" width="10px" height="10px"></ion-img>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input type="email" v-model="userFields.email"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Address</ion-label>
+                    <ion-input type="text" v-model="clientFields.address"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
+                  </ion-item>
+                  <ion-button expand="block" @click="signup()">Signup</ion-button>
+                </ion-card-content>
+                <ion-card-content v-if="role === 'restaurant'">
+                  <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input type="email" v-model="userFields.email"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Photo</ion-label>
+                    <File open-camera label="Open camera and gallery" class="mb-2" @files="
+                      (files) => {
+                        restaurantFields.image = files[0];
+                      }
+                    " />
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
+                  </ion-item>
+                  <ion-button expand="block" @click="signup()">Signup</ion-button>
+                </ion-card-content>
+                <ion-card-content v-if="role === 'delivery'">
+                  <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input type="email" v-model="userFields.email"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Photo</ion-label>
+                    <File open-camera label="Open camera and gallery" class="mb-2" @files="
+                      (files) => {
+                        deliveryFields.image = files[0];
+                      }
+                    " />
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
+                  </ion-item>
+                  <ion-button expand="block" @click="signup()">Signup</ion-button>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+    </ion-page>
+  </base-layout>
 </template>
 
 <script>
@@ -120,6 +126,7 @@ import {
   IonIcon,
   IonToast,
   IonGrid,
+  IonImage,
 } from "@ionic/vue";
 import {
   person,
@@ -141,6 +148,7 @@ import { useRouter, useRoute } from "vue-router";
 import { ref } from "vue";
 
 import Button from "../components/Button.vue";
+import File from "../components/inputs/File.vue";
 import useToast from "../composition/useToast";
 import register from "../composition/register";
 
@@ -170,6 +178,8 @@ export default {
     IonIcon,
     IonToast,
     IonGrid,
+    IonImage,
+    File,
   },
   setup() {
     const { openToast } = useToast();
@@ -201,20 +211,21 @@ export default {
       name: "Migot",
       firstName: "Kylian",
       address: "44 avenue du 11 novembre",
+      image: "",
     });
 
     const restoFields = ref({
-      name: "",
-      adress: "Adresse",
-      description: "nous sommes restaurateurs depuis 2012, notre spécialité est le burger",
-      image: Object
-
+      name: "MyKebab",
+      description: "",
+      address: "44 avenue du 11 novembre",
+      image: "",
     });
 
     const deliveryFields = ref({
       name: "Migot",
       firstName: "Kylian",
       address: "44 avenue du 11 novembre",
+      image: "",
     });
 
     const ErrorMessages = ref({
@@ -247,6 +258,7 @@ export default {
       this.loading = true;
       switch (this.role) {
         case "client":
+          console.log("userFields", this.clientFields);
           this.userRegister(this.userFields, this.clientFields).then(() => {
             // this.router.push("/login");
           });

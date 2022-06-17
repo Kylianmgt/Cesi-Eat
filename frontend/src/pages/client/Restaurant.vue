@@ -1,5 +1,5 @@
 <template>
-  <base-layout :show-menu-button="false">
+  <base-layout :show-menu-button="true" pageDefaultBackLink="/client/restos">
     <ion-page>
       <ion-content scroll-y="true" padding>
         <ion-grid>
@@ -13,7 +13,7 @@
               </ion-text>
             </ion-row>
             <ion-row>
-              <ion-text color="Dark ">
+              <ion-text color="">
                 <h3>{{ data.description }}</h3>
                 <h3>{{ data.address }}</h3>
               </ion-text>
@@ -25,10 +25,8 @@
                   <h3>Note : {{ data.rating }}</h3></ion-row
                 ><ion-row size="">
                   <ion-img
-                    :src="
-                      'https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png'
-                    "
-                    style="width:50%"
+                    :src="'https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png'"
+                    style="width: 50%"
                   ></ion-img
                 ></ion-row>
               </ion-text>
@@ -83,7 +81,7 @@ import {
   IonItem,
   IonLabel,
   IonIcon,
-  IonText
+  IonText,
 } from "@ionic/vue";
 
 import { useRouter, useRoute } from "vue-router";
@@ -101,11 +99,11 @@ export default {
     IonIcon,
     IonText,
     IonPage,
-    Image
+    Image,
   },
-  props: route => ({
+  props: (route) => ({
     user: userData,
-    ...route.params
+    ...route.params,
   }),
   setup() {
     const router = useRouter();
@@ -117,7 +115,7 @@ export default {
       router,
       data,
       openToast,
-      order
+      order,
     };
   },
   methods: {
@@ -134,11 +132,11 @@ export default {
         this.$router.push({
           name: "/client/order-check",
           params: {
-            orders: JSON.stringify(cleanOrder)
-          }
+            orders: JSON.stringify(cleanOrder),
+          },
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>

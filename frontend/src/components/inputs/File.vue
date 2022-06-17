@@ -19,17 +19,17 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { IonInput } from '@ionic/vue';
-import { document as documentIcon } from 'ionicons/icons';
+import { ref } from "vue";
+import { IonInput } from "@ionic/vue";
+import { document as documentIcon } from "ionicons/icons";
 
-import usePhotoGallery from '../../composition/usePhotoGallery';
+import usePhotoGallery from "../../composition/usePhotoGallery";
 
-import Button from '../Button.vue';
+import Button from "../Button.vue";
 
 export default {
-  name: 'FileInput',
-  emits: ['files'],
+  name: "FileInput",
+  emits: ["files"],
   props: {
     openCamera: {
       type: Boolean,
@@ -37,11 +37,11 @@ export default {
     },
     label: {
       type: String,
-      default: 'Select files',
+      default: "Select files",
     },
     accept: {
       type: String,
-      default: 'image/*',
+      default: "image/*",
     },
     multiple: {
       type: Boolean,
@@ -60,7 +60,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'medium',
+      default: "medium",
     },
   },
   components: {
@@ -75,29 +75,32 @@ export default {
   },
   methods: {
     getFiles() {
-      const fileInput = this.$refs.fileInput.$el.getElementsByTagName('input')[0];
+      const fileInput =
+        this.$refs.fileInput.$el.getElementsByTagName("input")[0];
       fileInput.click();
     },
     async getFilesByCamera() {
       const result = await this.takePhoto();
       const file = this.dataUriToBlob(result);
 
-      this.$emit('files', [file] || []);
+      this.$emit("files", [file] || []);
     },
     filesChange(event) {
-      this.$emit('files', event.target.files || []);
+      this.$emit("files", event.target.files || []);
     },
     dataUriToBlob(dataURI) {
-      const splitDataURI = dataURI.split(',');
-      const byteString = splitDataURI[0].indexOf('base64') >= 0
-        ? atob(splitDataURI[1])
-        : decodeURI(splitDataURI[1]);
-      const mimeString = splitDataURI[0].split(':')[1].split(';')[0];
+      // const imageToBase64 = require("image-to-base64");
+      console.log(dataURI);
 
-      const ia = new Uint8Array(byteString.length);
-      for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
+      // imageToBase64(dataURI).then((response) => {
+      //   console.log(response);
+      // });
+      const splitDataURI = dataURI.split(",");
+      const byteString = splitDataURI[0].indexOf("base64");
+      var buf = new Buffer(dataURI);
+      var image = "data:image/jpeg;base64, " + byteString;
 
-      return new Blob([ia], { type: mimeString });
+      return dataURI;
     },
   },
 };

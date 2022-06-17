@@ -5,17 +5,22 @@ const clientProfil = Joi.object().keys({
   name: Joi.string().required(),
   firstName: Joi.string().required(),
   address: Joi.string().required(),
+  image: Joi.string(),
 });
 
 const deliveryProfil = Joi.object().keys({
   name: Joi.string().required(),
   firstName: Joi.string().required(),
   address: Joi.string().required(),
+  image: Joi.string(),
+
 });
 
 const restaurantProfil = Joi.object().keys({
   name: Joi.string().required(),
   address: Joi.string().required(),
+  image: Joi.string(),
+
 
 });
 

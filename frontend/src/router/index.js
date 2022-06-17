@@ -8,7 +8,7 @@ import restaurant from './authenticated/restaurant';
 export const routes = [
   {
     path: '/',
-    redirect: '/landing',
+    redirect: '/login',
   },
   {
     path: '/landing',
@@ -39,7 +39,16 @@ export const routes = [
     name: 'Orders',
     placeholder: 'Orders',
     icon: 'restaurant',
+    role: ["client", "restaurant", "delivery"],
     component: () => import('../pages/Orders.vue'),
+  },
+  {
+    path: '/profil',
+    name: 'Profil',
+    placeholder: 'Profil',
+    component: () => import('../pages/Profil.vue'),
+    icon: 'person',
+    role: ["client", "restaurant", "delivery"],
   },
   {
     path: '/order',
@@ -53,7 +62,7 @@ export const routes = [
   },
   {
     path: '/choose-register-role',
-    name: 'choose-register-role',
+    name: 'RegisterRoleSelection',
     component: () => import('../pages/RegisterRoleSelection.vue')
   },
   {
