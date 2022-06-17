@@ -6,6 +6,7 @@
       <ionic-content>
         <ion-card>
             <IonTitle size="large" color="primary">Mes Informations</IonTitle>
+            <div class="flex p-8">
               <ion-grid>
                 <ion-col>
                   Nom du restaurant: {{ data[0].name }}
@@ -27,9 +28,10 @@
                   Note des utilisateurs: {{ data[0].rating }}
                 </ion-col>
               </ion-grid>
-              <ion-button>Modifier</ion-button>
+              <ion-button href="/restaurant/edit">Modifier</ion-button>
+            </div>
 
-            <ion-card-content>
+            <ion-card-content class="p-8">
 
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
 
@@ -47,7 +49,7 @@
             </ion-card-content>
 
 
-          <ion-card-content>
+          <ion-card-content className="p-8">
             <IonTitle size="large" color="primary">Mes Articles</IonTitle>
                 <li v-for="article in data[0].articles">
                   {{ article.name }}    {{ article.price }}€
