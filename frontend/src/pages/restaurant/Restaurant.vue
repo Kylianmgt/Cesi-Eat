@@ -5,9 +5,7 @@
       <ionic-content>
         <ion-card>
 
-          <ion-card-title>
             <IonTitle size="large" color="primary">Mon restaurant</IonTitle>
-          </ion-card-title>
 
           <ion-card-content>
             <ion-label> Nom du restaurant: {{ data[0].name }} </ion-label>
@@ -17,9 +15,18 @@
             <ion-label> Note des utilisateurs: {{ data[0].rating }} </ion-label>
           </ion-card-content>
 
-          <ion-card-title>
-            <IonTitle size="large" color="primary">Mon restaurant</IonTitle>
-          </ion-card-title>
+
+            <ion-card-content>
+              <IonTitle size="large" color="primary">Mes Menu</IonTitle>
+              <li v-for="item in data[0].menus" :key="item.id">
+                Menu: {{ item.name }}
+                Description: {{ item.description }}
+                Image: {{ item.image }}
+                Prix: {{ item.price }}€
+              </li>
+            </ion-card-content>
+
+          
           <ion-card-content>
             Mes Menus
           </ion-card-content>
