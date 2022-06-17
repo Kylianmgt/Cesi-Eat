@@ -1,10 +1,11 @@
 <template>
   <base-layout :show-menu-button="false" pageTitle="Mon restaurant">
-    <ion-page>
 
-      
+    <ion-page>
       <ionic-content>
         <ion-card>
+
+            <!-- Mains informations about restaurant -->
             <IonTitle size="large" color="primary">Mes Informations</IonTitle>
             <div class="flex p-8">
               <ion-grid>
@@ -31,10 +32,9 @@
               <ion-button href="/restaurant/edit">Modifier</ion-button>
             </div>
 
+            <!-- Menus Details for this restaurant -->
             <ion-card-content class="p-8">
-
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
-
               <div v-for="item in data[0].menus" :key="item.id">
                 <h2>{{ item.name }}</h2>
                 <p>Description: {{ item.description }}</p>
@@ -45,10 +45,9 @@
                   {{ article.name }}   {{ article.price }}€
                 </li>
               </div>
-
             </ion-card-content>
 
-
+          <!-- Articles Details for this restaurant -->
           <ion-card-content className="p-8">
             <IonTitle size="large" color="primary">Mes Articles</IonTitle>
                 <li v-for="article in data[0].articles">
@@ -57,10 +56,9 @@
           </ion-card-content>
 
         </ion-card>
-
       </ionic-content>
-
     </ion-page>
+    
   </base-layout>
 </template>
 
@@ -75,7 +73,6 @@ import {
   IonToolbar 
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
-import Button from "../../components/Button.vue";
 
 export default {
   name: "Restaurant",
@@ -84,7 +81,6 @@ export default {
     IonInput,
     IonText,
     IonPage,
-    Button,
     IonTitle,
     IonToolbar,
     IonItem
