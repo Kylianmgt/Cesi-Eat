@@ -1,20 +1,33 @@
 <template>
   <base-layout :show-menu-button="false">
     <ion-page>
-      <ion-header>
-        <IonToolbar>
-          <IonTitle size="large" color="primary">Mon restaurant</IonTitle>
-        </IonToolbar>
-      </ion-header>
-
-
-      <ionic-content fullscreen="true" class="ion-justify-content-between">
+      
+      <ionic-content>
         <ion-card>
-          <ion-label> Nom du restaurant: {{ data[0].name }} </ion-label>
-          <ion-label> Description: {{ data[0].description }} </ion-label>
-          <ion-label> Ville: {{ data[0].city }} </ion-label>
-          <ion-label> Address: {{ data[0].address }} </ion-label>
-          <ion-label> Note des utilisateurs: {{ data[0].rating }} </ion-label>
+
+          <ion-card-title>
+            <IonTitle size="large" color="primary">Mon restaurant</IonTitle>
+          </ion-card-title>
+
+          <ion-card-content>
+            <ion-label> Nom du restaurant: {{ data[0].name }} </ion-label>
+            <ion-label> Description: {{ data[0].description }} </ion-label>
+            <ion-label> Ville: {{ data[0].city }} </ion-label>
+            <ion-label> Address: {{ data[0].address }} </ion-label>
+            <ion-label> Note des utilisateurs: {{ data[0].rating }} </ion-label>
+          </ion-card-content>
+
+          <ion-card-title>
+            <IonTitle size="large" color="primary">Mon restaurant</IonTitle>
+          </ion-card-title>
+          <ion-card-content>
+            Mes Menus
+          </ion-card-content>
+
+          <ion-card-content>
+            Mes Articles
+          </ion-card-content>
+
         </ion-card>
         <ion-button>Modifier</ion-button>
 
@@ -105,7 +118,7 @@ export default {
         justify-content: space-around;
     }
 
-    ion-card {
+    ion-card-content {
         display:flex;
         flex-direction:column;
     }
