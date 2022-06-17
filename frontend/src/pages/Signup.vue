@@ -50,7 +50,6 @@
 
 
 
-
                 <ion-card-content v-if="role === 'restaurant'">
                   <ion-item>
                     <ion-label position="stacked"></ion-label>
@@ -277,6 +276,11 @@ export default {
           });
           break;
         case "restaurant":
+
+          const isMailValid = this.userFields.email.toLowerCase().match(
+            /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/);
+          console.log("mail validator :", isMailValid);
+          console.log("profile :", this.restoFields);
           this.userRegister(this.userFields, this.restoFields).then(() => {
             // this.router.push("/login");
           });

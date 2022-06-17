@@ -18,8 +18,10 @@ export default function () {
     };
     delete data.user.confirmPassword;
 
+    console.log(data);
+
     return this.$store
-      .dispatch("register/register", data)
+      .dispatch("register/register", data)  
       .then((response) => {
         openToast("Registered with sucess", "success", "top");
 
