@@ -35,10 +35,6 @@
                     <ion-input type="email" v-model="userFields.email"></ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label position="floating">Address</ion-label>
-                    <ion-input type="text" v-model="clientFields.address"></ion-input>
-                  </ion-item>
-                  <ion-item>
                     <ion-label position="floating">Password</ion-label>
                     <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
                   </ion-item>
@@ -54,10 +50,23 @@
                     <ion-input type="email" v-model="userFields.email"></ion-input>
                   </ion-item>
                   <ion-item>
+                    <ion-label position="floating">Address</ion-label>
+                    <ion-input type="text" v-model="clientFields.address"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Restaurant name</ion-label>
+                    <ion-input required name="restaurant_name" type="name" v-model="restoFields.name"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Description</ion-label>
+                    <ion-input required name="description" type="name" v-model="restoFields.description"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-text>Image</ion-text>
                     <ion-label position="floating">Photo</ion-label>
                     <File open-camera label="Open camera and gallery" class="mb-2" @files="
                       (files) => {
-                        restaurantFields.image = files[0];
+                        restoFields.image = files[0];
                       }
                     " />
                   </ion-item>
@@ -218,7 +227,7 @@ export default {
       name: "MyKebab",
       description: "",
       address: "44 avenue du 11 novembre",
-      image: "",
+      image: ""
     });
 
     const deliveryFields = ref({
