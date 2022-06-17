@@ -5,15 +5,6 @@ const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
 const { string, required } = require('joi');
 
-const menu = mongoose.Schema(
-    {
-        name:{
-            type:string,
-            required: true,
-            trim: true,
-    }
-}    
-);
 
 const restaurantSchema = mongoose.Schema(
     {
@@ -32,20 +23,28 @@ const restaurantSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
-        menus :{
-            type: Object,
-            required: true,
-            trim: true,
-                    
+        description:{
+            type:String,
+            required:false,
         },
-        articles: {
-
+        image: {
+            type:String,
+            required:false,
+        },
+        rating: {
+            type:Number,
+            required:false
+        },
+        city: {
+            type:String,
+            required:true
         }
     },
     {
         timestamps: true,
     }
 );
+
 
 // add plugin that converts mongoose to json
 restaurantSchema.plugin(toJSON);

@@ -12,102 +12,80 @@
               <ion-card-content v-if="role === 'client'">
                 <ion-item>
                   <ion-label position="floating">FirstName</ion-label>
-                  <ion-input
-                    type="text"
-                    v-model="clientFields.firstName"
-                  ></ion-input>
+                  <ion-input type="text" v-model="clientFields.firstName"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Name</ion-label>
-                  <ion-input
-                    type="text"
-                    v-model="clientFields.name"
-                  ></ion-input>
+                  <ion-input type="text" v-model="clientFields.name"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Email</ion-label>
-                  <ion-input
-                    type="email"
-                    v-model="userFields.email"
-                  ></ion-input>
+                  <ion-input type="email" v-model="userFields.email"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Address</ion-label>
-                  <ion-input
-                    type="text"
-                    v-model="clientFields.address"
-                  ></ion-input>
+                  <ion-input type="text" v-model="clientFields.address"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Password</ion-label>
-                  <ion-input
-                    required
-                    name="password"
-                    type="password"
-                    v-model="userFields.password"
-                  ></ion-input>
+                  <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input
-                    type="password"
-                    name="confirmPassword"
-                    v-model="userFields.confirmPassword"
-                  ></ion-input>
+                  <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
                 </ion-item>
                 <ion-button expand="block" @click="signup()">Signup</ion-button>
               </ion-card-content>
               <ion-card-content v-if="role === 'restaurant'">
                 <ion-item>
                   <ion-label position="floating">Email</ion-label>
-                  <ion-input
-                    type="email"
-                    v-model="userFields.email"
-                  ></ion-input>
+                  <ion-input type="email" v-model="userFields.email"></ion-input>
                 </ion-item>
+                <ion-input type="email" v-model="userFields.email"></ion-input>
+
                 <ion-item>
                   <ion-label position="floating">Password</ion-label>
-                  <ion-input
-                    required
-                    name="password"
-                    type="password"
-                    v-model="userFields.password"
-                  ></ion-input>
+                  <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
                 </ion-item>
+
                 <ion-item>
                   <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input
-                    type="password"
-                    name="confirmPassword"
-                    v-model="userFields.confirmPassword"
-                  ></ion-input>
+                  <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
                 </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Restaurant name</ion-label>
+                  <ion-input required name="restaurant_name" type="name" v-model="restoFields.name"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Address</ion-label>
+                  <ion-input required name="password" type="street-address" v-model="restoFields.Addres"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Description</ion-label>
+                  <ion-input required name="password" type="name" v-model="restoFields.Description"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Image</ion-label>
+                  <ion-input required name="password" type="photo" v-model="restoFields.Image"></ion-input>
+                </ion-item>
+
                 <ion-button expand="block" @click="signup()">Signup</ion-button>
               </ion-card-content>
               <ion-card-content v-if="role === 'delivery'">
                 <ion-item>
                   <ion-label position="floating">Email</ion-label>
-                  <ion-input
-                    type="email"
-                    v-model="userFields.email"
-                  ></ion-input>
+                  <ion-input type="email" v-model="userFields.email"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Password</ion-label>
-                  <ion-input
-                    required
-                    name="password"
-                    type="password"
-                    v-model="userFields.password"
-                  ></ion-input>
+                  <ion-input required name="password" type="password" v-model="userFields.password"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Confirm Password</ion-label>
-                  <ion-input
-                    type="password"
-                    name="confirmPassword"
-                    v-model="userFields.confirmPassword"
-                  ></ion-input>
+                  <ion-input type="password" name="confirmPassword" v-model="userFields.confirmPassword"></ion-input>
                 </ion-item>
                 <ion-button expand="block" @click="signup()">Signup</ion-button>
               </ion-card-content>
@@ -226,8 +204,11 @@ export default {
     });
 
     const restoFields = ref({
-      name: "MyKebab",
-      address: "44 avenue du 11 novembre",
+      name: "",
+      adress: "Adresse",
+      description: "nous sommes restaurateurs depuis 2012, notre spécialité est le burger",
+      image: Object
+
     });
 
     const deliveryFields = ref({

@@ -4,3 +4,6 @@ module.exports.Client = require('./client.model');
 module.exports.Delivery = require('./delivery.model');
 module.exports.Restaurant = require('./restaurant.model');
 module.exports.Order = require('./order.model');
+module.exports.Restaurant = require('./restaurant.model');
+module.exports.Menu = require('./menu.model');
+module.exports.Article = require('./article.model');

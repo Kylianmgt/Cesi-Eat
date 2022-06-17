@@ -17,6 +17,7 @@ const getRestaurants = catchAsync(async (req, res) => {
 
 
 module.exports = {
-    getRestaurantOrders
+    getRestaurantOrders,
+    getRestaurants
 };
 
