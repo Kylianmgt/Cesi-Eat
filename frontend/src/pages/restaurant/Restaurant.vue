@@ -17,22 +17,27 @@
 
 
             <ion-card-content>
+
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
-              <li v-for="item in data[0].menus" :key="item.id">
-                Menu: {{ item.name }}
-                Description: {{ item.description }}
-                Image: {{ item.image }}
-                Prix: {{ item.price }}€
-              </li>
+              <div v-for="item in data[0].menus" :key="item.id">
+                <h2>{{ item.name }}</h2>
+                <p>Description: {{ item.description }}</p>
+                <p>Image: {{ item.image }}</p>
+                <p>Prix: {{ item.price }}€</p>
+
+                <h2>Articles :</h2>
+                <li v-for="article in data[0].menus[0].articles">
+                  {{ article.name }}   {{ article.price }}€
+                </li>
+              </div>
             </ion-card-content>
 
-          
-          <ion-card-content>
-            Mes Menus
-          </ion-card-content>
 
           <ion-card-content>
-            Mes Articles
+            <IonTitle size="large" color="primary">Mes Articles</IonTitle>
+                <li v-for="article in data[0].articles">
+                  {{ article.name }}    {{ article.price }}€
+                </li>
           </ion-card-content>
 
         </ion-card>
