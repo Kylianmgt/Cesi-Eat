@@ -1,81 +1,17 @@
 <template>
   <base-layout :show-menu-button="false">
     <ion-page>
-      <ion-text>
-        <h1>
-          <ion-icon name="home" />
-          <span class="ml-2">My Restaurant</span>
-        </h1>
-      </ion-text>
-      <ion-section>
-        <h2>
-          <ion-icon name="home" />
-          <span class="ml-2">My Menus</span>
-        </h2>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Menu 1</span>
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Menu 2</span>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-section>
-      <ion-section>
-        <h2>
-          <ion-icon name="home" />
-          <span class="ml-2">My Orders</span>
-        </h2>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Order 1</span>
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Order 2</span>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-section>
-      <ion-section>
-        <h2>
-          <ion-icon name="home" />
-          <span class="ml-2">My Articles</span>
-        </h2>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Article 1</span>
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Article 2</span>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-section>
-      <Button
-        text="Router redirect"
-        color="medium"
-        :to="{ name: 'edit-profile' }"
-      />
-      <ion-text> Name: {{ data.name }} </ion-text>
-      <ion-text> Email: {{ data.email }} </ion-text>
-      <ion-text> Phone: {{ data.phone }} </ion-text>
-      <ion-text> Address: {{ data.address }} </ion-text>
+      <IonToolbar>
+        <IonTitle>Ceci est la page de mon restaurant</IonTitle>
+      </IonToolbar>
+
+      <ionic-section>
+        <ion-text> Name: {{ data.name }} </ion-text>
+        <ion-text> Email: {{ data.email }} </ion-text>
+        <ion-text> Phone: {{ data.phone }} </ion-text>
+        <ion-text> Address: {{ data.address }} </ion-text>
+      </ionic-section>
+
     </ion-page>
   </base-layout>
 </template>
