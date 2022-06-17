@@ -1,35 +1,49 @@
 <template>
-  <base-layout :show-menu-button="false">
+  <base-layout :show-menu-button="false" pageTitle="Mon restaurant">
     <ion-page>
+
       
       <ionic-content>
         <ion-card>
-
-            <IonTitle size="large" color="primary">Mon restaurant</IonTitle>
-
-          <ion-card-content>
-            <ion-label> Nom du restaurant: {{ data[0].name }} </ion-label>
-            <ion-label> Description: {{ data[0].description }} </ion-label>
-            <ion-label> Ville: {{ data[0].city }} </ion-label>
-            <ion-label> Address: {{ data[0].address }} </ion-label>
-            <ion-label> Note des utilisateurs: {{ data[0].rating }} </ion-label>
-          </ion-card-content>
-
+            <IonTitle size="large" color="primary">Mes Informations</IonTitle>
+              <ion-grid>
+                <ion-col>
+                  Nom du restaurant: {{ data[0].name }}
+                </ion-col>
+                  <br>
+                <ion-col>
+                  Description: {{ data[0].description }}
+                  <br>
+                </ion-col>
+                <ion-col>
+                  Ville: {{ data[0].city }}
+                  <br>
+                </ion-col>
+                <ion-col>
+                  Address: {{ data[0].address }}
+                  <br>
+                </ion-col>
+                <ion-col>
+                  Note des utilisateurs: {{ data[0].rating }}
+                </ion-col>
+              </ion-grid>
+              <ion-button>Modifier</ion-button>
 
             <ion-card-content>
 
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
+
               <div v-for="item in data[0].menus" :key="item.id">
                 <h2>{{ item.name }}</h2>
                 <p>Description: {{ item.description }}</p>
                 <p>Image: {{ item.image }}</p>
                 <p>Prix: {{ item.price }}€</p>
-
                 <h2>Articles :</h2>
                 <li v-for="article in data[0].menus[0].articles">
                   {{ article.name }}   {{ article.price }}€
                 </li>
               </div>
+
             </ion-card-content>
 
 
@@ -41,7 +55,6 @@
           </ion-card-content>
 
         </ion-card>
-        <ion-button>Modifier</ion-button>
 
       </ionic-content>
 
