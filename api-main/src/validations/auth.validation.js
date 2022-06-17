@@ -18,9 +18,11 @@ const deliveryProfil = Joi.object().keys({
 
 const restaurantProfil = Joi.object().keys({
   name: Joi.string().required(),
+  description: Joi.string().required(),
   address: Joi.string().required(),
+  zipCode: Joi.string().required(),
+  city: Joi.string().required(),
   image: Joi.string(),
-
 
 });
 
