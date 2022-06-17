@@ -39,6 +39,7 @@ import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
 /* Theme variables */
 import './theme/index.css';
 import './styles/app.css';
+import './theme/core.css';
 
 /* Bootstrap utilities */
 import './assets/css/bootstrap-grid.min.css';
