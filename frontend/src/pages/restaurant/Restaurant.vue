@@ -8,7 +8,7 @@
       </ion-header>
 
 
-      <ionic-content fullscreen="true">
+      <ionic-content fullscreen="true" class="ion-justify-content-between">
         <ion-card>
           <ion-label> Nom du restaurant: {{ data[0].name }} </ion-label>
           <ion-label> Description: {{ data[0].description }} </ion-label>
@@ -16,6 +16,8 @@
           <ion-label> Address: {{ data[0].address }} </ion-label>
           <ion-label> Note des utilisateurs: {{ data[0].rating }} </ion-label>
         </ion-card>
+        <ion-button>Modifier</ion-button>
+
       </ionic-content>
 
     </ion-page>
@@ -96,9 +98,11 @@ export default {
 
 <style scoped>
     ionic-content {
+        display: flex;
         position:absolute;
         top:10%;
         left:5%;
+        justify-content: space-around;
     }
 
     ion-card {
@@ -112,5 +116,9 @@ export default {
 
     ion-title {
         text-align:center;
+    }
+
+    ion-button {
+      --background: var(--ion-color-secondary);
     }
 </style>
