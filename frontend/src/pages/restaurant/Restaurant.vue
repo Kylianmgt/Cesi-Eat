@@ -2,7 +2,8 @@
   <base-layout :show-menu-button="false" pageTitle="Mon restaurant">
 
     <ion-page>
-      <ionic-content scroll-y="true">
+      <ion-content scroll-y="true">
+        <ion-scroll direction="xy">
         <ion-card>
 
             <!-- Mains informations about restaurant -->
@@ -46,7 +47,7 @@
                 <li v-for="article in data[0].menus[0].articles">
                   {{ article.name }}   {{ article.price }}€
                 </li>
-                <ion-button href="/restaurant/menu/:id" color="secondary">Modifier ce Menu</ion-button>
+                <ion-button href="/restaurant/menu/:id/edit" color="secondary">Modifier ce Menu</ion-button>
 
               </div>
               
@@ -55,17 +56,18 @@
           <!-- Articles Details for this restaurant -->
           <ion-card-content className="p-8">
             <IonTitle size="large" color="primary">Mes Articles</IonTitle>
-              <ion-button href="/restaurant/addMenu" color="success">Ajouter un Article</ion-button>
+              <ion-button href="/restaurant/articles/add" color="success">Ajouter un Article</ion-button>
 
                 <li v-for="article in data[0].articles">
                   {{ article.name }}    {{ article.price }}€
-                  <ion-button href="/restaurant/article/edit" color="secondary">Modifier cet Article</ion-button>
+                  <ion-button href="/restaurant/article/:id/edit" color="secondary">Modifier cet Article</ion-button>
 
                 </li>
           </ion-card-content>
 
         </ion-card>
-      </ionic-content>
+        </ion-scroll>
+      </ion-content>
     </ion-page>
     
   </base-layout>
