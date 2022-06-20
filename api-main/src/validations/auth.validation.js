@@ -87,4 +87,7 @@ module.exports = {
   forgotPassword,
   resetPassword,
   verifyEmail,
+  clientProfil,
+  deliveryProfil,
+  restaurantProfil,
 };

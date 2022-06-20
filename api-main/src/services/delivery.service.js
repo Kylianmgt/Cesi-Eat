@@ -19,6 +19,11 @@ const getDeliveryProfil = async (userId) => {
     return Delivery.findOne({ user: userId });
 };
 
+const updateDeliveryProfil = async (userId, profil) => {
+    const delivery = await Delivery.findOneAndUpdate({ user: userId }, profil, { new: true });
+    return delivery;
+}
+
 const getDeliveryOrders = async (deliveryId) => {
     return Order.find({ delivery: deliveryId }).populate('client');
 };
@@ -61,5 +66,6 @@ module.exports = {
     getPendingOrders,
     assignOrder,
     takeFromRestaurant,
-    markOrderAsDone
+    markOrderAsDone,
+    updateDeliveryProfil,
 };

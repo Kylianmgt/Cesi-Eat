@@ -8,11 +8,18 @@
         </h1>
       </ion-text>
       <ion-content>
-        <Button
-          text="Edit my profil"
-          color="medium"
-          :to="{ name: 'edit-profile' }"
-        />
+        <ion-button name="edit-profil" @click="router.push('/edit-profil')">
+          <ion-icon name="create" />
+          <span class="ml-2">Edit profil</span>
+        </ion-button>
+        <ion-button name="logout" @click="router.push('/logout')">
+          <ion-icon name="log-out" />
+          <span class="ml-2">Logout</span>
+        </ion-button>
+        <ion-button name="delete-account">
+          <ion-icon name="trash" @click="() => deleteAccount()" />
+          <span class="ml-2">Delete account</span>
+        </ion-button>
         <ion-text> Name: {{ userData.profil.name }} </ion-text>
         <ion-text> Email: {{ userData.user.email }} </ion-text>
         <ion-text> Address: {{ userData.profil.address }} </ion-text>
@@ -34,6 +41,7 @@ import {
   IonIcon,
   IonText,
   IonImage,
+  IonButton,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 import { mapGetters, mapState } from "vuex";
@@ -51,6 +59,7 @@ export default {
     IonPage,
     Button,
     IonImage,
+    IonButton,
   },
   computed: {
     userData() {
@@ -65,6 +74,11 @@ export default {
     };
   },
   mounted() {},
-  methods() {},
+  methods: {
+    deleteAccount() {
+      this.$store.dispatch("deleteAccount");
+      this.router.push("/logout");
+    },
+  },
 };
 </script>

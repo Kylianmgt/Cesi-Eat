@@ -18,6 +18,10 @@ const getRestaurantProfil = async (userId) => {
     return Restaurant.findOne({ user: userId });
 };
 
+const updateRestaurantProfil = async (userId, profil) => {
+    return Restaurant.findOneAndUpdate({ user: userId }, profil);
+}
+
 const getRestaurantOrders = async (restaurantId) => {
     return Order.find({ restaurant: restaurantId }).populate('client');
 };
@@ -30,5 +34,6 @@ module.exports = {
     createRestaurantProfil,
     getRestaurantProfil,
     getRestaurantOrders,
-    getRestaurants
+    getRestaurants,
+    updateRestaurantProfil,
 };

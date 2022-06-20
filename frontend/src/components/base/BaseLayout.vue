@@ -56,7 +56,6 @@ export default {
   name: "BaseLayout",
   computed: {
     userData() {
-      console.log(this.$store.state.user.userData);
       return this.$store.state.user.userData;
     },
   },

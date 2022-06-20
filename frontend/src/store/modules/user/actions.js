@@ -9,6 +9,7 @@ export default {
   cleanUserData({ commit }) {
     commit('setUserId', 0);
     commit('setUserType', 0);
+    commit('setUserData', {});
   },
   sendRecoveryPasswordEmail({ }, email) {
     return api.post('/recover-password', { email });
@@ -24,7 +25,19 @@ export default {
       commit('setPendingOrders', response.data);
       return response.data;
     })
-
+  },
+  deleteAccount(userId) {
+    return api.post('/user/' + this.state.userId + '/delete');
+  },
+  updateProfil({ commit }, payload) {
+    console.log('updateProfil', payload);
+    return api.post('/users/' + payload.userId, {
+      profil: payload.profil,
+    }).then((response) => {
+      console.log(response.data);
+      commit('setUserData', response.data);
+      return response.data;
+    })
   }
 
 
