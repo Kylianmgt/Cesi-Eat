@@ -13,6 +13,6 @@ export default [
         name: 'MenuEdit',
         path: '/restaurant/menu/edit',
         role: ["restaurant"],
-        component: () => import('')
+        component: () => import('../../pages/restaurant/MenuEdit.vue'),
     }
 ];
