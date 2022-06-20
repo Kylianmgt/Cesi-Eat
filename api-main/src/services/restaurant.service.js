@@ -23,11 +23,12 @@ const getRestaurantOrders = async (restaurantId) => {
 };
 
 const getRestaurants = async()=>{
-    return Restaurant.find();
+    return await(Restaurant.find());
 }
 
 module.exports = {
     createRestaurantProfil,
     getRestaurantProfil,
-    getRestaurantOrders
+    getRestaurantOrders,
+    getRestaurants
 };
