@@ -12,6 +12,10 @@
           <ion-icon name="create" />
           <span class="ml-2">Edit profil</span>
         </ion-button>
+        <ion-button name="logout" @click="router.push('/logout')">
+          <ion-icon name="log-out" />
+          <span class="ml-2">Logout</span>
+        </ion-button>
         <ion-text> Name: {{ userData.profil.name }} </ion-text>
         <ion-text> Email: {{ userData.user.email }} </ion-text>
         <ion-text> Address: {{ userData.profil.address }} </ion-text>

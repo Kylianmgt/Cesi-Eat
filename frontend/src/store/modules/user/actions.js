@@ -9,6 +9,7 @@ export default {
   cleanUserData({ commit }) {
     commit('setUserId', 0);
     commit('setUserType', 0);
+    commit('setUserData', {});
   },
   sendRecoveryPasswordEmail({ }, email) {
     return api.post('/recover-password', { email });
