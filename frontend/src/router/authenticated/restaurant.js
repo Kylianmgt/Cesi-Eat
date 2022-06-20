@@ -14,5 +14,11 @@ export default [
         path: '/restaurant/menu/edit',
         role: ["restaurant"],
         component: () => import('../../pages/restaurant/MenuEdit.vue'),
+    },
+    {
+        name: 'RestaurantEdit',
+        path: '/restaurant/edit',
+        role: ["restaurant"],
+        component: () => import('../../pages/restaurant/RestaurantEdit.vue'),
     }
 ];

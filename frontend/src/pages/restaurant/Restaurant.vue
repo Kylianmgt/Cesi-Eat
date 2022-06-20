@@ -3,7 +3,6 @@
 
     <ion-page>
       <ion-content scroll-y="true">
-        <ion-scroll direction="xy">
         <ion-card>
 
             <!-- Mains informations about restaurant -->
@@ -30,7 +29,7 @@
                   Note des utilisateurs: {{ data[0].rating }}
                 </ion-col>
               </ion-grid>
-              <ion-button @click="() => router.push({ name: 'MenuEdit' })">Modifier</ion-button>
+              <ion-button @click="() => router.push({ name: 'RestaurantEdit', params: { name: data[0].name, description: data[0].description, city: data[0].city, address: data[0].address, rating: data[0].rating} })">Modifier</ion-button>
             </div>
 
             <!-- Menus Details for this restaurant -->
@@ -66,7 +65,6 @@
           </ion-card-content>
 
         </ion-card>
-        </ion-scroll>
       </ion-content>
     </ion-page>
     
