@@ -43,6 +43,12 @@
                 <p>Image: {{ item.image }}</p>
                 <p>Prix: {{ item.price }}€</p>
                 <h2>Articles :</h2>
+
+                <!--
+                  * S'assurer que les données de chaque Menu & Articles associés soient passés aux pages d'édition
+                  ! Seul les articles du Menu d'index 0 sont affichés et récupérés !
+                  TODO: Refaire la boucle itérative pour l'affichage des articles des différents Menu 
+                  -->
                 <li v-for="(article, index) in data[0].menus[index].articles">
                   {{ article.name }}   {{ article.price }}€
                 </li>
@@ -52,11 +58,15 @@
               
             </ion-card-content>
 
-          <!-- Articles Details for this restaurant -->
+          <!-- * Articles Details for this restaurant -->
           <ion-card-content className="p-8">
             <IonTitle size="large" color="primary">Mes Articles</IonTitle>
               <ion-button href="/restaurant/articles/add" color="success">Ajouter un Article</ion-button>
 
+                <!-- 
+                  * S'assurer que l'ensemble des articles soient affichés et que la redirection vers leur différentes pages d'édition se passe bien
+                  TODO: Créer la bonne route de redirection 
+                 -->
                 <li v-for="article in data[0].articles">
                   {{ article.name }}    {{ article.price }}€
                   <ion-button href="/restaurant/article/:id/edit" color="secondary">Modifier cet Article</ion-button>
