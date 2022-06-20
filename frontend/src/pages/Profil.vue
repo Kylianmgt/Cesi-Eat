@@ -17,7 +17,7 @@
           <span class="ml-2">Logout</span>
         </ion-button>
         <ion-button name="delete-account">
-          <ion-icon name="trash" />
+          <ion-icon name="trash" @click="() => deleteAccount()" />
           <span class="ml-2">Delete account</span>
         </ion-button>
         <ion-text> Name: {{ userData.profil.name }} </ion-text>
@@ -74,6 +74,11 @@ export default {
     };
   },
   mounted() {},
-  methods() {},
+  methods: {
+    deleteAccount() {
+      this.$store.dispatch("deleteAccount");
+      this.router.push("/logout");
+    },
+  },
 };
 </script>
