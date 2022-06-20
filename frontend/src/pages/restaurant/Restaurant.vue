@@ -30,7 +30,7 @@
                   Note des utilisateurs: {{ data[0].rating }}
                 </ion-col>
               </ion-grid>
-              <ion-button href="/restaurant/edit">Modifier</ion-button>
+              <ion-button @click="() => router.push()" href="/restaurant/edit">Modifier</ion-button>
             </div>
 
             <!-- Menus Details for this restaurant -->
