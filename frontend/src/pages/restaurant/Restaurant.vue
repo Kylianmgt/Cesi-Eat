@@ -43,10 +43,10 @@
                 <p>Image: {{ item.image }}</p>
                 <p>Prix: {{ item.price }}€</p>
                 <h2>Articles :</h2>
-                <li v-for="article in data[0].menus[0].articles">
+                <li v-for="(article, index) in data[0].menus[index].articles">
                   {{ article.name }}   {{ article.price }}€
                 </li>
-                <ion-button href="/restaurant/menu/:id/edit" color="secondary">Modifier ce Menu</ion-button>
+                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {name: item.name, description: item.description, image: item.image, price: item.price, articles: data[0].menus[0].articles } })" color="secondary">Modifier ce Menu</ion-button>
 
               </div>
               

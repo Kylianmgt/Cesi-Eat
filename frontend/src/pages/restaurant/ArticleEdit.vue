@@ -1,5 +1,5 @@
 <template>
-  <base-layout :show-menu-button="false" pageTitle="Editer un Menu">
+  <base-layout :show-menu-button="false" pageTitle="Editer un Article">
     <ion-page>
         <ion-content>
             <div>Oui</div>
