@@ -16,6 +16,10 @@
           <ion-icon name="log-out" />
           <span class="ml-2">Logout</span>
         </ion-button>
+        <ion-button name="delete-account">
+          <ion-icon name="trash" />
+          <span class="ml-2">Delete account</span>
+        </ion-button>
         <ion-text> Name: {{ userData.profil.name }} </ion-text>
         <ion-text> Email: {{ userData.user.email }} </ion-text>
         <ion-text> Address: {{ userData.profil.address }} </ion-text>

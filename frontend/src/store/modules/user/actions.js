@@ -26,6 +26,9 @@ export default {
       return response.data;
     })
   },
+  deleteAccount(userId) {
+    return api.post('/user/' + this.state.userId + '/delete');
+  },
   updateProfil({ commit }, payload) {
     console.log('updateProfil', payload);
     return api.post('/users/' + payload.userId, {

@@ -18,6 +18,9 @@ router
   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
 
+router.route('/:userId/delete')
+  .post(userController.deleteUser);
+
 module.exports = router;
 
 /**
