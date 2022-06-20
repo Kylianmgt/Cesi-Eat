@@ -30,9 +30,9 @@ export const routes = [
     component: () => import('../pages/Login.vue'),
   },
   {
-    path: '/edit-profile',
-    name: 'edit-profile',
-    component: () => import('../pages/EditProfile.vue'),
+    path: '/edit-profil',
+    name: 'edit-profil',
+    component: () => import('../pages/EditProfil.vue'),
   },
   {
     path: '/orders',

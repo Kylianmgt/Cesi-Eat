@@ -287,7 +287,7 @@ export default {
       image: "",
     });
 
-    const restoFields = ref({
+    const restaurantFields = ref({
       name: "MyKebab",
       address: "44 avenue du 11 novembre",
       image: "",
@@ -314,7 +314,7 @@ export default {
       Icon,
       userFields,
       clientFields,
-      restoFields,
+      restaurantFields,
       deliveryFields,
       ErrorMessages,
       loading,

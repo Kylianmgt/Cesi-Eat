@@ -56,7 +56,6 @@ export default defineComponent({
       const tabs = [];
       routes.map((route) => {
         if (route.icon) {
-          console.log(this.userData);
           if (this.userData.user) {
             if (route.role && route.role.includes(this.userData.user.role)) {
               tabs.push({

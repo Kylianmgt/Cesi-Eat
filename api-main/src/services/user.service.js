@@ -67,6 +67,12 @@ const updateUserById = async (userId, updateBody) => {
 };
 
 /**
+ * Update user profil
+ * @param {ObjectId} userId
+ * @param {Object} updateBody
+ */
+
+/**
  * Delete user by id
  * @param {ObjectId} userId
  * @returns {Promise<User>}

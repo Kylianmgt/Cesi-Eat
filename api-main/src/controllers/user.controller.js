@@ -31,6 +31,26 @@ const updateUser = catchAsync(async (req, res) => {
   res.send(user);
 });
 
+const updateProfil = catchAsync(async (req, res) => {
+  const user = await userService.getUserById(req.params.userId);
+  // logger.debug(req.body.profil.image);
+  let profil;
+  switch (user.role) {
+    case 'client':
+      profil = await clientService.updateClientProfil(user.id, req.body.profil);
+      break;
+    case 'delivery':
+      profil = await deliveryService.updateDeliveryProfil(user.id, req.body.profil);
+      break;
+    case 'restaurant':
+      profil = await restaurantService.updateRestaurantProfil(user.id, req.body.profil);
+      break;
+    default:
+      break;
+  }
+  res.send({ user: user, profil: profil });
+});
+
 const deleteUser = catchAsync(async (req, res) => {
   await userService.deleteUserById(req.params.userId);
   res.status(httpStatus.NO_CONTENT).send();
@@ -88,5 +108,6 @@ module.exports = {
   updateUser,
   deleteUser,
   getUserOrders,
-  updateUserOrder
+  updateUserOrder,
+  updateProfil,
 };

@@ -134,13 +134,7 @@ export default defineComponent({
   },
   methods: {
     goToOrder() {
-      console.log("goToRestaurantPage");
-      // this.$router.push({
-      //   name: "RestaurantPage",
-      //   params: {
-      //     id: this.data.id
-      //   }
-      // });
+      return;
     },
     assignOrderToDelivery() {
       this.$socket.emit("assignDelivery", {
@@ -154,8 +148,6 @@ export default defineComponent({
       });
     },
     markOrderAsDone() {
-      console.log(this.order);
-      console.log(this.$store.state.user.userData.profil.id);
       this.$socket.emit("markOrderAsDone", {
         orderId: this.order.id,
       });
