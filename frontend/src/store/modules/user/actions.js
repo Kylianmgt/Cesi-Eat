@@ -24,7 +24,16 @@ export default {
       commit('setPendingOrders', response.data);
       return response.data;
     })
-
+  },
+  updateProfil({ commit }, payload) {
+    console.log('updateProfil', payload);
+    return api.post('/users/' + payload.userId, {
+      profil: payload.profil,
+    }).then((response) => {
+      console.log(response.data);
+      commit('setUserData', response.data);
+      return response.data;
+    })
   }
 
 

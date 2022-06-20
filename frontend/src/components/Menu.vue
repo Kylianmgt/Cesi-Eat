@@ -2,7 +2,9 @@
   <ion-menu content-id="main-content" type="overlay">
     <ion-header>
       <ion-toolbar class="ion-text-center" :color="isLoggedIn ? 'primary' : ''">
-        <ion-title v-if="isLoggedIn" class="remove-padding ">Welcome {{ userName }}</ion-title>
+        <ion-title v-if="isLoggedIn" class="remove-padding"
+          >Welcome {{ userName }}</ion-title
+        >
         <!-- <ion-img
           v-else
           class="w-50 mx-auto py-2"
@@ -33,10 +35,14 @@
               class="fs-16"
             ></ion-icon>
           </ion-item>
-          <span v-else-if="menuItem.type === 2 && (i !== appPages.length - 1)">
+          <span v-else-if="menuItem.type === 2 && i !== appPages.length - 1">
             <hr />
           </span>
-          <span v-else-if="menuItem.type === 'category' && (i !== appPages.length - 1)">
+          <span
+            v-else-if="
+              menuItem.type === 'category' && i !== appPages.length - 1
+            "
+          >
             <ion-item>
               <h1 class="">
                 <b>{{ menuItem.title }}</b>
@@ -60,7 +66,7 @@ import {
   power,
   paperPlane,
   enter,
-} from 'ionicons/icons';
+} from "ionicons/icons";
 
 import {
   IonContent,
@@ -74,17 +80,17 @@ import {
   IonToolbar,
   IonTitle,
   IonImg,
-} from '@ionic/vue';
+} from "@ionic/vue";
 
-import { ref } from 'vue';
+import { ref } from "vue";
 
-import { mapGetters } from 'vuex';
-import { useRouter } from 'vue-router';
+import { mapGetters } from "vuex";
+import { useRouter } from "vue-router";
 
-import { Storage } from '@capacitor/storage';
+import { Storage } from "@capacitor/storage";
 
 export default {
-  name: 'Menu',
+  name: "Menu",
   components: {
     IonContent,
     IonIcon,
@@ -99,13 +105,13 @@ export default {
     IonTitle,
   },
   computed: {
-    ...mapGetters('menu', [
-      'getPublic',
-      'getWithoutAuth',
-      'getNeedAuth',
-      'getMenuByUserType',
+    ...mapGetters("menu", [
+      "getPublic",
+      "getWithoutAuth",
+      "getNeedAuth",
+      "getMenuByUserType",
     ]),
-    ...mapGetters('user', ['getUserType', 'getUserName']),
+    ...mapGetters("user", ["getUserType", "getUserName"]),
     menuItems() {
       return this.appPages;
     },
@@ -114,7 +120,7 @@ export default {
     const selectedIndex = ref(0);
     const isLoggedIn = ref(false);
     const router = useRouter();
-    const userName = ref('');
+    const userName = ref("");
 
     const Icon = ref({
       build,
@@ -140,7 +146,7 @@ export default {
     };
   },
   mounted() {
-    this.emitter.on('logged', async () => {
+    this.emitter.on("logged", async () => {
       await this.mountMenu();
       this.fillUserName();
     });
@@ -153,8 +159,7 @@ export default {
   },
   methods: {
     async verifyIsLoggedIn() {
-      const token = await Storage.get({ key: 'token' });
-      console.log(token);
+      const token = await Storage.get({ key: "token" });
       this.isLoggedIn = !!token.value;
     },
     async mountMenu() {
@@ -177,16 +182,18 @@ export default {
       this.selectedIndex = index;
 
       if (menuItem.link) {
-        window.open(menuItem.link, '_blank');
+        window.open(menuItem.link, "_blank");
         return;
       }
 
       // eslint-disable-next-line no-unused-expressions
-      menuItem.url !== '/logout' ? this.router.push(menuItem.url) : (window.location = menuItem.url);
+      menuItem.url !== "/logout"
+        ? this.router.push(menuItem.url)
+        : (window.location = menuItem.url);
     },
     async fillUserName() {
       const name = await this.getUserName;
-      this.userName = name.split(' ')[0] || '';
+      this.userName = name.split(" ")[0] || "";
     },
   },
 };

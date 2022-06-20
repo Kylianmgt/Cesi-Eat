@@ -30,7 +30,7 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonItem,
-  IonLabel
+  IonLabel,
 } from "@ionic/vue";
 
 import Image from "../../Image.vue";
@@ -48,24 +48,23 @@ export default defineComponent({
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
-    Image
+    Image,
   },
   props: {
     order: {
       type: Object,
-      required: false
+      required: false,
     },
     className: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
   setup(props) {
-    console.log(props.order);
     // const router = useRouter();
   },
   methods: {
-    deleteItem() {}
-  }
+    deleteItem() {},
+  },
 });
 </script>

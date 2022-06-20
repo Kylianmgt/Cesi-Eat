@@ -89,17 +89,6 @@ export default {
       this.$emit("files", event.target.files || []);
     },
     dataUriToBlob(dataURI) {
-      // const imageToBase64 = require("image-to-base64");
-      console.log(dataURI);
-
-      // imageToBase64(dataURI).then((response) => {
-      //   console.log(response);
-      // });
-      const splitDataURI = dataURI.split(",");
-      const byteString = splitDataURI[0].indexOf("base64");
-      var buf = new Buffer(dataURI);
-      var image = "data:image/jpeg;base64, " + byteString;
-
       return dataURI;
     },
   },

@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const { password, objectId } = require('./custom.validation');
+const { clientProfil, deliveryProfil, restaurantProfil } = require('./auth.validation');
 
 const createUser = {
   body: Joi.object().keys({
@@ -9,6 +10,13 @@ const createUser = {
     role: Joi.string().required().valid('user', 'admin'),
   }),
 };
+
+const updateProfil = {
+  body: Joi.object().keys({
+    profil: Joi.alternatives().try(clientProfil, deliveryProfil, restaurantProfil),
+  }),
+
+}
 
 const getUsers = {
   query: Joi.object().keys({
@@ -51,4 +59,5 @@ module.exports = {
   getUser,
   updateUser,
   deleteUser,
+  updateProfil,
 };
