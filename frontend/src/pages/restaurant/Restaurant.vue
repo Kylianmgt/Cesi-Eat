@@ -2,7 +2,7 @@
   <base-layout :show-menu-button="false" pageTitle="Mon restaurant">
 
     <ion-page>
-      <ionic-content>
+      <ionic-content scroll-y="true">
         <ion-card>
 
             <!-- Mains informations about restaurant -->
@@ -35,6 +35,8 @@
             <!-- Menus Details for this restaurant -->
             <ion-card-content class="p-8">
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
+              <ion-button href="/restaurant/menu/add" color="success">Ajouter un Menu</ion-button>
+
               <div v-for="item in data[0].menus" :key="item.id">
                 <h2>{{ item.name }}</h2>
                 <p>Description: {{ item.description }}</p>
@@ -44,14 +46,21 @@
                 <li v-for="article in data[0].menus[0].articles">
                   {{ article.name }}   {{ article.price }}€
                 </li>
+                <ion-button href="/restaurant/menu/:id" color="secondary">Modifier ce Menu</ion-button>
+
               </div>
+              
             </ion-card-content>
 
           <!-- Articles Details for this restaurant -->
           <ion-card-content className="p-8">
             <IonTitle size="large" color="primary">Mes Articles</IonTitle>
+              <ion-button href="/restaurant/addMenu" color="success">Ajouter un Article</ion-button>
+
                 <li v-for="article in data[0].articles">
                   {{ article.name }}    {{ article.price }}€
+                  <ion-button href="/restaurant/article/edit" color="secondary">Modifier cet Article</ion-button>
+
                 </li>
           </ion-card-content>
 
@@ -102,6 +111,13 @@ export default {
                       "description": "Tacos de la meilleure qualité",
                       "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
                       "price": 8.5
+                    },
+                    {
+                      "id": 1,
+                      "name": "Frites",
+                      "description": "Tacos de la meilleure qualité",
+                      "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+                      "price": 8.5
                     }
                   ],
                   "menus": [
@@ -115,6 +131,36 @@ export default {
                         {
                           "id": 0,
                           "name": "Tacos",
+                          "description": "Tacos de la meilleure qualité",
+                          "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+                          "price": 8.5
+                        },
+                        {
+                          "id": 1,
+                          "name": "Frites",
+                          "description": "Tacos de la meilleure qualité",
+                          "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+                          "price": 8.5
+                        }
+                      ]
+                    },
+                    {
+                      "id": 0,
+                      "name": "Menu 2",
+                      "description": "Menu secondaire",
+                      "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+                      "price": 8.5,
+                      "articles": [
+                        {
+                          "id": 0,
+                          "name": "Coca",
+                          "description": "Tacos de la meilleure qualité",
+                          "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+                          "price": 8.5
+                        },
+                        {
+                          "id": 1,
+                          "name": "Maxi frites",
                           "description": "Tacos de la meilleure qualité",
                           "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
                           "price": 8.5
