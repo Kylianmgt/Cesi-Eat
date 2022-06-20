@@ -1,81 +1,63 @@
 <template>
-  <base-layout :show-menu-button="false">
+  <base-layout :show-menu-button="false" pageTitle="Mon restaurant">
     <ion-page>
-      <ion-text>
-        <h1>
-          <ion-icon name="home" />
-          <span class="ml-2">My Restaurant</span>
-        </h1>
-      </ion-text>
-      <ion-section>
-        <h2>
-          <ion-icon name="home" />
-          <span class="ml-2">My Menus</span>
-        </h2>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Menu 1</span>
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Menu 2</span>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-section>
-      <ion-section>
-        <h2>
-          <ion-icon name="home" />
-          <span class="ml-2">My Orders</span>
-        </h2>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Order 1</span>
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Order 2</span>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-section>
-      <ion-section>
-        <h2>
-          <ion-icon name="home" />
-          <span class="ml-2">My Articles</span>
-        </h2>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Article 1</span>
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              <ion-icon name="restaurant" />
-              <span class="ml-2">Article 2</span>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-section>
-      <Button
-        text="Router redirect"
-        color="medium"
-        :to="{ name: 'edit-profile' }"
-      />
-      <ion-text> Name: {{ data.name }} </ion-text>
-      <ion-text> Email: {{ data.email }} </ion-text>
-      <ion-text> Phone: {{ data.phone }} </ion-text>
-      <ion-text> Address: {{ data.address }} </ion-text>
+
+      
+      <ionic-content>
+        <ion-card>
+            <IonTitle size="large" color="primary">Mes Informations</IonTitle>
+              <ion-grid>
+                <ion-col>
+                  Nom du restaurant: {{ data[0].name }}
+                </ion-col>
+                  <br>
+                <ion-col>
+                  Description: {{ data[0].description }}
+                  <br>
+                </ion-col>
+                <ion-col>
+                  Ville: {{ data[0].city }}
+                  <br>
+                </ion-col>
+                <ion-col>
+                  Address: {{ data[0].address }}
+                  <br>
+                </ion-col>
+                <ion-col>
+                  Note des utilisateurs: {{ data[0].rating }}
+                </ion-col>
+              </ion-grid>
+              <ion-button>Modifier</ion-button>
+
+            <ion-card-content>
+
+              <IonTitle size="large" color="primary">Mes Menu</IonTitle>
+
+              <div v-for="item in data[0].menus" :key="item.id">
+                <h2>{{ item.name }}</h2>
+                <p>Description: {{ item.description }}</p>
+                <p>Image: {{ item.image }}</p>
+                <p>Prix: {{ item.price }}€</p>
+                <h2>Articles :</h2>
+                <li v-for="article in data[0].menus[0].articles">
+                  {{ article.name }}   {{ article.price }}€
+                </li>
+              </div>
+
+            </ion-card-content>
+
+
+          <ion-card-content>
+            <IonTitle size="large" color="primary">Mes Articles</IonTitle>
+                <li v-for="article in data[0].articles">
+                  {{ article.name }}    {{ article.price }}€
+                </li>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ionic-content>
+
     </ion-page>
   </base-layout>
 </template>
@@ -84,12 +66,11 @@
 import {
   IonPage,
   IonInput,
-  IonRow,
-  IonCol,
   IonItem,
-  IonLabel,
+  IonTitle,
   IonIcon,
   IonText,
+  IonToolbar 
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 import Button from "../../components/Button.vue";
@@ -102,15 +83,48 @@ export default {
     IonText,
     IonPage,
     Button,
+    IonTitle,
+    IonToolbar,
+    IonItem
   },
   setup() {
     const router = useRouter();
-    const data = {
-      name: "Kicum",
-      email: "kicum@kicum.com",
-      phone: "+33646326521",
-      address: "44 avenue du 11 novembre",
-    };
+    const data = [{
+                  "id": 0,
+                  "name": "My tacos",
+                  "description": "Tacos de la meilleure qualité",
+                  "address": "1 rue de la paix",
+                  "rating": 4.5,
+                  "distance": 2,
+                  "city": "Bordeaux",
+                  "articles": [
+                    {
+                      "id": 0,
+                      "name": "Tacos",
+                      "description": "Tacos de la meilleure qualité",
+                      "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+                      "price": 8.5
+                    }
+                  ],
+                  "menus": [
+                    {
+                      "id": 0,
+                      "name": "Menu 1",
+                      "description": "Menu de la meilleure qualité",
+                      "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+                      "price": 8.5,
+                      "articles": [
+                        {
+                          "id": 0,
+                          "name": "Tacos",
+                          "description": "Tacos de la meilleure qualité",
+                          "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
+                          "price": 8.5
+                        }
+                      ]
+                    }
+                  ]
+                }];
     return {
       router,
       data,
@@ -119,3 +133,30 @@ export default {
   methods: {},
 };
 </script>
+
+<style scoped>
+    ionic-content {
+        display: flex;
+        position:absolute;
+        top:10%;
+        left:5%;
+        justify-content: space-around;
+    }
+
+    ion-card-content {
+        display:flex;
+        flex-direction:column;
+    }
+
+    ion-toolbar {
+      background-color:red;
+    }
+
+    ion-title {
+        text-align:center;
+    }
+
+    ion-button {
+      --background: var(--ion-color-secondary);
+    }
+</style>

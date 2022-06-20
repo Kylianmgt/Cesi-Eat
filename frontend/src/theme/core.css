@@ -86,3 +86,8 @@ display: block !important;
 background-color: darkgrey;
 outline: 1px solid slategrey;
 }
+
+.ion-title {
+    --color: var(--ion-color-tertiary);
+}
+
