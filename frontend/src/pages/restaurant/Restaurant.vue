@@ -46,12 +46,12 @@
                 <h2>Articles :</h2>
 
                 <!--
-                  * S'assurer que les données de chaque Menu & Articles associés soient passés aux pages d'édition
+                  ! ERROR While getCurrentMenu => State don't uptate himself while navigate
                   -->
                 <li v-for="(article, articleIndex) in data[0].menus[menuIndex].articles" :key="article.id">
                   {{ getArticleNameFromMenu(articleIndex, data[0].menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, data[0].menus[menuIndex]) }} €
                 </li>
-                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(getCurrentMenu(menuIndex, data)) } })" color="secondary">Modifier ce Menu</ion-button>
+                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: (getCurrentMenu(menuIndex, data)) } })" color="secondary">Modifier ce Menu</ion-button>
 
 
               </div>
@@ -67,9 +67,9 @@
                   * S'assurer que l'ensemble des articles soient affichés et que la redirection vers leur différentes pages d'édition se passe bien
                   TODO: Créer la bonne route de redirection 
                  -->
-                <li v-for="article in data[0].articles">
+                <li v-for="article in data[0].articles" :key="article.id">
                   {{ article.name }}    {{ article.price }}€
-                  <ion-button href="/restaurant/article/:id/edit" color="secondary">Modifier cet Article</ion-button>
+                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(getCurrentMenu(menuIndex, data)) } })" color="secondary">Modifier cet Article</ion-button>
 
                 </li>
           </ion-card-content>
@@ -198,16 +198,23 @@ export default {
     getCurrentMenu(menuIndex, data) {
       let currentMenu = data[0].menus[menuIndex];
       console.log({ currentMenu })
+      currentMenu = JSON.stringify(currentMenu);
       return currentMenu;
     },
+    getCurrentArticle(articleIndex, data) {
+      let currentArticle = data[0].articles[articleIndex];
+      console.log({ currentArticle });
+      return currentArticle;
+    },
+
     getArticleNameFromMenu(articleIndex, menu){
       let articleName = menu.articles[articleIndex].name;
-      console.log({ articleName });
+      // console.log({ articleName });
       return articleName;
     },
       getArticlePriceFromMenu(articleIndex, menu){
       let articlePrice = menu.articles[articleIndex].price;
-      console.log({ articlePrice });
+      // console.log({ articlePrice });
       return articlePrice;
     }
   },

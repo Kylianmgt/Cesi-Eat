@@ -43,7 +43,10 @@ import {
   IonTitle,
   IonIcon,
   IonText,
-  IonToolbar 
+  IonToolbar,
+  IonLabel,
+  IonContent,
+  IonButton,
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 
@@ -51,6 +54,9 @@ export default {
   name: "MenuEdit",
   components: {
     IonIcon,
+    IonLabel,
+    IonContent,
+    IonButton,  
     IonInput,
     IonText,
     IonPage,
