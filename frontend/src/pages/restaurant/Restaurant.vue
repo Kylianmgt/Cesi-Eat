@@ -32,12 +32,13 @@
               <ion-button @click="() => router.push({ name: 'RestaurantEdit', params: { restoDatas: JSON.stringify(data) } })">Modifier</ion-button>
             </div>
 
+
             <!-- Menus Details for this restaurant -->
             <ion-card-content class="p-8">
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
               <ion-button href="/restaurant/menu/add" color="success">Ajouter un Menu</ion-button>
 
-              <div v-for="(item, index) in data[0].menus" :key="item.id">
+              <div v-for="(item, menuIndex) in data[0].menus" :key="item.id">
                 <h2>{{ item.name }}</h2>
                 <p>Description: {{ item.description }}</p>
                 <p>Image: {{ item.image }}</p>
@@ -46,13 +47,11 @@
 
                 <!--
                   * S'assurer que les données de chaque Menu & Articles associés soient passés aux pages d'édition
-                  ! Seul les articles du Menu d'index 0 sont affichés et récupérés !
-                  TODO: Refaire la boucle itérative pour l'affichage des articles des différents Menu 
                   -->
-                <li v-for="(article) in data[0].menus[0].articles" :key="article.id">
-                  {{ article.name }}   {{ article.price }}€
+                <li v-for="(article, articleIndex) in data[0].menus[menuIndex].articles" :key="article.id">
+                  {{ getArticleNameFromMenu(articleIndex, data[0].menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, data[0].menus[menuIndex]) }} €
                 </li>
-                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(getCurrentMenu(index, data)) } })" color="secondary">Modifier ce Menu</ion-button>
+                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(getCurrentMenu(menuIndex, data)) } })" color="secondary">Modifier ce Menu</ion-button>
 
 
               </div>
@@ -158,7 +157,7 @@ export default {
                         },
                         {
                           "id": 1,
-                          "name": "Frites",
+                          "name": "Super tacos",
                           "description": "Tacos de la meilleure qualité",
                           "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
                           "price": 8.5
@@ -174,7 +173,7 @@ export default {
                       "articles": [
                         {
                           "id": 0,
-                          "name": "Coca",
+                          "name": "Frites",
                           "description": "Tacos de la meilleure qualité",
                           "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
                           "price": 8.5
@@ -197,10 +196,19 @@ export default {
   },
   methods: {
     getCurrentMenu(menuIndex, data) {
-      let menusLength = data[0].menus.length;
       let currentMenu = data[0].menus[menuIndex];
-      console.log(currentMenu)
+      console.log({ currentMenu })
       return currentMenu;
+    },
+    getArticleNameFromMenu(articleIndex, menu){
+      let articleName = menu.articles[articleIndex].name;
+      console.log({ articleName });
+      return articleName;
+    },
+      getArticlePriceFromMenu(articleIndex, menu){
+      let articlePrice = menu.articles[articleIndex].price;
+      console.log({ articlePrice });
+      return articlePrice;
     }
   },
 };
