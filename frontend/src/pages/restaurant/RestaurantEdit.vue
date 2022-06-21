@@ -7,23 +7,23 @@
             <div class="flex p-8">
               <ion-grid>
                 <ion-col>
-                  Nom du restaurant: {{ $route.params.name }}
+                  Nom du restaurant: {{ restaurant.name }}
                 </ion-col>
                   <br>
                 <ion-col>
-                  Description: {{ $route.params.description }}
+                  Description: {{ restaurant.description }}
                   <br>
                 </ion-col>
                 <ion-col>
-                  Ville: {{ $route.params.city }}
+                  Ville: {{ restaurant.city }}
                   <br>
                 </ion-col>
                 <ion-col>
-                  Address: {{ $route.params.address }}
+                  Address: {{ restaurant.address }}
                   <br>
                 </ion-col>
                 <ion-col>
-                  Note des utilisateurs: {{ $route.params.rating }}
+                  Note des utilisateurs: {{ restaurant.rating }}
                 </ion-col>
               </ion-grid>
               <ion-button @click="() => router.push({ name: 'MyRestaurant' })">Enregistrer les modifications</ion-button>
@@ -38,11 +38,16 @@
 import {
     IonIcon,
     IonInput,
-    IonText,
     IonPage,
     IonTitle,
     IonToolbar,
     IonItem,
+    IonCol,
+    IonGrid,
+    IonButton,
+    IonCard,
+    IonCardContent,
+    IonContent
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 
@@ -51,11 +56,16 @@ export default {
   components: {
     IonIcon,
     IonInput,
-    IonText,
     IonPage,
     IonTitle,
     IonToolbar,
-    IonItem
+    IonItem,
+    IonCol,
+    IonGrid,
+    IonButton,
+    IonCard,
+    IonCardContent,
+    IonContent
   },
 
   props: route => ({
@@ -66,11 +76,27 @@ export default {
   setup() {
     const router = useRouter();
     const route = useRoute();
+
     let restoDatas = JSON.parse(route.params.restoDatas);
-    console.log(restoDatas)
+    let restoName = restoDatas[0].name;
+    let restoDescription = restoDatas[0].description;
+    let restoAddress = restoDatas[0].address;
+    let restoRating = restoDatas[0].rating;
+    let restoDistance = restoDatas[0].distance;
+    let restoCity = restoDatas[0].city;
+
+    let restaurant = {
+        name: restoName,
+        description: restoDescription,
+        address: restoAddress,
+        rating: restoRating,
+        distance: restoDistance,
+        city: restoCity,
+    }
+    
     return {
       router,
-      restoDatas
+      restaurant
     };
   },
   methods: {
