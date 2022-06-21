@@ -2,14 +2,14 @@
   <ion-card @click="goToRestaurantPage()">
     <ion-card-header>
       <ion-thumbnail class="card-image-container">
-        <Image :src=data.image />
+        <Image :src="data.image" />
       </ion-thumbnail>
-      <ion-card-subtitle class="card-subtitle">{{ data.address }}</ion-card-subtitle>
+      <ion-card-subtitle class="card-subtitle">{{
+          data.address
+      }}</ion-card-subtitle>
       <ion-card-title class="card-title">{{ data.name }}</ion-card-title>
     </ion-card-header>
-    <ion-card-content class="text-sm">
-      {{ data.description }}
-    </ion-card-content>
+    <ion-card-content class="text-sm"> </ion-card-content>
   </ion-card>
 </template>
 

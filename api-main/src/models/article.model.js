@@ -3,14 +3,13 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
-const { string, required, array } = require('joi');
+const { string, required, array, allow } = require('joi');
 
 const articleSchema = mongoose.Schema(
     {
         restaurant:{
             type:mongoose.SchemaTypes.ObjectId,
             ref:"Restaurant",
-            required:true
         },
         menu:{
             type:mongoose.SchemaTypes.ObjectId,
@@ -22,11 +21,6 @@ const articleSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
-        description:{
-            type:String,
-            required:true,
-            trime:true,
-        },
         image:{
             type:String,
             required:false,
@@ -36,6 +30,10 @@ const articleSchema = mongoose.Schema(
             type:Number,
             required:true,
             trim:true
+        },
+        canBeSoldAlone:{
+            type:Boolean,
+            required:allow,
         }
     }    
 );

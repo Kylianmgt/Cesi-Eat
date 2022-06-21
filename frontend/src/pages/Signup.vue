@@ -48,8 +48,6 @@
 
 
 
-
-
                 <ion-card-content v-if="role === 'restaurant'">
                   <ion-item>
                     <ion-label position="stacked"></ion-label>
@@ -57,18 +55,18 @@
                   </ion-item>
                   <ion-item>
                     <ion-label required position="stacked"></ion-label>
-                    <ion-input placeholder="Address Line" v-model="restoFields.address"></ion-input>
-                    <ion-input placeholder="City" v-model="restoFields.city"></ion-input>
-                    <ion-input placeholder="Zip Code" v-model="restoFields.zipCode"></ion-input>
+                    <ion-input placeholder="Address Line" v-model="restaurantFields.address"></ion-input>
+                    <ion-input placeholder="City" v-model="restaurantFields.city"></ion-input>
+                    <ion-input placeholder="Zip Code" v-model="restaurantFields.zipCode"></ion-input>
                   </ion-item>
                   <ion-item>
                     <ion-label required position="stacked"></ion-label>
-                    <ion-input placeholder="Restaurant name" type="name" v-model="restoFields.name"></ion-input>
-                    <ion-input placeholder="Description" type="name" v-model="restoFields.description"></ion-input>
+                    <ion-input placeholder="Restaurant name" type="name" v-model="restaurantFields.name"></ion-input>
+                    <ion-input placeholder="Description" type="name" v-model="restaurantFields.description"></ion-input>
                     <ion-item>
                       <File open-camera label="Open camera and gallery" class="mb-2" @files="
                         (files) => {
-                          restoFields.image = files[0];
+                          restaurantFields.image = files[0];
                         }
                       " />
                     </ion-item>
@@ -280,8 +278,8 @@ export default {
           const isMailValid = this.userFields.email.toLowerCase().match(
             /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/);
           console.log("mail validator :", isMailValid);
-          console.log("profile :", this.restoFields);
-          this.userRegister(this.userFields, this.restoFields).then(() => {
+          console.log("profile :", this.restaurantFields);
+          this.userRegister(this.userFields, this.restaurantFields).then(() => {
             // this.router.push("/login");
           });
           break;
@@ -321,20 +319,20 @@ export default {
           return true;
           break;
         case "resto":
-          if (email(this.restoFields.email)) {
+          if (email(this.restaurantFields.email)) {
             this.ErrorMessages.email = "";
           } else {
             this.ErrorMessages.email = "Email is not valid";
             return false;
           }
-          if (password(this.restoFields.password)) {
+          if (password(this.restaurantFields.password)) {
             this.ErrorMessages.password = "";
           } else {
             this.ErrorMessages.password =
               "Password must be at least 6 characters";
             return false;
           }
-          if (this.restoFields.password === this.restoFields.confirmPassword) {
+          if (this.restaurantFields.password === this.restaurantFields.confirmPassword) {
             this.ErrorMessages.confirmPassword = "";
           } else {
             this.ErrorMessages.confirmPassword = "Password does not match";

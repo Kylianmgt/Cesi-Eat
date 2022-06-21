@@ -2,7 +2,6 @@
   <base-layout :show-menu-button="true" pageDefaultBackLink="/client/restos">
     <ion-page>
       <ion-content scroll-y="true" padding>
-        {{ data }}
         <ion-grid>
           <ion-grid>
             <ion-row>

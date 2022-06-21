@@ -12,7 +12,6 @@
       </ion-text>
       <ion-content scroll-y="true" class="">
         <ion-list class="px-2">
-          {{ restaurants }}
           <RestaurantCard v-for="item in restaurants" :data="item" />
         </ion-list>
       </ion-content>

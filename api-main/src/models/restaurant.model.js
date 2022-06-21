@@ -44,7 +44,14 @@ const restaurantSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    menus:[{
+      type: mongoose.SchemaTypes.ObjectId, ref: 'Menu' 
+    }],
+    articles:[{
+      type: mongoose.SchemaTypes.ObjectId, ref: 'Article' 
+    }]
   },
+  
   {
     timestamps: true,
   }

@@ -10,9 +10,8 @@ const menuSchema = mongoose.Schema(
     restaurant: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'Restaurant',
-      required: true,
     },
-    name: {
+    name: { 
       type: String,
       required: true,
       trim: true,
