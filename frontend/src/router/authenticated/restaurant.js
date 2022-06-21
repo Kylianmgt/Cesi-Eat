@@ -16,10 +16,22 @@ export default [
         component: () => import('../../pages/restaurant/RestaurantEdit.vue'),
     },
     {
+        name: 'MenuAdd',
+        path: '/restaurant/menu/add',
+        role: ["restaurant"],
+        component: () => import('../../pages/restaurant/MenuAdd.vue'),
+    },
+    {
         name: 'MenuEdit',
         path: '/restaurant/menu/edit',
         role: ["restaurant"],
         component: () => import('../../pages/restaurant/MenuEdit.vue'),
+    },
+    {
+        name: 'ArticleAdd',
+        path: '/restaurant/article/add',
+        role: ["restaurant"],
+        component: () => import('../../pages/restaurant/ArticleAdd.vue'),
     },
     {
         name: 'ArticleEdit',

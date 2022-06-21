@@ -36,7 +36,7 @@
             <!-- Menus Details for this restaurant -->
             <ion-card-content class="p-8">
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
-              <ion-button href="/restaurant/menu/add" color="success">Ajouter un Menu</ion-button>
+              <ion-button color="success" @click="() => router.push({ name: 'MenuAdd' })">Ajouter un Menu</ion-button>
 
               <div v-for="(menu, menuIndex) in data[0].menus" :key="menu.id">
                 <h2>{{ menu.name }}</h2>
@@ -61,7 +61,7 @@
           <!-- * Articles Details for this restaurant -->
           <ion-card-content className="p-8">
             <IonTitle size="large" color="primary">Mes Articles</IonTitle>
-              <ion-button href="/restaurant/articles/add" color="success">Ajouter un Article</ion-button>
+              <ion-button color="success" @click="() => router.push({ name: 'ArticleAdd' })">Ajouter un Article</ion-button>
 
                 <!-- 
                   TODO: Réparer la modification du state lors de la navogation entre les pages pour l'article et les Menus
