@@ -113,9 +113,6 @@ export default {
     };
   },
   methods: {
-    showData() {
-        console.log(restoDatas);
-    }
   },
 
 };

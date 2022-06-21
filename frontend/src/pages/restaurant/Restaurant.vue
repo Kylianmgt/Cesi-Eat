@@ -37,7 +37,7 @@
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
               <ion-button href="/restaurant/menu/add" color="success">Ajouter un Menu</ion-button>
 
-              <div v-for="item in data[0].menus" :key="item.id">
+              <div v-for="(item, index) in data[0].menus" :key="item.id">
                 <h2>{{ item.name }}</h2>
                 <p>Description: {{ item.description }}</p>
                 <p>Image: {{ item.image }}</p>
@@ -49,10 +49,11 @@
                   ! Seul les articles du Menu d'index 0 sont affichés et récupérés !
                   TODO: Refaire la boucle itérative pour l'affichage des articles des différents Menu 
                   -->
-                <li v-for="(article, index) in data[0].menus[0].articles">
+                <li v-for="(article) in data[0].menus[0].articles" :key="article.id">
                   {{ article.name }}   {{ article.price }}€
                 </li>
-                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {name: item.name, description: item.description, image: item.image, price: item.price, articles: data[0].menus[0].articles } })" color="secondary">Modifier ce Menu</ion-button>
+                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(getCurrentMenu(index, data)) } })" color="secondary">Modifier ce Menu</ion-button>
+
 
               </div>
               
@@ -194,7 +195,14 @@ export default {
       data,
     };
   },
-  methods: {},
+  methods: {
+    getCurrentMenu(menuIndex, data) {
+      let menusLength = data[0].menus.length;
+      let currentMenu = data[0].menus[menuIndex];
+      console.log(currentMenu)
+      return currentMenu;
+    }
+  },
 };
 </script>
 

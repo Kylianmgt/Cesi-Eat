@@ -1,17 +1,34 @@
 <template>
-  <base-layout :show-menu-button="false" pageTitle="Editer un Menu">
+  <base-layout :show-menu-button="true" pageTitle="Editer un Menu">
     <ion-page>
         <ion-content>
-                <h2>{{ restoDatas[0].city }}</h2>
-                <p>Description: {{ $route.params.description }}</p>
-                <p>Image: {{ $route.params.image }}</p>
-                <p>Prix: {{ $route.params.price }}€</p>
-                <h2>Articles :</h2>
-                <li v-for="article in $route.params.articles">
-                  {{ article.length }}   {{ article[0].price }}€
-                </li>
-                <ion-button @click="() => router.push({ name: 'MyRestaurant' })">Enregistrer les modifications</ion-button>
+            <!-- Mains informations about restaurant -->
+            <IonTitle size="large" color="primary">Informations du {{ menu.name }}</IonTitle>
+            <div class="flex flex-col p-8 ">
 
+            <ion-item>
+                <ion-label position="floating">Nom du Menu </ion-label>
+                <ion-input type="text" v-model="menu.name" />
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Description du Menu </ion-label>
+                <ion-input type="text" v-model="menu.description" />
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Image du Menu</ion-label>
+                <ion-input type="text" v-model="menu.image" />
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Prix du Menu</ion-label>
+                <ion-input type="text" v-model="menu.price" />
+            </ion-item>
+
+
+              <ion-button color="secondary" @click="() => router.push({ name: 'MyRestaurant' })">Enregistrer les modifications</ion-button>
+            </div>
         </ion-content>
     </ion-page>
    </base-layout>
@@ -43,25 +60,36 @@ export default {
   },
 
   props: route => ({
-    restoDatas: data,
+    menu: data,
     ...route.params
   }),
 
   setup() {
     const router = useRouter();
     const route = useRoute();
-    let restoDatas = $route.params.restoDatas;
-    console.log(restoDatas)
+
+    let menu = JSON.parse(route.params.menu);
+    let menuName = menu.name;
+    let menuDescription = menu.description;
+    let menuImage = menu.image;
+    let menuPrice = menu.price;
+    let menuArticles = menu.articles;
+
+    menu = {
+        name: menuName,
+        description: menuDescription,
+        image: menuImage,
+        price: menuPrice,
+        articles: menuArticles,
+    }
+
+
     return {
       router,
-      restoDatas
+      menu
     };
   },
-  methods: {
-    showData() {
-        console.log(restoDatas);
-    }
-  },
+  methods: {},
 
 };
 </script>
