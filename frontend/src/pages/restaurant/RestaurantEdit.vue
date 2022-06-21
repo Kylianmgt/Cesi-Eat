@@ -36,13 +36,13 @@
 
 <script>
 import {
-  IonPage,
-  IonInput,
-  IonItem,
-  IonTitle,
-  IonIcon,
-  IonText,
-  IonToolbar 
+    IonIcon,
+    IonInput,
+    IonText,
+    IonPage,
+    IonTitle,
+    IonToolbar,
+    IonItem,
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 

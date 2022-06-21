@@ -83,13 +83,18 @@
 
 <script>
 import {
-  IonPage,
-  IonInput,
-  IonItem,
-  IonTitle,
   IonIcon,
-  IonText,
-  IonToolbar 
+  IonInput,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonItem,
+  IonCol,
+  IonGrid,
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonContent
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 
@@ -98,11 +103,16 @@ export default {
   components: {
     IonIcon,
     IonInput,
-    IonText,
     IonPage,
     IonTitle,
     IonToolbar,
-    IonItem
+    IonItem,
+    IonCol,
+    IonGrid,
+    IonButton,
+    IonCardContent,
+    IonCard,
+    IonContent
   },
   setup() {
     const router = useRouter();

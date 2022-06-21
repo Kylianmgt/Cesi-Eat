@@ -47,6 +47,8 @@ import {
   IonBackButton,
   IonButtons,
   IonMenuButton,
+  IonFooter,
+  IonText,
 } from "@ionic/vue";
 import Tabs from "./Tabs.vue";
 import { useRouter } from "vue-router";
@@ -98,6 +100,8 @@ export default {
     IonButtons,
     IonMenuButton,
     Tabs,
+    IonFooter,
+    IonText,
   },
   setup() {
     const router = useRouter();
