@@ -2,7 +2,7 @@
   <base-layout :show-menu-button="true" pageTitle="Editer un Menu">
     <ion-page>
         <ion-content>
-            <!-- Mains informations about restaurant -->
+            <!-- Menu Edit Form -->
             <IonTitle size="large" color="primary">Informations du {{ menu.name }}</IonTitle>
             <div class="flex flex-col p-8 ">
 

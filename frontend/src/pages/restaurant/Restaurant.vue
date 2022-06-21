@@ -67,9 +67,9 @@
                   * S'assurer que l'ensemble des articles soient affichés et que la redirection vers leur différentes pages d'édition se passe bien
                   TODO: Créer la bonne route de redirection 
                  -->
-                <li v-for="article in data[0].articles" :key="article.id">
+                <li v-for="(article, articleIndex) in data[0].articles" :key="article.id">
                   {{ article.name }}    {{ article.price }}€
-                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(getCurrentMenu(menuIndex, data)) } })" color="secondary">Modifier cet Article</ion-button>
+                <ion-button @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, data)) } })" color="secondary">Modifier cet Article</ion-button>
 
                 </li>
           </ion-card-content>
@@ -204,6 +204,7 @@ export default {
     getCurrentArticle(articleIndex, data) {
       let currentArticle = data[0].articles[articleIndex];
       console.log({ currentArticle });
+      currentArticle = JSON.stringify(currentArticle);
       return currentArticle;
     },
 
