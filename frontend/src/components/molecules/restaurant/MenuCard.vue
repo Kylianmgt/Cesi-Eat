@@ -4,10 +4,7 @@
       <ion-row>
         <ion-col size="15">
           <ion-card-header>
-            <ion-img
-              style="width: 200px; height: 200px;"
-              :src="data.image"
-            ></ion-img>
+            <ion-img style="width: 200px; height: 200px;" :src="data.image"></ion-img>
             <ion-card-title>{{ data.name }}</ion-card-title>
           </ion-card-header>
         </ion-col>
@@ -75,9 +72,11 @@ export default defineComponent({
       required: false
     }
   },
-  setup() {},
+  setup(props) {
+    console.log("Menu data :", props);
+  },
   methods: {
-    increase: function(id) {
+    increase: function (id) {
       //increase counter
       this.count++;
       //add to order variable the selected item and amount
@@ -97,7 +96,7 @@ export default defineComponent({
         });
       }
     },
-    decrease: function(id) {
+    decrease: function (id) {
       if (this.count > 0) this.count--;
 
       const searchIndex = this.order.findIndex(

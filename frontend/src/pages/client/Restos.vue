@@ -53,13 +53,13 @@ export default {
   },
   computed: {
     restaurants() {
-      console.log(this.$store.state.client.restaurants);
       return this.$store.state.client.restaurants;
     },
   },
   methods: {
     fetchRestaurants() {
       this.$store.dispatch("client/getRestaurants");
+      console.log(this.$store.state.client.restaurants);
     },
   },
 };

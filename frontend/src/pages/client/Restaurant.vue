@@ -22,13 +22,12 @@
               <ion-text color="Dark ">
                 <h3>A {{ data.distance }}km de chez vous</h3>
                 <ion-row>
-                  <h3>Note : {{ data.rating }}</h3></ion-row
-                ><ion-row size="">
-                  <ion-img
-                    :src="'https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png'"
-                    style="width: 50%"
-                  ></ion-img
-                ></ion-row>
+                  <h3>Note : {{ data.rating }}</h3>
+                </ion-row>
+                <ion-row size="">
+                  <ion-img :src="'https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png'"
+                    style="width: 50%"></ion-img>
+                </ion-row>
               </ion-text>
             </ion-row>
           </ion-grid>
@@ -37,11 +36,7 @@
               <h3>Menus</h3>
             </ion-text>
             <ion-row>
-              <MenuCard
-                :order="order"
-                v-for="menu in data.menus"
-                :data="menu"
-              />
+              <MenuCard :order="order" v-for="menu in data.menus" :data="menu" />
             </ion-row>
           </ion-grid>
           <ion-grid>
@@ -49,19 +44,11 @@
               <h3>Articles</h3>
             </ion-text>
             <ion-row>
-              <ArticleCard
-                :order="order"
-                v-for="article in data.articles"
-                :data="article"
-              />
+              <ArticleCard :order="order" v-for="article in data.articles" :data="article" />
             </ion-row>
           </ion-grid>
           <ion-grid style="height: 100%">
-            <ion-row
-              justify-content-center
-              align-items-center
-              style="height: 100%"
-            >
+            <ion-row justify-content-center align-items-center style="height: 100%">
               <ion-button @click="validateOrder()">Passer commande</ion-button>
             </ion-row>
           </ion-grid>
@@ -109,6 +96,7 @@ export default {
     const router = useRouter();
     const route = useRoute();
     var data = JSON.parse(route.params.data);
+    console.log("data : ", data);
     var order = [];
     const { openToast } = useToast();
     return {
