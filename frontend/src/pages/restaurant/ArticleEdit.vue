@@ -27,7 +27,7 @@
             </ion-item>
 
 
-              <ion-button color="secondary" @click="() => router.push({ name: 'MyRestaurant' })">Enregistrer les modifications</ion-button>
+              <ion-button color="secondary" @click="() => router.back({ name: 'MyRestaurant' })">Enregistrer les modifications</ion-button>
             </div>
         </ion-content>
     </ion-page>
