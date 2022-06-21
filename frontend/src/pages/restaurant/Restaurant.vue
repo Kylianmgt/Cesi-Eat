@@ -64,8 +64,7 @@
               <ion-button href="/restaurant/articles/add" color="success">Ajouter un Article</ion-button>
 
                 <!-- 
-                  * S'assurer que l'ensemble des articles soient affichés et que la redirection vers leur différentes pages d'édition se passe bien
-                  TODO: Créer la bonne route de redirection 
+                  TODO: Réparer la modification du state lors de la navogation entre les pages pour l'article et les Menus
                  -->
                 <li v-for="(article, articleIndex) in data[0].articles" :key="article.id">
                   {{ article.name }}    {{ article.price }}€
@@ -195,12 +194,14 @@ export default {
     };
   },
   methods: {
+
     getCurrentMenu(menuIndex, data) {
       let currentMenu = data[0].menus[menuIndex];
       console.log({ currentMenu })
       currentMenu = JSON.stringify(currentMenu);
       return currentMenu;
     },
+
     getCurrentArticle(articleIndex, data) {
       let currentArticle = data[0].articles[articleIndex];
       console.log({ currentArticle });
@@ -213,6 +214,7 @@ export default {
       // console.log({ articleName });
       return articleName;
     },
+    
       getArticlePriceFromMenu(articleIndex, menu){
       let articlePrice = menu.articles[articleIndex].price;
       // console.log({ articlePrice });
