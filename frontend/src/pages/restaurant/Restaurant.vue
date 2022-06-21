@@ -52,6 +52,7 @@
                   {{ getArticleNameFromMenu(articleIndex, data[0].menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, data[0].menus[menuIndex]) }} €
                 </li>
                 <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>
+                <ion-button color="danger">Supprimer ce Menu</ion-button>
 
               </div>
               
@@ -67,7 +68,10 @@
                  -->
                 <li v-for="(article, articleIndex) in data[0].articles" :key="article.id">
                   {{ article.name }}    {{ article.price }}€
-                <ion-button @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, data)) } })" color="secondary">Modifier cet Article</ion-button>
+                <div>
+                  <ion-button @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, data)) } })" color="secondary">Modifier cet Article</ion-button>
+                  <ion-button color="danger">Supprimer cet Article</ion-button>
+                </div>
 
                 </li>
           </ion-card-content>
