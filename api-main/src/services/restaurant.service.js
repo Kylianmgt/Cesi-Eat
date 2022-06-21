@@ -7,55 +7,57 @@ const { Restaurant, Order } = require('../models');
  * @returns {Promise<User>}
  */
 const createRestaurantProfil = async (userId, profil) => {
-    const restaurant = {
-        ...profil,
-        user: userId,
-    };
-    return Restaurant.create(restaurant);
+  const restaurant = {
+    ...profil,
+    user: userId,
+  };
+  return Restaurant.create(restaurant);
 };
 
 const getRestaurantProfil = async (userId) => {
-    return Restaurant.findOne({ user: userId });
+  return Restaurant.findOne({ user: userId });
 };
 
 const updateRestaurantProfil = async (userId, profil) => {
-    return Restaurant.findOneAndUpdate({ user: userId }, profil);
-}
-
-const getRestaurantOrders = async (restaurantId) => {
-    return Order.find({ restaurant: restaurantId }).populate('client');
+  return Restaurant.findOneAndUpdate({ user: userId }, profil);
 };
 
-const getRestaurants = async()=>{
-    return await(Restaurant.aggregate([{
-        $lookup: {
-            from: "menus", 
-            localField: "_id",
-            foreignField: "restaurant",
-            as: "menus"
-            }
-        },{
-            $unwind: {path: "$menus"}
-        },{  
-        
-        $lookup: {
-            from: "articles", 
-            localField: "_id",
-            foreignField: "restaurant",
-            as: "articles"
-            }
-        },
-        {
-            $unwind: {path: "$articles"}
-        }
+const getRestaurantOrders = async (restaurantId) => {
+  return Order.find({ restaurant: restaurantId }).populate('client');
+};
 
-    ]));
-}
+const getRestaurants = async () => {
+  return await Restaurant.aggregate([
+    {
+      $lookup: {
+        from: 'menus',
+        localField: '_id',
+        foreignField: 'restaurant',
+        as: 'menus',
+      },
+    },
+    {
+      $unwind: { path: '$menus' },
+    },
+
+    {
+      $lookup: {
+        from: 'articles',
+        localField: '_id',
+        foreignField: 'restaurant',
+        as: 'articles',
+      },
+    },
+    {
+      $unwind: { path: '$articles' },
+    },
+  ]);
+};
 
 module.exports = {
-    createRestaurantProfil,
-    getRestaurantProfil,
-    getRestaurantOrders,
-    getRestaurants,
-    updateRestaurantProfil,
+  createRestaurantProfil,
+  getRestaurantProfil,
+  getRestaurantOrders,
+  getRestaurants,
+  updateRestaurantProfil,
 };

@@ -12,7 +12,8 @@
       </ion-text>
       <ion-content scroll-y="true" class="">
         <ion-list class="px-2">
-          <RestaurantCard v-for="restaurant in restaurants" :data="restaurant" />
+          {{ restaurants }}
+          <RestaurantCard v-for="item in restaurants" :data="item" />
         </ion-list>
       </ion-content>
     </ion-page>

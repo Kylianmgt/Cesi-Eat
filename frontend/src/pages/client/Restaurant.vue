@@ -2,6 +2,7 @@
   <base-layout :show-menu-button="true" pageDefaultBackLink="/client/restos">
     <ion-page>
       <ion-content scroll-y="true" padding>
+        {{ data }}
         <ion-grid>
           <ion-grid>
             <ion-row>
@@ -97,6 +98,7 @@ export default {
     const route = useRoute();
     var data = JSON.parse(route.params.data);
     console.log("data : ", data);
+    console.log("data.menus : ", data.menus);
     var order = [];
     const { openToast } = useToast();
     return {
