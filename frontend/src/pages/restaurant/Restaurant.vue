@@ -29,7 +29,7 @@
                   Note des utilisateurs: {{ data[0].rating }}
                 </ion-col>
               </ion-grid>
-              <ion-button @click="() => router.push({ name: 'RestaurantEdit', params: { name: data[0].name, description: data[0].description, city: data[0].city, address: data[0].address, rating: data[0].rating} })">Modifier</ion-button>
+              <ion-button @click="() => router.push({ name: 'RestaurantEdit', params: { restoDatas: JSON.stringify(data) } })">Modifier</ion-button>
             </div>
 
             <!-- Menus Details for this restaurant -->
@@ -49,7 +49,7 @@
                   ! Seul les articles du Menu d'index 0 sont affichés et récupérés !
                   TODO: Refaire la boucle itérative pour l'affichage des articles des différents Menu 
                   -->
-                <li v-for="(article, index) in data[0].menus[index].articles">
+                <li v-for="(article, index) in data[0].menus[0].articles">
                   {{ article.name }}   {{ article.price }}€
                 </li>
                 <ion-button @click="() => router.push({ name: 'MenuEdit', params: {name: item.name, description: item.description, image: item.image, price: item.price, articles: data[0].menus[0].articles } })" color="secondary">Modifier ce Menu</ion-button>

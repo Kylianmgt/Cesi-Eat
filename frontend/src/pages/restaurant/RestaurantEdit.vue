@@ -44,7 +44,7 @@ import {
   IonText,
   IonToolbar 
 } from "@ionic/vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 export default {
   name: "RestaurantEdit",
@@ -58,13 +58,26 @@ export default {
     IonItem
   },
 
+  props: route => ({
+    restoDatas: data,
+    ...route.params
+  }),
+
   setup() {
     const router = useRouter();
+    const route = useRoute();
+    let restoDatas = JSON.parse(route.params.restoDatas);
+    console.log(restoDatas)
     return {
-      router
+      router,
+      restoDatas
     };
   },
-  methods: {},
+  methods: {
+    showData() {
+        console.log(restoDatas);
+    }
+  },
 
 };
 </script>

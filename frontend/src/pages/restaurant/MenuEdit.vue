@@ -2,7 +2,7 @@
   <base-layout :show-menu-button="false" pageTitle="Editer un Menu">
     <ion-page>
         <ion-content>
-                <h2>{{ $route.params.name }}</h2>
+                <h2>{{ restoDatas[0].city }}</h2>
                 <p>Description: {{ $route.params.description }}</p>
                 <p>Image: {{ $route.params.image }}</p>
                 <p>Prix: {{ $route.params.price }}€</p>
@@ -28,7 +28,7 @@ import {
   IonText,
   IonToolbar 
 } from "@ionic/vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 export default {
   name: "MenuEdit",
@@ -42,13 +42,26 @@ export default {
     IonItem
   },
 
+  props: route => ({
+    restoDatas: data,
+    ...route.params
+  }),
+
   setup() {
     const router = useRouter();
+    const route = useRoute();
+    let restoDatas = $route.params.restoDatas;
+    console.log(restoDatas)
     return {
-      router
+      router,
+      restoDatas
     };
   },
-  methods: {},
+  methods: {
+    showData() {
+        console.log(restoDatas);
+    }
+  },
 
 };
 </script>
