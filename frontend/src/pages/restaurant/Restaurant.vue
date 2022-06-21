@@ -38,11 +38,11 @@
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
               <ion-button href="/restaurant/menu/add" color="success">Ajouter un Menu</ion-button>
 
-              <div v-for="(item, menuIndex) in data[0].menus" :key="item.id">
-                <h2>{{ item.name }}</h2>
-                <p>Description: {{ item.description }}</p>
-                <p>Image: {{ item.image }}</p>
-                <p>Prix: {{ item.price }}€</p>
+              <div v-for="(menu, menuIndex) in data[0].menus" :key="menu.id">
+                <h2>{{ menu.name }}</h2>
+                <p>Description: {{ menu.description }}</p>
+                <p>Image: {{ menu.image }}</p>
+                <p>Prix: {{ menu.price }}€</p>
                 <h2>Articles :</h2>
 
                 <!--
@@ -51,7 +51,7 @@
                 <li v-for="(article, articleIndex) in data[0].menus[menuIndex].articles" :key="article.id">
                   {{ getArticleNameFromMenu(articleIndex, data[0].menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, data[0].menus[menuIndex]) }} €
                 </li>
-                <ion-button @click="() => router.push({ name: 'Restaurant', params: {menu: JSON.stringify(item) } })" color="secondary">Modifier ce Menu</ion-button>
+                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>
 
               </div>
               
@@ -86,7 +86,7 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonItem,
+  Ionmenu,
   IonCol,
   IonGrid,
   IonButton,
@@ -104,7 +104,7 @@ export default {
     IonPage,
     IonTitle,
     IonToolbar,
-    IonItem,
+    Ionmenu,
     IonCol,
     IonGrid,
     IonButton,
