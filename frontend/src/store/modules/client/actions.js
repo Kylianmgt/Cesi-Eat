@@ -13,6 +13,28 @@ const getClientOrders = ({ commit }, clientId) => {
 
 
 
+
+const getRestaurants = ({ commit }) => {
+    return api.get(`/restaurants/`)
+        .then(response => {
+            commit('SET_RESTAURANTS', response.data);
+            return response.data;
+        })
+        .catch(error => error.response);
+};
+
+// register({ }, userCredentials) {
+//     return api.post('/auth/register', userCredentials)
+//         .then(async (response) => {
+//             await setToken(response.token);
+//             await setUserData(response.data);
+
+//             return response.data;
+//         })
+//         .catch((error) => error.response);
+// },
+
 export default {
     getClientOrders,
+    getRestaurants
 };
