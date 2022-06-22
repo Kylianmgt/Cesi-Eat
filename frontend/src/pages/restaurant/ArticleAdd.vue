@@ -8,25 +8,36 @@
 
                 <ion-item>
                     <ion-label position="floating">Nom de l'Article</ion-label>
-                    <ion-input type="text" />
+                    <ion-input type="text" v-model="articleFields.name" />
                 </ion-item>
 
                 <ion-item>
-                    <ion-label position="floating">Description de l'Article</ion-label>
-                    <ion-input type="text" />
+                    <ion-label position="floating" >Description de l'Article</ion-label>
+                    <ion-input type="text" v-model="articleFields.description" />
                 </ion-item>
 
                 <ion-item>
-                    <ion-label position="floating">Image de l'Article</ion-label>
-                    <ion-input type="text"  />
+                  <ion-label position="fixe">Image</ion-label>
+                  <ion-img :src="articleFields.image" />
+                  <File
+                    name="articleInfo.image"
+                    open-camera
+                    label="Open camera and gallery"
+                    @files="
+                      (files) => {
+                        articleFields.image = files[0];
+                      }
+                    "
+                  />
                 </ion-item>
 
                 <ion-item>
                     <ion-label position="floating">Prix de l'Article</ion-label>
-                    <ion-input type="text" />
+                    <ion-input type="text" v-model="articleFields.price" />
                 </ion-item>
 
-                <ion-button color="secondary" @click="() => router.back({ name: 'MyRestaurant' })">Enregistrer l'article</ion-button>
+                <ion-button color="primary" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière</ion-button>
+                <ion-button color="secondary" @click="() => createArticle(articleFields)">SAVE l'article</ion-button>
 
             </div>
         </ion-content>
@@ -46,9 +57,15 @@ import {
   IonToolbar,
   IonLabel,
   IonContent,
-  IonButton,
+  IonImg,
+  IonButton
 } from "@ionic/vue";
+
+import { mapGetters, mapState, useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
+import { ref } from "vue";
+
+import File from "../../components/inputs/File.vue";
 
 export default {
   name: "ArticleAdd",
@@ -59,21 +76,35 @@ export default {
     IonButton,  
     IonInput,
     IonText,
+    IonImg,
     IonPage,
     IonTitle,
     IonToolbar,
-    IonItem
+    IonItem,
+    File,
   },
 
   setup() {
     const router = useRouter();
 
+    const articleFields = ref({
+      name: "",
+      description: "",
+      image: "",
+      price: "",
+    });
 
     return {
       router,
+      articleFields,
     };
   },
-  methods: {},
+  methods: {
+    createArticle(articleFields) {
+      console.log("[+] Create Article")
+      console.log({articleFields});
+    },
+  },
 
 };
 </script>
