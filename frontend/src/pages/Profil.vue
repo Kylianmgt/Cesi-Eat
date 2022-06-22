@@ -1,13 +1,36 @@
+<style>
+.profil-img::part(image) {
+  border-radius: 50%;
+  object-fit: scale-down;
+}
+</style>
+
 <template>
   <base-layout :show-menu-button="false" :showHeader="false">
     <ion-page>
-      <ion-text class="text-4xl">
-        <h1>
-          <ion-icon name="home" />
-          <span class="ml-2">My profil</span>
-        </h1>
-      </ion-text>
       <ion-content>
+        <ion-img
+          class="profil-img"
+          :src="userData.profil.image"
+          v-if="userData.profil.image"
+        >
+        </ion-img>
+        <ion-grid>
+          <ion-col>
+            <ion-item class="ion-padding">
+              <ion-text class="text-2xl"> @{{ userData.profil.name }}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-text class="text-lg">
+                Email: {{ userData.user.email }}
+              </ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-text> Address: {{ userData.profil.address }} </ion-text>
+            </ion-item>
+          </ion-col>
+        </ion-grid>
+
         <ion-button name="edit-profil" @click="router.push('/edit-profil')">
           <ion-icon name="create" />
           <span class="ml-2">Edit profil</span>
@@ -20,11 +43,6 @@
           <ion-icon name="trash" @click="() => deleteAccount()" />
           <span class="ml-2">Delete account</span>
         </ion-button>
-        <ion-text> Name: {{ userData.profil.name }} </ion-text>
-        <ion-text> Email: {{ userData.user.email }} </ion-text>
-        <ion-text> Address: {{ userData.profil.address }} </ion-text>
-        <ion-img :src="userData.profil.image" v-if="userData.profil.image">
-        </ion-img>
       </ion-content>
     </ion-page>
   </base-layout>

@@ -1,11 +1,36 @@
+<style>
+.order-delivery-img {
+  width: 100px;
+  height: 100px;
+}
+</style>
+
 <template>
-  <ion-card>
+  <ion-card class="w-full">
     <ion-card-header>
-      <ion-card-subtitle>{{ order.id }}</ion-card-subtitle>
-      <ion-card-subtitle>{{ order.status }}</ion-card-subtitle>
-      <ion-card-title>Order</ion-card-title>
+      <ion-card-title class="text-2xl font-bold">{{
+        order.restaurant.name
+      }}</ion-card-title>
+      <ion-card-subtitle>Order n°{{ order.id }}</ion-card-subtitle>
+      <ion-card-subtitle>Date :</ion-card-subtitle>
+      <ion-card-subtitle>Status : {{ order.status }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
+      <ion-grid>
+        <ion-row class="flex align-left justify-left border-2 rounded-lg">
+          <ion-img
+            v-if="order.delivery.image"
+            :src="order.delivery.image"
+            class="order-delivery-img rounded-full"
+          ></ion-img>
+          <ion-item class="flex justify-center">
+            <ion-text class="text-black ion-text-center" v-if="order.delivery"
+              >{{ order.delivery.name }} {{ order.delivery.firstName }} is your
+              delivery for this order
+            </ion-text>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
       <ion-list>
         <ion-button
           @click="actions[userData.user.role][order.status].action()"
@@ -32,6 +57,8 @@ import {
   IonLabel,
   IonButton,
   IonList,
+  IonRow,
+  IonGrid,
 } from "@ionic/vue";
 
 import Image from "../../Image.vue";
@@ -53,6 +80,8 @@ export default defineComponent({
     Image,
     IonButton,
     IonList,
+    IonGrid,
+    IonRow,
   },
   data: function () {
     const actions = {

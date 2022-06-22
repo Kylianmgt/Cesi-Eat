@@ -336,7 +336,7 @@ export default {
           });
           break;
         case "restaurant":
-          this.userRegister(this.userFields, this.restoFields).then(() => {
+          this.userRegister(this.userFields, this.restaurantFields).then(() => {
             // this.router.push("/login");
           });
           break;

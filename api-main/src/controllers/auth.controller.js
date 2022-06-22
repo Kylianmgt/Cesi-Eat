@@ -22,7 +22,10 @@ const register = catchAsync(async (req, res) => {
       break;
     default:
       break;
+
   }
+  user.profil = profil.id;
+  user.save();
   res.status(httpStatus.CREATED).send({ user, tokens, profil });
 });
 
