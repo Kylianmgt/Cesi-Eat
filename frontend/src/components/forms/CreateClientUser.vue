@@ -13,51 +13,54 @@
             <ion-card-header>
               <ion-card-title>{{ "Create Client User" }}</ion-card-title>
             </ion-card-header>
-            <ion-card-content>
-              <ion-list lines="full">
+                         <ion-card-content v-if="role === 'client'">
                 <ion-item>
-                  <ion-label position="stacked">{{ "First Name" }}</ion-label>
-                  <ion-input type="text" v-model="Fields.firstName"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">{{ "Last Name" }}</ion-label>
-                  <ion-input type="text" v-model="Fields.lastName"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">{{ "Email" }}</ion-label>
-                  <ion-input type="email" v-model="Fields.email"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">{{ "Phone" }}</ion-label>
-                  <ion-input type="text" v-model="Fields.phone"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">{{ "Address" }}</ion-label>
-                  <ion-textarea v-model="Fields.address"></ion-textarea>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">{{ "Password" }}</ion-label>
+                  <ion-label position="floating">FirstName</ion-label>
                   <ion-input
-                    type="password"
-                    v-model="Fields.password"
+                    type="text"
+                    v-model="clientFields.firstName"
                   ></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-label position="stacked">{{
-                    "Confirm Password"
-                  }}</ion-label>
+                  <ion-label position="floating">Name</ion-label>
                   <ion-input
-                    type="password"
-                    v-model="Fields.confirmPassword"
+                    type="text"
+                    v-model="clientFields.name"
                   ></ion-input>
                 </ion-item>
-              </ion-list>
-            </ion-card-content>
-            <ion-card-content>
-              <ion-button expand="block" @click="signup()">{{
-                "Create"
-              }}</ion-button>
-            </ion-card-content>
+                <ion-item>
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input
+                    type="email"
+                    v-model="userFields.email"
+                  ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Address</ion-label>
+                  <ion-input
+                    type="text"
+                    v-model="clientFields.address"
+                  ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input
+                    required
+                    name="password"
+                    type="password"
+                    v-model="userFields.password"
+                  ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Confirm Password</ion-label>
+                  <ion-input
+                    type="password"
+                    name="confirmPassword"
+                    v-model="userFields.confirmPassword"
+                  ></ion-input>
+                </ion-item>
+                <ion-button expand="block" @click="signup()">Signup</ion-button>
+              </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>

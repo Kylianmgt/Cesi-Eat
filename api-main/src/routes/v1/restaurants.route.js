@@ -7,6 +7,6 @@ const restaurantValidation = require('../../validations/restaurant.validation');
 
 const router = express.Router();
 
-router.route('/:restaurantId/orders')
-    .get(validate(restaurantValidation.getRestaurantOrders), restaurantController.getRestaurantOrders)
+router.route('/')
+    .get(restaurantController.getRestaurants)
 module.exports = router;
