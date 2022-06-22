@@ -26,7 +26,11 @@
                   <br>
                 </ion-col>
                 <ion-col>
-                  Note des utilisateurs: {{ data[0].rating }}
+                  Code Postal: {{ userData.profil.zipCode }}
+                  <br>
+                </ion-col>
+                <ion-col>
+                  <ion-img :src="userData.profil.image" alt="restaurant image" ></ion-img>
                 </ion-col>
               </ion-grid>
               <ion-button @click="() => router.push({ name: 'RestaurantEdit', params: { restoData: JSON.stringify(userData) } })">Modifier</ion-button>
@@ -96,7 +100,9 @@ import {
   IonButton,
   IonCard,
   IonCardContent,
-  IonContent
+  IonContent,
+  IonImg,
+  IonThumbnail,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 
@@ -114,7 +120,10 @@ export default {
     IonButton,
     IonCardContent,
     IonCard,
-    IonContent
+    IonContent,
+    IonImg,
+    IonThumbnail,
+
   },
 
   computed: {
