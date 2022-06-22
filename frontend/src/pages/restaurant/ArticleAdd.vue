@@ -2,7 +2,7 @@
   <base-layout :show-menu-button="true" pageTitle="Ajouter un Article">
     <ion-page>
         <ion-content class="p-8">
-            <!-- Menu Edit Form -->
+            <!-- Article Add Form -->
             <IonTitle size="large" color="primary">Informations de votre nouvel Article</IonTitle>
             <div class="flex flex-col p-8 ">
 
@@ -13,7 +13,7 @@
 
                 <ion-item>
                     <ion-label position="floating" >Description de l'Article</ion-label>
-                    <ion-input type="text" v-model="articleFields.description" />
+                    <ion-input type="text" v-model="articleFields.description" value="test" />
                 </ion-item>
 
                 <ion-item>
@@ -33,11 +33,11 @@
 
                 <ion-item>
                     <ion-label position="floating">Prix de l'Article</ion-label>
-                    <ion-input type="text" v-model="articleFields.price" />
+                    <ion-input type="text" v-model="articleFields.price" value="test" />
                 </ion-item>
 
+                <ion-button color="success" @click="() => createArticle(articleFields)">SAVE l'article</ion-button>
                 <ion-button color="primary" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière</ion-button>
-                <ion-button color="secondary" @click="() => createArticle(articleFields)">SAVE l'article</ion-button>
 
             </div>
         </ion-content>
@@ -84,6 +84,15 @@ export default {
     File,
   },
 
+    computed: {
+    userData() {
+      console.log("[+] Get profil Data...")
+      let userData = this.$store.state.user.userData;
+      console.log({ userData });
+      return userData;
+    }
+  },
+
   setup() {
     const router = useRouter();
 
@@ -102,7 +111,27 @@ export default {
   methods: {
     createArticle(articleFields) {
       console.log("[+] Create Article")
+      let userData = this.userData;
+      console.log({userData})
+      console.log(userData.profil.id)
+
+      let payload = {
+        restaurantId: userData.profil.id,
+        article: articleFields
+      };
+
+      console.log(payload.restaurantId)
       console.log({articleFields});
+
+      // this.$store.dispatch("restaurant/postArticle", payload);
+
+      this.$store.dispatch("restaurant/postArticle", {
+        restaurantId: userData.profil.id,
+        article: {...articleFields},
+      });
+      this.router.back();
+    
+
     },
   },
 

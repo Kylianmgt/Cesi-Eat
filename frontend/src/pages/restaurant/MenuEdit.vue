@@ -63,6 +63,7 @@ export default {
     IonToolbar,
     IonItem
   },
+  
 
   props: route => ({
     menu: data,

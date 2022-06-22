@@ -7,7 +7,19 @@ const getRestaurantOrders = {
     }),
 };
 
+const createArticle = {
+    body: Joi.object().keys({
+        article: Joi.object().keys({
+            name: Joi.string().required(),
+            description: Joi.string().required(),
+            image: Joi.string().required(),
+            price: Joi.number().required(),
+        })
+    })
+}
+
 
 module.exports = {
     getRestaurantOrders,
+    createArticle
 };

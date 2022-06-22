@@ -1,4 +1,4 @@
-const { Restaurant, Order } = require('../models');
+const { Restaurant, Order, Article } = require('../models');
 
 /**
  * Create a user
@@ -30,10 +30,22 @@ const getRestaurants = async () => {
   return await Restaurant.find().populate("menus").populate("articles");
 };
 
+const createArticle = async (restaurantId, articleFilds) => {
+
+  const article = {
+    ...articleFilds,
+    restaurant: restaurantId,
+  };
+
+  return Article.create(article);
+
+}
+
 module.exports = {
   createRestaurantProfil,
   getRestaurantProfil,
   getRestaurantOrders,
   getRestaurants,
   updateRestaurantProfil,
+  createArticle,
 };

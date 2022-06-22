@@ -10,4 +10,10 @@ const router = express.Router();
 router.route('/:restaurantId/orders')
     .get(validate(restaurantValidation.getRestaurantOrders), restaurantController.getRestaurantOrders)
 
+router.route('/:restaurantId/article/create')
+    .post(validate(restaurantValidation.createArticle), restaurantController.createArticle)
+
+
+
+
 module.exports = router;

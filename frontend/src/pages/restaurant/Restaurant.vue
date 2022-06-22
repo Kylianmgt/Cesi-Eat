@@ -43,18 +43,17 @@
               <ion-button color="success" @click="() => router.push({ name: 'MenuAdd' })">Ajouter un Menu</ion-button>
 
               <div v-for="(menu, menuIndex) in data[0].menus" :key="menu.id">
+
                 <h2>{{ menu.name }}</h2>
                 <p>Description: {{ menu.description }}</p>
                 <p>Image: {{ menu.image }}</p>
                 <p>Prix: {{ menu.price }}€</p>
                 <h2>Articles :</h2>
 
-                <!--
-                  ! ERROR While getCurrentMenu => State don't uptate himself while navigate
-                  -->
                 <li v-for="(article, articleIndex) in data[0].menus[menuIndex].articles" :key="article.id">
                   {{ getArticleNameFromMenu(articleIndex, data[0].menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, data[0].menus[menuIndex]) }} €
                 </li>
+                
                 <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>
                 <ion-button color="danger">Supprimer ce Menu</ion-button>
 
@@ -67,9 +66,6 @@
             <IonTitle size="large" color="primary">Mes Articles</IonTitle>
               <ion-button color="success" @click="() => router.push({ name: 'ArticleAdd' })">Ajouter un Article</ion-button>
 
-                <!-- 
-                  TODO: Réparer la modification du state lors de la navogation entre les pages pour l'article et les Menus
-                 -->
                 <li v-for="(article, articleIndex) in data[0].articles" :key="article.id">
                   {{ article.name }}    {{ article.price }}€
                 <div>

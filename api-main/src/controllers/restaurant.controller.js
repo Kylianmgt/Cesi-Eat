@@ -13,7 +13,19 @@ const getRestaurants = catchAsync(async (req, res) => {
     res.status(httpStatus.OK).send(restaurants);
 });
 
+const createArticle = catchAsync(async (req, res) => {
+    logger.debug("[ ] [CONTROLLER] Create Article...")
+    const restaurantId = req.params.restaurantId;
+    const articleFields = req.body.article;
+    logger.debug(restaurantId);
+    logger.debug(articleFields);
+    const article = await restaurantService.createArticle(restaurantId, articleFields);
+    res.status(httpStatus.CREATED).send(article);
+})
+
+
 module.exports = {
     getRestaurantOrders,
-    getRestaurants
+    getRestaurants,
+    createArticle
 };

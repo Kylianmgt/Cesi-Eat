@@ -2,7 +2,7 @@
   <base-layout :show-menu-button="true" pageTitle="Ajouter un Menu">
     <ion-page>
         <ion-content class="p-8">
-            <!-- Menu Edit Form -->
+            <!-- Menu Add Form -->
             <IonTitle size="large" color="primary">Informations de votre nouveau Menu</IonTitle>
             <div class="flex flex-col p-8 ">
 

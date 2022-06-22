@@ -7,35 +7,40 @@ const { string, required, array, allow } = require('joi');
 
 const articleSchema = mongoose.Schema(
     {
-        restaurant:{
-            type:mongoose.SchemaTypes.ObjectId,
-            ref:"Restaurant",
+        restaurant: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "Restaurant",
         },
-        menu:{
-            type:mongoose.SchemaTypes.ObjectId,
-            ref:"Menu",
-            required:false
+        menu: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "Menu",
+            required: false
         },
-        name:{
-            type:String,
+        name: {
+            type: String,
             required: true,
             trim: true,
         },
-        image:{
-            type:String,
-            required:false,
-            trim:true
+        description: {
+            type: String,
+            required: true,
+            trim: true,
         },
-        price:{
-            type:Number,
-            required:true,
-            trim:true
+        image: {
+            type: String,
+            required: false,
+            trim: true
         },
-        canBeSoldAlone:{
-            type:Boolean,
-            required:allow,
+        price: {
+            type: Number,
+            required: true,
+            trim: true
+        },
+        canBeSoldAlone: {
+            type: Boolean,
+            required: allow,
         }
-    }    
+    }
 );
 
 
@@ -47,7 +52,7 @@ articleSchema.plugin(paginate);
 /**
  * @typedef Article
  */
- const Article = mongoose.model('Article', articleSchema);
+const Article = mongoose.model('Article', articleSchema);
 
 module.exports = Article;
 
