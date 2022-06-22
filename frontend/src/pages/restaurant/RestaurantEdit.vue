@@ -82,7 +82,7 @@ export default {
   },
 
   props: route => ({
-    restoDatas: data,
+    restoData: data,
     ...route.params
   }),
 
@@ -90,21 +90,23 @@ export default {
     const router = useRouter();
     const route = useRoute();
 
-    let restoDatas = JSON.parse(route.params.restoDatas);
-    let restoName = restoDatas[0].name;
-    let restoDescription = restoDatas[0].description;
-    let restoAddress = restoDatas[0].address;
-    let restoRating = restoDatas[0].rating;
-    let restoDistance = restoDatas[0].distance;
-    let restoCity = restoDatas[0].city;
+    console.log("Edit Restaurant")
+    let restoDatas = JSON.parse(route.params.restoData);
+    console.log({ restoDatas })
+    let restoName = restoDatas.profil.name;
+    let restoDescription = restoDatas.profil.description;
+    let restoAddress = restoDatas.profil.address;
+    let restoRating = "4.5";
+    let restoDistance = restoDatas.profil.distance;
+    let restoCity = restoDatas.profil.city;
 
     let restaurant = {
-        name: restoName,
-        description: restoDescription,
-        address: restoAddress,
-        rating: restoRating,
-        distance: restoDistance,
-        city: restoCity,
+        name: restoName || "sample",
+        description: restoDescription || "sample",
+        address: restoAddress || "sample",
+        rating: "rating score"|| restoRating,
+        distance: restoDistance || "sample",
+        city: restoCity || "sample",
     }
     
     return {

@@ -10,26 +10,26 @@
             <div class="flex p-8">
               <ion-grid>
                 <ion-col>
-                  Nom du restaurant: {{ data[0].name }}
+                  Nom du restaurant: {{ userData.profil.name }}
                 </ion-col>
                   <br>
                 <ion-col>
-                  Description: {{ data[0].description }}
+                  Description: {{ userData.profil.description }}
                   <br>
                 </ion-col>
                 <ion-col>
-                  Ville: {{ data[0].city }}
+                  Ville: {{ userData.profil.city }}
                   <br>
                 </ion-col>
                 <ion-col>
-                  Address: {{ data[0].address }}
+                  Address: {{ userData.profil.address }}
                   <br>
                 </ion-col>
                 <ion-col>
                   Note des utilisateurs: {{ data[0].rating }}
                 </ion-col>
               </ion-grid>
-              <ion-button @click="() => router.push({ name: 'RestaurantEdit', params: { restoDatas: JSON.stringify(data) } })">Modifier</ion-button>
+              <ion-button @click="() => router.push({ name: 'RestaurantEdit', params: { restoData: JSON.stringify(userData) } })">Modifier</ion-button>
             </div>
 
 
@@ -116,6 +116,16 @@ export default {
     IonCard,
     IonContent
   },
+
+  computed: {
+    userData() {
+      console.log("[+] Get profil Data...")
+      let userData = this.$store.state.user.userData;
+      console.log({ userData });
+      return userData;
+    }
+  },
+
   setup() {
     const router = useRouter();
     const data = [{
