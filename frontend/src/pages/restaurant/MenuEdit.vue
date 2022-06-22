@@ -26,7 +26,6 @@
                 <ion-input type="text" v-model="menu.price" />
             </ion-item>
 
-
               <ion-button color="secondary" @click="() => router.back({ name: 'MyRestaurant' })">Enregistrer les modifications</ion-button>
             </div>
         </ion-content>
