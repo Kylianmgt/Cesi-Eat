@@ -23,12 +23,14 @@ const updateClientProfil = async (userId, profil) => {
     return client;
 }
 
-
-
 const getClientOrders = async (clientId) => {
     return Order.find({ client: clientId }).populate('restaurant');
-
 };
+
+const createClientOrder = async (order) => {
+    return Order.create(order);
+};
+
 
 
 module.exports = {
@@ -36,4 +38,5 @@ module.exports = {
     getClientProfil,
     getClientOrders,
     updateClientProfil,
+    createClientOrder
 };

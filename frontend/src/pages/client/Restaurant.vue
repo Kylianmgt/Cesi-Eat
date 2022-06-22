@@ -25,8 +25,10 @@
                   <h3>Note : {{ data.rating }}</h3>
                 </ion-row>
                 <ion-row size="">
-                  <ion-img :src="'https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png'"
-                    style="width: 50%"></ion-img>
+                  <ion-img
+                    :src="'https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png'"
+                    style="width: 50%"
+                  ></ion-img>
                 </ion-row>
               </ion-text>
             </ion-row>
@@ -36,7 +38,11 @@
               <h3>Menus</h3>
             </ion-text>
             <ion-row>
-              <MenuCard :order="order" v-for="menu in data.menus" :data="menu" />
+              <MenuCard
+                :selected_menus="selected_menus"
+                v-for="menu in data.menus"
+                :data="menu"
+              />
             </ion-row>
           </ion-grid>
           <ion-grid>
@@ -44,11 +50,19 @@
               <h3>Articles</h3>
             </ion-text>
             <ion-row>
-              <ArticleCard :order="order" v-for="article in data.articles" :data="article" />
+              <ArticleCard
+                :selected_articles="selected_articles"
+                v-for="article in data.articles"
+                :data="article"
+              />
             </ion-row>
           </ion-grid>
           <ion-grid style="height: 100%">
-            <ion-row justify-content-center align-items-center style="height: 100%">
+            <ion-row
+              justify-content-center
+              align-items-center
+              style="height: 100%"
+            >
               <ion-button @click="validateOrder()">Passer commande</ion-button>
             </ion-row>
           </ion-grid>
@@ -98,30 +112,32 @@ export default {
     var data = JSON.parse(route.params.data);
     console.log("data : ", data);
     console.log("data.menus : ", data.menus);
-    var order = [];
+    var selected_menus = [];
+    var selected_articles = [];
     const { openToast } = useToast();
     return {
       router,
       data,
       openToast,
-      order,
+      selected_menus,
+      selected_articles,
     };
   },
   methods: {
     validateOrder() {
-      var cleanOrder = [];
-      for (let i = 0; i < this.order.length; i++) {
-        if (this.order[i].amount > 0) {
-          cleanOrder.push(this.order[i]);
-        }
-      }
-      if (this.order.length == 0) {
+      if (
+        this.selected_articles.length == 0 &&
+        this.selected_menus.length == 0
+      ) {
+        console.log(this.selected_articles, this.selected_menus);
         this.openToast("no item selected !", "danger", "0", 1500);
       } else {
         this.$router.push({
           name: "/client/order-check",
           params: {
-            orders: JSON.stringify(cleanOrder),
+            data: JSON.stringify(this.data),
+            selected_articles: this.selected_articles,
+            selected_menus: this.selected_menus,
           },
         });
       }

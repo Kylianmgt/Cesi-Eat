@@ -8,7 +8,13 @@ const getClientOrders = catchAsync(async (req, res) => {
     res.status(httpStatus.OK).send(orders);
 });
 
-module.exports = {
-    getClientOrders
-};
+const createOrder = catchAsync(async (req, res) => {
+    const order = await clientService.createClientOrder(req);
+    res.status(httpStatus.CREATED).send(order);
+});
+  
 
+module.exports = {
+    getClientOrders,
+    createOrder
+};
