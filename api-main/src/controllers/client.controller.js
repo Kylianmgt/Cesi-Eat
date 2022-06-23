@@ -9,10 +9,13 @@ const getClientOrders = catchAsync(async (req, res) => {
 });
 
 const createOrder = catchAsync(async (req, res) => {
-    const order = await clientService.createClientOrder(req);
+    logger.debug("request : ", req);
+    logger.debug("order : ", req.body.order);
+    logger.debug("params client ID : ", req.params.clientId);
+    // const order = await clientService.createClientOrder(req);
     res.status(httpStatus.CREATED).send(order);
 });
-  
+
 
 module.exports = {
     getClientOrders,

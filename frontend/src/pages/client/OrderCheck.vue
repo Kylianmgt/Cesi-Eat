@@ -137,7 +137,6 @@ export default {
       return total;
     },
     formatAndSendOrder() {
-      console.log(this.data);
       const order = {
         restaurant: this.data.id,
         menus: this.selected_menus,
@@ -145,7 +144,7 @@ export default {
         client: this.$store.state.user.userData.profil.id,
       };
       console.log("order: ", order);
-      this.$store.dispatch("client/createOrder", order);
+      this.$store.dispatch("client/createOrder", { order: order });
     },
   },
 };

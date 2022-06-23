@@ -20,8 +20,8 @@ const getRestaurants = ({ commit }) => {
     .catch((error) => error.response);
 };
 
-const createOrder = ({ commit }, order) => {
-  return api.post(`/client/${order.client}/create-order/`, order);
+const createOrder = ({ commit }, payload) => {
+  return api.post(`/client/${payload.order.client}/create-order/`, {order: payload.order});
 };
 
 
