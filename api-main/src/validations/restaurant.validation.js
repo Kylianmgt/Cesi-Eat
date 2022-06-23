@@ -14,7 +14,8 @@ const createArticle = {
             description: Joi.string().required(),
             image: Joi.string().required(),
             price: Joi.number().required(),
-        })
+        }),
+        userId: Joi.string().custom(objectId),
     })
 }
 

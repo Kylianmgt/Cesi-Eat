@@ -115,18 +115,9 @@ export default {
       console.log({userData})
       console.log(userData.profil.id)
 
-      let payload = {
-        restaurantId: userData.profil.id,
-        article: articleFields
-      };
-
-      console.log(payload.restaurantId)
-      console.log({articleFields});
-
-      // this.$store.dispatch("restaurant/postArticle", payload);
-
       this.$store.dispatch("restaurant/postArticle", {
         restaurantId: userData.profil.id,
+        userId: userData.user.id,
         article: {...articleFields},
       });
       this.router.back();

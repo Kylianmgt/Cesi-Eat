@@ -15,12 +15,21 @@ const getRestaurants = catchAsync(async (req, res) => {
 
 const createArticle = catchAsync(async (req, res) => {
     logger.debug("[ ] [CONTROLLER] Create Article...")
+
     const restaurantId = req.params.restaurantId;
+    const userId = req.body.userId;
+    const restaurant = await restaurantService.getRestaurantProfil(userId)
+    logger.debug(req.body.userId);
     const articleFields = req.body.article;
     logger.debug(restaurantId);
     logger.debug(articleFields);
     const article = await restaurantService.createArticle(restaurantId, articleFields);
+
+    restaurant.articles.push(article);
+    restaurant.save();
+
     res.status(httpStatus.CREATED).send(article);
+
 })
 
 

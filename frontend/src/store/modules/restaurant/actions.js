@@ -11,10 +11,8 @@ const getRestaurantOrders = ({ commit }, restaurantId) => {
 
 const postArticle = ({ }, payload) => {
     console.log("[ ] postArticle endpoint...")
-    console.log(payload.restaurantId)
-    console.log(typeof (payload))
     console.log({ payload })
-    return api.post(`/restaurant/${payload.restaurantId}/article/create`, { article: payload.article })
+    return api.post(`/restaurant/${payload.restaurantId}/article/create`, { article: payload.article, userId: payload.userId })
         .then(response => {
             return response.data;
         })
