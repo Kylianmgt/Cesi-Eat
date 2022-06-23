@@ -4,11 +4,15 @@ const { clientService } = require('../services');
 const logger = require('../config/logger');
 
 const getClientOrders = catchAsync(async (req, res) => {
-    const orders = await clientService.getClientOrders(req.params.clientId);
-    res.status(httpStatus.OK).send(orders);
+  const orders = await clientService.getClientOrders(req.params.clientId);
+  res.status(httpStatus.OK).send(orders);
 });
 
+const createOrder = catchAsync(async (req, res) => {
+  const order = await clientService.createClientOrder(req.body.order);
+  res.status(httpStatus.CREATED).send(order);
+});
 module.exports = {
-    getClientOrders
+  getClientOrders,
+  createOrder,
 };
-

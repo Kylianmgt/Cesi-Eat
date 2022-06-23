@@ -13,11 +13,7 @@ const getRestaurants = catchAsync(async (req, res) => {
     res.status(httpStatus.OK).send(restaurants);
 });
 
-
-
-
 module.exports = {
     getRestaurantOrders,
     getRestaurants
 };
-

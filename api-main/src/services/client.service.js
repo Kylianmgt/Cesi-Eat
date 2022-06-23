@@ -17,20 +17,22 @@ const createClientProfil = async (userId, profil) => {
 const getClientProfil = async (userId) => {
     return Client.findOne({ user: userId });
 };
-
 const updateClientProfil = async (userId, profil) => {
     const client = await Client.findOneAndUpdate({ user: userId }, profil, { new: true });
     return client;
 };
-
 const getClientOrders = async (clientId) => {
     return Order.find({ client: clientId }).populate(['restaurant', 'delivery']);
 };
 
+const createClientOrder = async (order) => {
+    return Order.create(order);
+};
 
 module.exports = {
     createClientProfil,
     getClientProfil,
     getClientOrders,
     updateClientProfil,
+    createClientOrder
 };

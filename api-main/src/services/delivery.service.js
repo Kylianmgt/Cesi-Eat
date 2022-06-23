@@ -33,9 +33,6 @@ const getPendingOrders = async () => {
 }
 
 const assignOrder = async (orderId, deliveryId) => {
-    logger.debug('assigning order');
-    logger.debug(orderId);
-    logger.debug(deliveryId);
     const profil = await Delivery.findById(deliveryId);
     const order = await Order.findById(orderId);
     order.delivery = profil;

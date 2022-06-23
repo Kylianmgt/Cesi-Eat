@@ -14,8 +14,8 @@
         </ion-text>
         <ion-grid>
           <OrderedItemCard
-            v-for="order in orders"
-            :order="order"
+            v-for="selected_item in selected_items"
+            :selected_item="selected_item"
           ></OrderedItemCard>
           <h1>Total : {{ totalCalculation() }}€</h1>
         </ion-grid>
@@ -26,8 +26,6 @@
             <span class="ml-2">Adresse de livraison</span>
           </h2>
         </ion-text>
-
-        <!-- FAIRE APPEL AU STORE POUR l'ADRESSE DU CLIENT + LIEN VERS LA PAGE PROFIL -->
         <ion-card>
           <p>Voie</p>
           <p>Code postal</p>
@@ -43,21 +41,18 @@
             <span class="ml-2">Payment method</span>
           </h2>
         </ion-text>
-
-        <ion-card
-          ><p>Type de carte</p>
+        <ion-card>
+          <p>Type de carte</p>
           <p>Numéro</p>
           <p>Date de péremption</p>
           <p>Nom</p>
           <p>Prénom</p>
         </ion-card>
-
         <ion-button size="small" color="light"
           >Modifier la méthode de paiement</ion-button
         >
       </ion-content>
-
-      <ion-button>
+      <ion-button @click="() => formatAndSendOrder()">
         <ion-icon name="buy" />
         <span class="ml-2">Buy</span>
       </ion-button>
@@ -75,7 +70,7 @@ import {
   IonLabel,
   IonIcon,
   IonText,
-  IonButton
+  IonButton,
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 import OrderedItemCard from "@/components/molecules/orders/OrderedItemCard.vue";
@@ -88,31 +83,63 @@ export default {
     IonText,
     IonPage,
     IonButton,
-    OrderedItemCard
+    OrderedItemCard,
   },
-  props: route => ({
+
+  props: (route) => ({
     user: userData,
-    ...route.params
+    ...route.params,
   }),
 
   setup() {
     const router = useRouter();
     const route = useRoute();
-    const orders = JSON.parse(route.params.orders);
+    const data = JSON.parse(route.params.data);
+    const selected_menus = route.params.selected_menus;
+    const selected_articles = route.params.selected_articles;
+    const selected_all = selected_articles.concat(selected_menus);
+    var selected_items = [];
+    selected_menus.forEach((selected_element) => {
+      data.menus.forEach((data_element) => {
+        if (selected_element == data_element.id) {
+          selected_items.push(data_element);
+        }
+      });
+    });
+    selected_articles.forEach((selected_element) => {
+      data.articles.forEach((data_element) => {
+        if (selected_element == data_element.id) {
+          selected_items.push(data_element);
+        }
+      });
+    });
     return {
       router,
-      orders
+      selected_articles,
+      selected_menus,
+      selected_all,
+      selected_items,
+      data,
     };
   },
+
   methods: {
     totalCalculation() {
       var total = 0;
-      let res = this.orders;
-      for (let i in res) {
-        total += res[i].price * res[i].amount;
-      }
+      this.selected_items.forEach((element) => {
+        total += element.price;
+      });
       return total;
-    }
-  }
+    },
+    formatAndSendOrder() {
+      const order = {
+        restaurant: this.data.id,
+        menus: this.selected_menus,
+        articles: this.selected_articles,
+        client: this.$store.state.user.userData.profil.id,
+      };
+      this.$store.dispatch("client/createOrder", { order: order });
+    },
+  },
 };
 </script>

@@ -5,17 +5,17 @@
         <ion-col size="15">
           <ion-card-header>
             <ion-img
-              style="width: 200px; height: 200px;"
-              :src="order.image"
+              style="width: 200px; height: 200px"
+              :src="selected_item.image"
             ></ion-img>
-            <ion-card-title>{{ order.name }}</ion-card-title>
+            <ion-card-title>{{ selected_item.name }}</ion-card-title>
           </ion-card-header>
         </ion-col>
         <ion-col size="15">
-          <p>{{ order.price }}€ (unité)</p>
+          <p>{{ selected_item.price }}€ (unité)</p>
           <h1>
-            {{ order.price }}x {{ order.amount }}={{
-              order.price * order.amount
+            {{ selected_item.price }}x {{ selected_item.amount }}={{
+              selected_item.price * selected_item.amount
             }}
             €
           </h1>
@@ -38,7 +38,7 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonItem,
-  IonLabel
+  IonLabel,
 } from "@ionic/vue";
 
 import Image from "../../Image.vue";
@@ -56,21 +56,21 @@ export default defineComponent({
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
-    Image
+    Image,
   },
   props: {
-    order: {
-      type: Object,
-      required: false
+    selected_item: {
+      type: String,
+      required: true,
     },
     className: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
   setup() {},
   methods: {
-    deleteItem() {}
-  }
+    deleteItem() {},
+  },
 });
 </script>

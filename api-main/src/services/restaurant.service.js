@@ -28,31 +28,6 @@ const getRestaurantOrders = async (restaurantId) => {
 
 const getRestaurants = async () => {
   return await Restaurant.find().populate("menus").populate("articles");
-  //   return await Restaurant.aggregate([
-  //     {
-  //       $lookup: {
-  //         from: 'menus',
-  //         localField: '_id',
-  //         foreignField: 'restaurant',
-  //         as: 'menus',
-  //       },
-  //     },
-  //     {
-  //       $unwind: { path: '$menus' },
-  //     },
-
-  //     {
-  //       $lookup: {
-  //         from: 'articles',
-  //         localField: '_id',
-  //         foreignField: 'restaurant',
-  //         as: 'articles',
-  //       },
-  //     },
-  //     {
-  //       $unwind: { path: '$articles' },
-  //     },
-  //   ]);
 };
 
 module.exports = {

@@ -42,7 +42,7 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonItem,
-  IonLabel
+  IonLabel,
 } from "@ionic/vue";
 
 export default defineComponent({
@@ -57,57 +57,37 @@ export default defineComponent({
     IonCardContent,
     IonCardHeader,
     IonCardSubtitle,
-    IonCardTitle
+    IonCardTitle,
   },
   props: {
     data: {
       type: Object,
-      required: false
+      required: false,
     },
     className: {
       type: String,
-      required: false
+      required: false,
     },
-    order: {
+    selected_articles: {
       type: Array,
-      required: false
-    }
+      required: false,
+    },
   },
   setup() {},
   methods: {
-    increase: function(id) {
+    increase: function (id) {
       //increase counter
       this.count++;
-      //add to order variable the selected item and amount
-      const searchIndex = this.order.findIndex(
-        obj => obj.type === "article" && obj.id === id
-      );
-      if (searchIndex != -1) {
-        this.order[searchIndex].amount++;
-      } else {
-        this.order.push({
-          type: "article",
-          id: id,
-          amount: 1,
-          image: this.data.image,
-          name: this.data.name,
-          price: this.data.price
-        });
-      }
+      //add to selected_articles variable the selected item and amount
+      this.selected_articles.push(this.data.id);
     },
-    decrease: function(id) {
+    decrease: function (id) {
       if (this.count > 0) this.count--;
-
-      const searchIndex = this.order.findIndex(
-        obj => obj.type === "article" && obj.id === id
+      const indice = this.selected_articles.findIndex(
+        (id) => id === this.data.id
       );
-      if (searchIndex != -1) {
-        if (this.order[searchIndex].amount > 0)
-          this.order[searchIndex].amount--;
-      } else {
-        this.order.push({ type: "article", id: id, amount: 0 });
-      }
-    }
-  }
+      this.selected_articles.splice(indice, 1);
+    },
+  },
 });
 </script>
