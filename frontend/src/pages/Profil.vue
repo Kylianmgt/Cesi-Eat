@@ -1,7 +1,9 @@
 <style>
 .profil-img::part(image) {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  object-fit: scale-down;
+  object-fit: cover;
 }
 </style>
 
@@ -10,15 +12,17 @@
     <ion-page>
       <ion-content>
         <ion-img
-          class="profil-img"
+          class="profil-img flex justify-center align-center ion-padding"
           :src="userData.profil.image"
           v-if="userData.profil.image"
         >
         </ion-img>
         <ion-grid>
           <ion-col>
-            <ion-item class="ion-padding">
-              <ion-text class="text-2xl"> @{{ userData.profil.name }}</ion-text>
+            <ion-item class="">
+              <ion-text class="text-2xl text-center">
+                <h1>@{{ userData.profil.name }}</h1>
+              </ion-text>
             </ion-item>
             <ion-item>
               <ion-text class="text-lg">
@@ -87,6 +91,7 @@ export default {
   },
   setup() {
     const router = useRouter();
+
     return {
       router,
     };

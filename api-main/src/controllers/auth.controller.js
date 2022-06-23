@@ -44,6 +44,7 @@ const login = catchAsync(async (req, res) => {
       break;
     case 'restaurant':
       profil = await restaurantService.getRestaurantProfil(user.id);
+      logger.debug(profil);
       break;
     default:
       break;

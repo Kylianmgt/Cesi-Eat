@@ -9,4 +9,5 @@ const router = express.Router();
 
 router.route('/:restaurantId/orders')
     .get(validate(restaurantValidation.getRestaurantOrders), restaurantController.getRestaurantOrders)
+
 module.exports = router;

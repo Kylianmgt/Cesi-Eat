@@ -7,10 +7,12 @@
 <template>
   <base-layout :show-menu-button="false" :showHeader="false">
     <ion-page>
-      <ion-text>
-        <h1 class="text-center text-4xl">Ta la dalle hein gros tas</h1>
-      </ion-text>
       <ion-content scroll-y="true" class="">
+        <ion-text>
+          <h1 class="text-left ml-2 font-bold text-xl">
+            Our restaurant selection, just for you.
+          </h1>
+        </ion-text>
         <ion-list class="px-2">
           <RestaurantCard v-for="item in restaurants" :data="item" />
         </ion-list>
