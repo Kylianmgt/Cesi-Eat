@@ -59,7 +59,6 @@ export default {
   methods: {
     fetchRestaurants() {
       this.$store.dispatch("client/getRestaurants");
-      console.log(this.$store.state.client.restaurants);
     },
   },
 };

@@ -68,7 +68,6 @@
           </ion-grid>
         </ion-grid>
       </ion-content>
-      <!-- <ion-img :src="data.image" width="10px" height="10px"></ion-img> -->
     </ion-page>
   </base-layout>
 </template>
@@ -110,8 +109,6 @@ export default {
     const router = useRouter();
     const route = useRoute();
     var data = JSON.parse(route.params.data);
-    console.log("data : ", data);
-    console.log("data.menus : ", data.menus);
     var selected_menus = [];
     var selected_articles = [];
     const { openToast } = useToast();
@@ -129,7 +126,6 @@ export default {
         this.selected_articles.length == 0 &&
         this.selected_menus.length == 0
       ) {
-        console.log(this.selected_articles, this.selected_menus);
         this.openToast("no item selected !", "danger", "0", 1500);
       } else {
         this.$router.push({

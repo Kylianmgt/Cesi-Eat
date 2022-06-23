@@ -26,8 +26,6 @@
             <span class="ml-2">Adresse de livraison</span>
           </h2>
         </ion-text>
-
-        <!-- FAIRE APPEL AU STORE POUR l'ADRESSE DU CLIENT + LIEN VERS LA PAGE PROFIL -->
         <ion-card>
           <p>Voie</p>
           <p>Code postal</p>
@@ -43,7 +41,6 @@
             <span class="ml-2">Payment method</span>
           </h2>
         </ion-text>
-
         <ion-card>
           <p>Type de carte</p>
           <p>Numéro</p>
@@ -51,12 +48,10 @@
           <p>Nom</p>
           <p>Prénom</p>
         </ion-card>
-
         <ion-button size="small" color="light"
           >Modifier la méthode de paiement</ion-button
         >
       </ion-content>
-
       <ion-button @click="() => formatAndSendOrder()">
         <ion-icon name="buy" />
         <span class="ml-2">Buy</span>
@@ -90,6 +85,7 @@ export default {
     IonButton,
     OrderedItemCard,
   },
+
   props: (route) => ({
     user: userData,
     ...route.params,
@@ -102,7 +98,6 @@ export default {
     const selected_menus = route.params.selected_menus;
     const selected_articles = route.params.selected_articles;
     const selected_all = selected_articles.concat(selected_menus);
-
     var selected_items = [];
     selected_menus.forEach((selected_element) => {
       data.menus.forEach((data_element) => {
@@ -118,7 +113,6 @@ export default {
         }
       });
     });
-    console.log("selected items : ", selected_items);
     return {
       router,
       selected_articles,
@@ -128,6 +122,7 @@ export default {
       data,
     };
   },
+
   methods: {
     totalCalculation() {
       var total = 0;
@@ -143,7 +138,6 @@ export default {
         articles: this.selected_articles,
         client: this.$store.state.user.userData.profil.id,
       };
-      console.log("order: ", order);
       this.$store.dispatch("client/createOrder", { order: order });
     },
   },
