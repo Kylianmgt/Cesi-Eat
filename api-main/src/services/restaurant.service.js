@@ -15,7 +15,7 @@ const createRestaurantProfil = async (userId, profil) => {
 };
 
 const getRestaurantProfil = async (userId) => {
-  return Restaurant.findOne({ user: userId });
+  return Restaurant.findOne({ user: userId }).populate("menus").populate("articles");
 };
 
 const updateRestaurantProfil = async (userId, profil) => {

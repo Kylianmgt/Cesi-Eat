@@ -10,7 +10,7 @@
         :href="tab.path"
         :tab="tab.name"
       >
-        <ion-icon :name="tab.icon" slot="icon-only"></ion-icon>
+        <ion-icon :icon="personCircle"></ion-icon>
         <ion-label>{{ tab.placeholder }}</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
@@ -31,7 +31,14 @@ import { calendar, personCircle } from "ionicons/icons";
 import { routes } from "../../router/index";
 
 export default defineComponent({
-  components: { IonIcon, IonLabel, IonPage, IonTabBar, IonTabButton, IonTabs },
+  components: {
+    IonIcon,
+    IonLabel,
+    IonPage,
+    IonTabBar,
+    IonTabButton,
+    IonTabs,
+  },
   computed: {
     userData() {
       return this.$store.state.user.userData;

@@ -64,6 +64,7 @@ const getUserOrders = catchAsync(async (req, res) => {
     case 'client':
       const client = await clientService.getClientProfil(req.params.userId)
       orders = await clientService.getClientOrders(client._id);
+      logger.debug(orders);
       res.send(orders);
       break;
     case 'delivery':
