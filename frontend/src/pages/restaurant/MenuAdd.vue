@@ -36,6 +36,17 @@
                     <ion-input type="text" v-model="menuFields.price" value="test" />
                 </ion-item>
 
+                <ion-list>
+                  <ion-item>
+                    <ion-select placeholder="Sélectionnez les articles de ce Menu" multiple="true">
+
+                      <ion-select-option v-for="article in articles" value="article.name" :key="article.name">
+                        {{ article.name }}
+                      </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+
                 <ion-button color="success" @click="() => createMenu(menuFields)">Enregistrer le Menu</ion-button>
                 <ion-button color="primary" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière</ion-button>
 
@@ -85,7 +96,7 @@ export default {
 
   computed: {
     userData() {
-      console.log("[+] Get profil Data...")
+      console.log("[MENU_ADD] [+] Get profil Data...")
       let userData = this.$store.state.user.userData;
       console.log({ userData });
       return userData;
@@ -110,9 +121,11 @@ export default {
 
   methods: {
     createMenu(menuFields) {
-      console.log("[ ] Starting Create Article...")
+      console.log("[MENU_ADD] [ ] Starting Create Article...")
       let userData = this.userData;
+      let articles = userData.profil.articles;
       console.log({userData})
+      console.log({articles})
 
       let payload = {
         restaurantId: userData.profil.id,
