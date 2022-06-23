@@ -1,11 +1,11 @@
 <template>
-  <ion-card @click="goToRestaurantPage()">
+  <ion-card class="rounded-lg" @click="goToRestaurantPage()">
     <ion-card-header>
       <ion-thumbnail class="card-image-container">
         <Image :src="data.image" />
       </ion-thumbnail>
       <ion-card-subtitle class="card-subtitle">{{
-          data.address
+        data.address
       }}</ion-card-subtitle>
       <ion-card-title class="card-title">{{ data.name }}</ion-card-title>
     </ion-card-header>

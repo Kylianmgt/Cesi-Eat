@@ -39,6 +39,9 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    profil: {
+      type: mongoose.SchemaTypes.ObjectId,
+    }
   },
   {
     timestamps: true,

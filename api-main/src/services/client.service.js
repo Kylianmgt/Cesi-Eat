@@ -21,13 +21,10 @@ const getClientProfil = async (userId) => {
 const updateClientProfil = async (userId, profil) => {
     const client = await Client.findOneAndUpdate({ user: userId }, profil, { new: true });
     return client;
-}
-
-
+};
 
 const getClientOrders = async (clientId) => {
-    return Order.find({ client: clientId }).populate('restaurant');
-
+    return Order.find({ client: clientId }).populate(['restaurant', 'delivery']);
 };
 
 

@@ -22,7 +22,10 @@ const register = catchAsync(async (req, res) => {
       break;
     default:
       break;
+
   }
+  user.profil = profil.id;
+  user.save();
   res.status(httpStatus.CREATED).send({ user, tokens, profil });
 });
 
@@ -41,6 +44,7 @@ const login = catchAsync(async (req, res) => {
       break;
     case 'restaurant':
       profil = await restaurantService.getRestaurantProfil(user.id);
+      logger.debug(profil);
       break;
     default:
       break;
