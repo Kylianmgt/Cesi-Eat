@@ -66,10 +66,11 @@
             <IonTitle size="large" color="primary">Mes Articles</IonTitle>
               <ion-button color="success" @click="() => router.push({ name: 'ArticleAdd' })">Ajouter un Article</ion-button>
 
-                <li v-for="(article, articleIndex) in data[0].articles" :key="article.id">
-                  {{ article.name }}    {{ article.price }}€
+                <li v-for="(article, articleIndex) in userData.profil.articles" :key="article.id">
+                  {{ article.name }}
+                   | {{ article.price }}€
                 <div>
-                  <ion-button @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, data)) } })" color="secondary">Modifier cet Article</ion-button>
+                  <ion-button @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, userData)) } })" color="secondary">Modifier cet Article</ion-button>
                   <ion-button color="danger">Supprimer cet Article</ion-button>
                 </div>
 
@@ -220,8 +221,8 @@ export default {
       return currentMenu;
     },
 
-    getCurrentArticle(articleIndex, data) {
-      let currentArticle = data[0].articles[articleIndex];
+    getCurrentArticle(articleIndex, userData) {
+      let currentArticle = userData.profil.articles[articleIndex];
       console.log({ currentArticle });
       currentArticle = JSON.stringify(currentArticle);
       return currentArticle;
