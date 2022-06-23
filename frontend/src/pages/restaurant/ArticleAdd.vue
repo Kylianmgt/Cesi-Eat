@@ -95,7 +95,6 @@ export default {
 
   setup() {
     const router = useRouter();
-
     const articleFields = ref({
       name: "",
       description: "",
@@ -108,6 +107,7 @@ export default {
       articleFields,
     };
   },
+
   methods: {
     createArticle(articleFields) {
       console.log("[+] Create Article")
@@ -130,8 +130,6 @@ export default {
         article: {...articleFields},
       });
       this.router.back();
-    
-
     },
   },
 
