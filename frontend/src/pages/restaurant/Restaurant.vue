@@ -42,7 +42,7 @@
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
               <ion-button color="success" @click="() => router.push({ name: 'MenuAdd' })">Ajouter un Menu</ion-button>
 
-              <div v-for="(menu, menuIndex) in data[0].menus" :key="menu.id">
+              <div v-for="(menu, menuIndex) in userData.profil.menus" :key="menu.id">
 
                 <h2>{{ menu.name }}</h2>
                 <p>Description: {{ menu.description }}</p>
@@ -50,8 +50,8 @@
                 <p>Prix: {{ menu.price }}€</p>
                 <h2>Articles :</h2>
 
-                <li v-for="(article, articleIndex) in data[0].menus[menuIndex].articles" :key="article.id">
-                  {{ getArticleNameFromMenu(articleIndex, data[0].menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, data[0].menus[menuIndex]) }} €
+                <li v-for="(article, articleIndex) in userData.profil.menus[menuIndex].articles" :key="article.id">
+                  {{ getArticleNameFromMenu(articleIndex, userData.profil.menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, userData.profil.menus[menuIndex]) }} €
                 </li>
                 
                 <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>
@@ -214,8 +214,8 @@ export default {
   },
   methods: {
 
-    getCurrentMenu(menuIndex, data) {
-      let currentMenu = data[0].menus[menuIndex];
+    getCurrentMenu(menuIndex, userData) {
+      let currentMenu = userData.profil.menus[menuIndex];
       console.log({ currentMenu })
       currentMenu = JSON.stringify(currentMenu);
       return currentMenu;
@@ -234,11 +234,11 @@ export default {
       return articleName;
     },
 
-      getArticlePriceFromMenu(articleIndex, menu){
-      let articlePrice = menu.articles[articleIndex].price;
-      // console.log({ articlePrice });
-      return articlePrice;
-    }
+    getArticlePriceFromMenu(articleIndex, menu){
+    let articlePrice = menu.articles[articleIndex].price;
+    // console.log({ articlePrice });
+    return articlePrice;
+  }
   },
 };
 </script>
