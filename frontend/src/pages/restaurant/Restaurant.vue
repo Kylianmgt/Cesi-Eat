@@ -40,7 +40,7 @@
             <!-- Menus Details for this restaurant -->
             <ion-card-content class="p-8">
               <IonTitle size="large" color="primary">Mes Menu</IonTitle>
-              <ion-button color="success" @click="() => router.push({ name: 'MenuAdd' })">Ajouter un Menu</ion-button>
+              <ion-button color="success" @click="() => router.push({ name: 'MenuAdd', params: {userData: JSON.stringify(userData) } })">Ajouter un Menu</ion-button>
 
               <div v-for="(menu, menuIndex) in userData.profil.menus" :key="menu.id">
 

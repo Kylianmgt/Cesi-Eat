@@ -38,12 +38,16 @@
 
                 <ion-list>
                   <ion-item>
-                    <ion-select placeholder="Sélectionnez les articles de ce Menu" multiple="true">
 
-                      <ion-select-option v-for="article in articles" value="article.name" :key="article.name">
-                        {{ article.name }}
+                    <ion-select placeholder="Sélectionnez les articles de ce Menu" :multiple="true" v-model="menuFields.articles">
+
+                      <ion-select-option v-for="article in userData.profil.articles" :key="article.name">
+                        {{ article.name }} | 
+                        {{ article.price }}€
                       </ion-select-option>
+
                     </ion-select>
+
                   </ion-item>
                 </ion-list>
 
@@ -70,6 +74,9 @@ import {
   IonTitle,
   IonToolbar,
   IonItem,
+  IonList,
+  IonSelect,
+  
 } from "@ionic/vue";
 
 import { useRouter, useRoute } from "vue-router";
@@ -92,7 +99,9 @@ export default {
     IonToolbar,
     IonItem,
     File,
-  },
+    IonList,
+    IonSelect,
+   },
 
   computed: {
     userData() {
@@ -110,6 +119,7 @@ export default {
       description: "",
       image: "",
       price: "",
+      articles: "",
     });
 
     return {
@@ -121,24 +131,15 @@ export default {
 
   methods: {
     createMenu(menuFields) {
-      console.log("[MENU_ADD] [ ] Starting Create Article...")
+      console.log("[MENU_ADD] [+] Create Menu")
       let userData = this.userData;
-      let articles = userData.profil.articles;
       console.log({userData})
-      console.log({articles})
-
-      let payload = {
-        restaurantId: userData.profil.id,
-        article: menuFields
-      };
-
-      console.log("Restaurant id: " + payload.restaurantId)
-      console.log({menuFields});
-
-      // this.$store.dispatch("restaurant/postArticle", payload);
+      console.log(userData.profil.id)
+      console.log({menuFields})
 
       this.$store.dispatch("restaurant/postMenu", {
         restaurantId: userData.profil.id,
+        userId: userData.user.id,
         menu: {...menuFields},
       });
       this.router.back();
