@@ -32,9 +32,29 @@ const createArticle = catchAsync(async (req, res) => {
 
 })
 
+const createMenu = catchAsync(async (req, res) => {
+    logger.debug("[ ] [CONTROLLER] Create Menu...")
+
+    const restaurantId = req.params.restaurantId;
+    const userId = req.body.userId;
+    const restaurant = await restaurantService.getRestaurantProfil(userId)
+    logger.debug(req.body.userId);
+    const menuFields = req.body.menu;
+    logger.debug(restaurantId);
+    logger.debug(menuFields);
+    const menu = await restaurantService.createMenu(restaurantId, menuFields);
+
+    restaurant.menus.push(menu);
+    restaurant.save();
+
+    res.status(httpStatus.CREATED).send(menu);
+
+})
+
 
 module.exports = {
     getRestaurantOrders,
     getRestaurants,
-    createArticle
+    createArticle,
+    createMenu,
 };

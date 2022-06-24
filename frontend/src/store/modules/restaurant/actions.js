@@ -10,9 +10,19 @@ const getRestaurantOrders = ({ commit }, restaurantId) => {
 };
 
 const postArticle = ({ }, payload) => {
-    console.log("[ ] postArticle endpoint...")
+    console.log("[ ] postArticle store...")
     console.log({ payload })
     return api.post(`/restaurant/${payload.restaurantId}/article/create`, { article: payload.article, userId: payload.userId })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => error.response);
+};
+
+const postMenu = ({ }, payload) => {
+    console.log("[ ] postMenu store...")
+    console.log({ payload })
+    return api.post(`/restaurant/${payload.restaurantId}/menu/create`, { menu: payload.menu, userId: payload.userId })
         .then(response => {
             return response.data;
         })
@@ -22,4 +32,5 @@ const postArticle = ({ }, payload) => {
 export default {
     getRestaurantOrders,
     postArticle,
+    postMenu
 };

@@ -39,11 +39,10 @@
                 <ion-list>
                   <ion-item>
 
-                    <ion-select placeholder="Sélectionnez les articles de ce Menu" :multiple="true" v-model="menuFields.articles">
+                    <ion-select placeholder="Sélectionnez les articles de ce Menu" :multiple="true" v-model="menuFields.articles" @ionChange="menuFields.articles = JSON.stringify($event.detail.value)">
 
-                      <ion-select-option v-for="article in userData.profil.articles" :key="article.name">
-                        {{ article.name }} | 
-                        {{ article.price }}€
+                      <ion-select-option v-for="article in userData.profil.articles" :key="article.id">
+                        {{ article.name }}
                       </ion-select-option>
 
                     </ion-select>
@@ -119,7 +118,7 @@ export default {
       description: "",
       image: "",
       price: "",
-      articles: "",
+      articles: [],
     });
 
     return {
@@ -131,7 +130,7 @@ export default {
 
   methods: {
     createMenu(menuFields) {
-      console.log("[MENU_ADD] [+] Create Menu")
+      console.log("[MENU_ADD] [+]  Create Menu")
       let userData = this.userData;
       console.log({userData})
       console.log(userData.profil.id)

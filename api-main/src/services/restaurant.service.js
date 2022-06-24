@@ -1,4 +1,4 @@
-const { Restaurant, Order, Article } = require('../models');
+const { Restaurant, Order, Article, Menu } = require('../models');
 
 /**
  * Create a user
@@ -32,14 +32,19 @@ const getRestaurants = async () => {
 };
 
 const createArticle = async (restaurantId, articleFilds) => {
-
   const article = {
     ...articleFilds,
     restaurant: restaurantId,
   };
-
   return Article.create(article);
+}
 
+const createMenu = async (restaurantId, menuFilds) => {
+  const menu = {
+    ...menuFilds,
+    restaurant: restaurantId,
+  };
+  return Menu.create(menu);
 }
 
 module.exports = {
@@ -49,4 +54,5 @@ module.exports = {
   getRestaurants,
   updateRestaurantProfil,
   createArticle,
+  createMenu,
 };

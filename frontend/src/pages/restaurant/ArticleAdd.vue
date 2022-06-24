@@ -110,7 +110,7 @@ export default {
 
   methods: {
     createArticle(articleFields) {
-      console.log("[+] Create Article")
+      console.log("[ARTICLE_ADD] [+]  Create Article")
       let userData = this.userData;
       console.log({userData})
       console.log(userData.profil.id)
@@ -122,6 +122,7 @@ export default {
       });
       this.router.back();
     },
+
   },
 
 };

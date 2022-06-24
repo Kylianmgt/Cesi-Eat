@@ -7,6 +7,15 @@ const { string, required, array, allow } = require('joi');
 
 const articleSchema = mongoose.Schema(
     {
+        restaurant: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "Restaurant",
+        },
+        menu: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "Menu",
+            required: false
+        },
         name: {
             type: String,
             required: true,
