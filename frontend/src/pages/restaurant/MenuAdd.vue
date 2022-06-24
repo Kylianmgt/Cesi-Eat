@@ -151,6 +151,7 @@ export default {
       let articles =  this.userData.profil.articles;
       let articleId;
       let articlesId = [];
+      console.log(this.menuFields);
 
       articleNames.forEach(articleName => {
 

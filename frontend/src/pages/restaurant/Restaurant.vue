@@ -46,7 +46,7 @@
 
                 <h2>{{ menu.name }}</h2>
                 <p>Description: {{ menu.description }}</p>
-                <p>Image: {{ menu.image }}</p>
+                <!-- <p>Image: {{ menu.image }}</p> -->
                 <p>Prix: {{ menu.price }}€</p>
                 <h2>Articles :</h2>
 
