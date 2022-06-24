@@ -80,7 +80,6 @@ const getUserOrders = catchAsync(async (req, res) => {
     default:
       throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
-
 })
 
 const updateUserOrder = async (action, orderId, deliveryId) => {

@@ -12,12 +12,14 @@
         order.restaurant.name
       }}</ion-card-title>
       <ion-card-subtitle>Order n°{{ order.id }}</ion-card-subtitle>
-      <ion-card-subtitle>Date :</ion-card-subtitle>
       <ion-card-subtitle>Status : {{ order.status }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
-        <ion-row class="flex align-left justify-left border-2 rounded-lg">
+        <ion-row
+          v-if="order.delivery"
+          class="flex align-left justify-left border-2 rounded-lg"
+        >
           <ion-img
             v-if="order.delivery.image"
             :src="order.delivery.image"
