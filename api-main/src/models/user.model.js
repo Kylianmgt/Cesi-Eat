@@ -41,6 +41,16 @@ const userSchema = mongoose.Schema(
     },
     profil: {
       type: mongoose.SchemaTypes.ObjectId,
+    },
+    sponsorCode: {
+      type: String,
+      trim: true,
+      required: false,
+    },
+    publicSponsorCode: {
+      type: String,
+      trim: true,
+      required: false,
     }
   },
   {

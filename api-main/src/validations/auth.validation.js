@@ -5,24 +5,24 @@ const clientProfil = Joi.object().keys({
   name: Joi.string().required(),
   firstName: Joi.string().required(),
   address: Joi.string().required(),
-  image: Joi.string(),
+  image: Joi.string().allow(null, ""),
 });
 
 const deliveryProfil = Joi.object().keys({
   name: Joi.string().required(),
   firstName: Joi.string().required(),
   address: Joi.string().required(),
-  image: Joi.string(),
+  image: Joi.string().allow(null, ""),
 
 });
 
 const restaurantProfil = Joi.object().keys({
   address: Joi.string().required(),
-  city: Joi.string().required(),  
+  city: Joi.string().required(),
   zipCode: Joi.string().required(),
   name: Joi.string().required(),
   description: Joi.string().required(),
-  image: Joi.allow(),
+  image: Joi.string().allow(null, ""),
 });
 
 const register = {
@@ -31,6 +31,7 @@ const register = {
       email: Joi.string().email().required(),
       password: Joi.string().required(),
       role: Joi.string().required(),
+      sponsorCode: Joi.string().allow(null, ""),
     }),
     profil: Joi.alternatives().try(clientProfil, deliveryProfil, restaurantProfil),
   }),

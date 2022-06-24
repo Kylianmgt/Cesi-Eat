@@ -33,11 +33,11 @@ const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
   const user = await authService.loginUserWithEmailAndPassword(email, password);
   let profil;
+  let sponsorProfil;
+  let sponsoredProfiles;
   switch (user.role) {
     case 'client':
       profil = await clientService.getClientProfil(user.id);
-      logger.info(`Client ${user.id} loggin`);
-      logger.info(profil);
       break;
     case 'delivery':
       profil = await deliveryService.getDeliveryProfil(user.id);
@@ -49,8 +49,17 @@ const login = catchAsync(async (req, res) => {
     default:
       break;
   }
+  if (user.sponsorCode) {
+    sponsorProfil = await userService.getProfilBySponsorCode(user.sponsorCode);
+  }
+
+  if (userService.getSponsoredProfiles) {
+    sponsoredProfiles = await userService.getSponsoredProfiles(user.publicSponsorCode);
+  }
+  logger.debug(user)
+
   const tokens = await tokenService.generateAuthTokens(user);
-  res.send({ user, tokens, profil });
+  res.send({ user, tokens, profil, sponsorProfil, sponsoredProfiles });
 });
 
 const logout = catchAsync(async (req, res) => {
