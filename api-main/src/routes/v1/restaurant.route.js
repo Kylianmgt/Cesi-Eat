@@ -16,6 +16,10 @@ router.route('/:restaurantId/article/create')
 router.route('/:restaurantId/menu/create')
     .post(validate(restaurantValidation.createMenu), restaurantController.createMenu)
 
+router.route('/:restaurantId/menu/delete')
+    .post(restaurantController.deleteMenuById)
+
+
 
 
 

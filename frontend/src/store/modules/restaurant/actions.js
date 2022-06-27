@@ -29,8 +29,21 @@ const postMenu = ({ }, payload) => {
         .catch(error => error.response);
 };
 
+const deleteMenu = ({ }, payload) => {
+    console.log("[STORE] [ ] deleteMenu store...")
+    const menuId = payload.menuId;
+    console.log({ payload })
+    console.log({ menuId })
+    return api.post(`/restaurant/${payload.restaurantId}/menu/delete`, { menuId: menuId })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => error.response);
+};
+
 export default {
     getRestaurantOrders,
     postArticle,
-    postMenu
+    postMenu,
+    deleteMenu
 };

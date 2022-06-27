@@ -1,4 +1,7 @@
+const logger = require('../config/logger');
 const { Restaurant, Order, Article, Menu } = require('../models');
+const ApiError = require('../utils/ApiError');
+const httpStatus = require('http-status');
 
 /**
  * Create a user
@@ -12,6 +15,11 @@ const createRestaurantProfil = async (userId, profil) => {
     user: userId,
   };
   return Restaurant.create(restaurant);
+};
+
+const getMenuById = async (menuId) => {
+  logger.debug("[ ] [SERVICE]  Get menu by Id: " + menuId)
+  return Menu.findById(menuId);
 };
 
 const getRestaurantProfil = async (userId) => {
@@ -51,6 +59,17 @@ const createMenu = async (restaurantId, menuFilds) => {
   return Menu.create(menu);
 }
 
+const deleteMenuById = async (menuId) => {
+  logger.debug("[ ] [SERVICE]  Delete menu by Id: " + menuId)
+  const menu = await getMenuById(menuId);
+  if (!menu) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Menu not found');
+  }
+  await menu.remove();
+  return menu;
+};
+
+
 module.exports = {
   createRestaurantProfil,
   getRestaurantProfil,
@@ -59,4 +78,6 @@ module.exports = {
   updateRestaurantProfil,
   createArticle,
   createMenu,
+  deleteMenuById,
+  getMenuById
 };

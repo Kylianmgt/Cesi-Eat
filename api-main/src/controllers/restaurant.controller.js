@@ -38,7 +38,7 @@ const createMenu = catchAsync(async (req, res) => {
     const restaurantId = req.params.restaurantId;
     const userId = req.body.userId;
     const restaurant = await restaurantService.getRestaurantProfil(userId)
-    logger.debug(req.body.userId);
+
     const menuFields = req.body.menu;
     logger.debug(restaurantId);
     logger.debug(menuFields.articles);
@@ -51,10 +51,23 @@ const createMenu = catchAsync(async (req, res) => {
 
 })
 
+const deleteMenuById = catchAsync(async (req, res) => {
+    const menuId = req.body.menuId;
+    logger.debug("[ ] [CONTROLLER]  Delete menu by Id: ")
+    logger.debug(menuId);
+
+    const menuDeleted = await restaurantService.deleteMenuById(menuId);
+
+    res.status(httpStatus.NO_CONTENT).send();
+
+
+})
+
 
 module.exports = {
     getRestaurantOrders,
     getRestaurants,
     createArticle,
+    deleteMenuById,
     createMenu,
 };

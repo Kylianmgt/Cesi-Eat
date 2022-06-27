@@ -55,7 +55,7 @@
                 </li>
                 
                 <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>
-                <ion-button color="danger">Supprimer ce Menu</ion-button>
+                <ion-button color="danger" @click="() => deleteMenu(menu.id)" >Supprimer ce Menu</ion-button>
 
               </div>
               
@@ -235,10 +235,21 @@ export default {
     },
 
     getArticlePriceFromMenu(articleIndex, menu){
-    let articlePrice = menu.articles[articleIndex].price;
-    // console.log({ articlePrice });
-    return articlePrice;
-  }
+      let articlePrice = menu.articles[articleIndex].price;
+      // console.log({ articlePrice });
+      return articlePrice;
+    },
+
+    deleteMenu(menuId){
+      console.log("[RESTAURANT] [ ]  Calling Delete Menu")
+
+      this.$store.dispatch("restaurant/deleteMenu", {
+        restaurantId: this.userData.profil.id,
+        userId: this.userData.user.id,
+        menuId: menuId,
+      });
+
+    }
   },
 };
 </script>
