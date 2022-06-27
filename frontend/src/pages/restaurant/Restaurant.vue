@@ -50,9 +50,8 @@
                 <p>Prix: {{ menu.price }}€</p>
                 <h2>Articles :</h2>
 
-                <li v-for="(article, articleIndex) in menu" :key="article.id">
-                  {{ article.name }}
-
+                <li v-for="(article, articleIndex) in menu.articles" :key="article.id">
+                  {{ article.name }} {{ article.price }}€
                 </li>
                 
                 <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>

@@ -16,7 +16,11 @@ const createRestaurantProfil = async (userId, profil) => {
 
 const getRestaurantProfil = async (userId) => {
   return Restaurant.findOne({ user: userId })
-    .populate(["articles", "menus"]);
+    .populate([{
+      path: "articles"
+    },
+    { path: "menus", populate: { path: "articles" } }
+    ]);
 };
 
 const updateRestaurantProfil = async (userId, profil) => {
