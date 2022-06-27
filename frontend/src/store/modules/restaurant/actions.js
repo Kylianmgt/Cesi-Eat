@@ -54,9 +54,19 @@ const deleteArticle = ({ }, payload) => {
 };
 
 const updateArticle = ({ }, payload) => {
-    console.log("[STORE] [ ] Calling Delete Article from API...")
+    console.log("[STORE] [ ] Calling Update Article from API...")
     console.log({ payload })
     return api.put(`/restaurant/${payload.restaurantId}/article/update`, { article: payload.articleFields, userId: payload.userId })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => error.response);
+};
+
+const updateMenu = ({ }, payload) => {
+    console.log("[STORE] [ ] Calling Update Menu from API...")
+    console.log({ payload })
+    return api.put(`/restaurant/${payload.restaurantId}/menu/update`, { menu: payload.menuFields, userId: payload.userId })
         .then(response => {
             return response.data;
         })
@@ -69,5 +79,6 @@ export default {
     postMenu,
     deleteMenu,
     deleteArticle,
-    updateArticle
+    updateArticle,
+    updateMenu
 };

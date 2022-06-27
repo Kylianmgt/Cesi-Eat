@@ -44,6 +44,26 @@ const updateArticle = async (restaurantId, article) => {
   return Article.findOneAndUpdate({ restaurant: restaurantId }, article);
 };
 
+const updateMenu = async (restaurantId, menuFields) => {
+
+  let articles = menuFields.articles;
+  let articlesIds = []
+  for (let i = 0; i < articles.length; i++) {
+    logger.debug("[ ] [SERVICE]  Get article by Id: " + articles[i].id)
+    // let article = articles[i];
+    articlesIds.push(articles[i].id);
+  }
+
+  menuFields.articles = articlesIds;
+  logger.debug("[ ] [SERVICE]  menuFields.id: " + menuFields.id)
+
+  const menu = {
+    ...menuFields,
+    restaurant: restaurantId,
+  };
+  return Menu.findOneAndUpdate(menuFields.id, menuFields);
+};
+
 const getRestaurantOrders = async (restaurantId) => {
   return Order.find({ restaurant: restaurantId }).populate('client');
 };
@@ -101,4 +121,5 @@ module.exports = {
   getMenuById,
   deleteArticleById,
   updateArticle,
+  updateMenu
 };

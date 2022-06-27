@@ -89,7 +89,7 @@ export default {
 
   computed: {
     userData() {
-      console.log("[MENU_ADD] [+] Get profil Data...")
+      console.log("[ARTICLE_UPDATE] [+] Get profil Data...")
       let userData = this.$store.state.user.userData;
       console.log({ userData });
       return userData;

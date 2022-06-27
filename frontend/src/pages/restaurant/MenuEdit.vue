@@ -3,30 +3,42 @@
     <ion-page>
         <ion-content>
             <!-- Menu Edit Form -->
-            <IonTitle size="large" color="primary">Informations du {{ menu.name }}</IonTitle>
+            <IonTitle size="large" color="primary">Informations du {{ menuFields.name }}</IonTitle>
             <div class="flex flex-col p-8 ">
 
             <ion-item>
                 <ion-label position="floating">Nom du Menu </ion-label>
-                <ion-input type="text" v-model="menu.name" />
+                <ion-input type="text" v-model="menuFields.name" />
             </ion-item>
 
             <ion-item>
                 <ion-label position="floating">Description du Menu </ion-label>
-                <ion-input type="text" v-model="menu.description" />
+                <ion-input type="text" v-model="menuFields.description" />
             </ion-item>
 
-            <ion-item>
-                <ion-label position="floating">Image du Menu</ion-label>
-                <ion-input type="text" v-model="menu.image" />
-            </ion-item>
+              <ion-item>
+                <ion-label position="fixe">Image du Menu</ion-label>
+                <ion-img :src="menuFields.image" />
+                <File
+                  name="menuInfo.image"
+                  open-camera
+                  label="Open camera and gallery"
+                  @files="
+                    (files) => {
+                      menuFields.image = files[0];
+                    }
+                  "
+                />
+              </ion-item>
 
             <ion-item>
                 <ion-label position="floating">Prix du Menu</ion-label>
-                <ion-input type="text" v-model="menu.price" />
+                <ion-input type="text" v-model="menuFields.price" />
             </ion-item>
 
-              <ion-button color="secondary" @click="() => router.back({ name: 'MyRestaurant' })">Enregistrer les modifications</ion-button>
+              <ion-button color="secondary"  @click="() => updateMenu(menuFields)">Enregistrer les modifications</ion-button>
+
+              <ion-button color="primary" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière</ion-button>
             </div>
         </ion-content>
     </ion-page>
@@ -36,18 +48,25 @@
 
 <script>
 import {
-  IonPage,
-  IonInput,
-  IonItem,
-  IonTitle,
   IonIcon,
-  IonText,
-  IonToolbar,
   IonLabel,
   IonContent,
-  IonButton,
+  IonButton,  
+  IonInput,
+  IonText,
+  IonImg,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonItem,
+  IonList,
+  IonSelect,
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
+import { ref } from "vue";
+
+import File from "../../components/inputs/File.vue";
+
 
 export default {
   name: "MenuEdit",
@@ -58,12 +77,23 @@ export default {
     IonButton,  
     IonInput,
     IonText,
+    IonImg,
     IonPage,
     IonTitle,
     IonToolbar,
-    IonItem
+    IonItem,
+    File,
+    IonList,
+    IonSelect,
   },
-  
+  computed: {
+    userData() {
+      console.log("[MENU_UPDATE] [+] Get profil Data...")
+      let userData = this.$store.state.user.userData;
+      console.log({ userData });
+      return userData;
+    },
+  },
 
   props: route => ({
     menu: data,
@@ -80,22 +110,37 @@ export default {
     let menuImage = menu.image;
     let menuPrice = menu.price;
     let menuArticles = menu.articles;
+    let menuId = menu.id;
 
-    menu = {
+    let menuFields = {
         name: menuName,
         description: menuDescription,
         image: menuImage,
         price: menuPrice,
         articles: menuArticles,
+        id: menuId,
     }
-
 
     return {
       router,
-      menu
+      menuFields
     };
   },
-  methods: {},
+  methods: {
+      updateMenu(menuFields){
+      console.log("[MENU UPDATE] [ ]  Get menuFields from front...")
+      let userData = this.userData;
+      console.log({userData})
+      console.log({menuFields})
+
+      this.$store.dispatch("restaurant/updateMenu", {
+        restaurantId: userData.profil.id,
+        userId: userData.user.id,
+        menuFields: {...menuFields},
+      });
+      this.router.back();
+    }
+  },
 
 };
 </script>

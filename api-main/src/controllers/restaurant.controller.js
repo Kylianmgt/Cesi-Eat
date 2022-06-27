@@ -79,8 +79,17 @@ const updateArticleById = catchAsync(async (req, res) => {
     res.status(httpStatus.CREATED).send(article);
 })
 
-
-
+const updateMenuById = catchAsync(async (req, res) => {
+    logger.debug("[ ] [CONTROLLER] Update Menu...")
+    const menu = req.body.menu;
+    const menuId = menu.id;
+    logger.debug(menuId);
+    const restaurantId = req.params.restaurantId;
+    const userId = req.body.userId;
+    const updateArticle = await restaurantService.updateMenu(restaurantId, menu);
+    // const article = await restaurantService.createArticle(restaurantId, articleFields);
+    res.status(httpStatus.CREATED).send(updateArticle);
+})
 
 
 module.exports = {
@@ -91,4 +100,5 @@ module.exports = {
     createMenu,
     deleteArticleById,
     updateArticleById,
+    updateMenuById,
 };

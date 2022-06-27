@@ -25,6 +25,8 @@ router.route('/:restaurantId/article/delete')
 router.route('/:restaurantId/article/update')
     .put(restaurantController.updateArticleById)
 
+router.route('/:restaurantId/menu/update')
+    .put(restaurantController.updateMenuById)
 
 
 
