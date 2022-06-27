@@ -39,7 +39,7 @@
                 <ion-list>
                   <ion-item>
 
-                    <ion-select placeholder="Sélectionnez les articles de ce Menu" :multiple="true" v-model="menuFields.articles" @ionChange="onChange($event)">
+                    <ion-select placeholder="Sélectionnez les articles de ce Menu" :multiple="true" @ionChange="onChange($event)">
 
                       <ion-select-option v-for="article in userData.profil.articles" :key="article.id">
                         {{ article.name }}
@@ -132,9 +132,10 @@ export default {
     createMenu(menuFields) {
       console.log("[MENU_ADD] [+]  Create Menu")
       let userData = this.userData;
+      let menuArticles = menuFields.articles;
       console.log({userData})
       console.log(userData.profil.id)
-      console.log({menuFields})
+      console.log({menuArticles})
 
       this.$store.dispatch("restaurant/postMenu", {
         restaurantId: userData.profil.id,
@@ -145,7 +146,7 @@ export default {
     },
 
     onChange(articleNames){
-      console.log("[MENU_ADD] [+]  Value change")
+      console.log("[MENU_ADD] [ ]  Value change")
 
       articleNames = articleNames.target.value;
       let articles =  this.userData.profil.articles;
@@ -155,7 +156,7 @@ export default {
 
       articleNames.forEach(articleName => {
 
-        console.log(articleName)
+        console.log({articleName})
 
         for(let i = 0; i < articles.length; i++){
           if(articles[i].name == articleName) {
@@ -164,12 +165,15 @@ export default {
 
         }
 
-        console.log(articleId);
+        console.log({articleId});
         articlesId.push(articleId);
       });
 
-      // menuFields.articles = articlesId;
-      console.log(articlesId);
+      console.log("[MENU_ADD] [+]  Checking menuFields")
+
+      this.menuFields.articles = articlesId;
+      console.log({ articlesId })
+      console.log(this.menuFields.articles);
     },
 
   },

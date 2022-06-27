@@ -41,7 +41,7 @@ const createMenu = catchAsync(async (req, res) => {
     logger.debug(req.body.userId);
     const menuFields = req.body.menu;
     logger.debug(restaurantId);
-    logger.debug(menuFields);
+    logger.debug(menuFields.articles);
     const menu = await restaurantService.createMenu(restaurantId, menuFields);
 
     restaurant.menus.push(menu);

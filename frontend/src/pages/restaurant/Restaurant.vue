@@ -50,8 +50,9 @@
                 <p>Prix: {{ menu.price }}€</p>
                 <h2>Articles :</h2>
 
-                <li v-for="(article, articleIndex) in userData.profil.menus[menuIndex].articles" :key="article.id">
-                  {{ getArticleNameFromMenu(articleIndex, userData.profil.menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, userData.profil.menus[menuIndex]) }} {{  userData.profil.menus[menuIndex].articles[articleIndex].name }} €
+                <li v-for="(article, articleIndex) in menu" :key="article.id">
+                  {{ article.name }}
+
                 </li>
                 
                 <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>
