@@ -22,6 +22,11 @@ const getMenuById = async (menuId) => {
   return Menu.findById(menuId);
 };
 
+const getArticleById = async (articleId) => {
+  logger.debug("[ ] [SERVICE]  Get article by Id: " + articleId)
+  return Article.findById(articleId);
+};
+
 const getRestaurantProfil = async (userId) => {
   return Restaurant.findOne({ user: userId })
     .populate([{
@@ -33,6 +38,10 @@ const getRestaurantProfil = async (userId) => {
 
 const updateRestaurantProfil = async (userId, profil) => {
   return Restaurant.findOneAndUpdate({ user: userId }, profil);
+};
+
+const updateArticle = async (restaurantId, article) => {
+  return Article.findOneAndUpdate({ restaurant: restaurantId }, article);
 };
 
 const getRestaurantOrders = async (restaurantId) => {
@@ -69,6 +78,16 @@ const deleteMenuById = async (menuId) => {
   return menu;
 };
 
+const deleteArticleById = async (articleId) => {
+  logger.debug("[ ] [SERVICE]  Delete article by Id: " + articleId)
+  const article = await getArticleById(articleId);
+  if (!article) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Article not found');
+  }
+  await article.remove();
+  return article;
+};
+
 
 module.exports = {
   createRestaurantProfil,
@@ -79,5 +98,7 @@ module.exports = {
   createArticle,
   createMenu,
   deleteMenuById,
-  getMenuById
+  getMenuById,
+  deleteArticleById,
+  updateArticle,
 };

@@ -19,6 +19,12 @@ router.route('/:restaurantId/menu/create')
 router.route('/:restaurantId/menu/delete')
     .post(restaurantController.deleteMenuById)
 
+router.route('/:restaurantId/article/delete')
+    .post(restaurantController.deleteArticleById)
+
+router.route('/:restaurantId/article/update')
+    .put(restaurantController.updateArticleById)
+
 
 
 

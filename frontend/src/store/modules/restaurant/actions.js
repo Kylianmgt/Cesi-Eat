@@ -41,9 +41,33 @@ const deleteMenu = ({ }, payload) => {
         .catch(error => error.response);
 };
 
+const deleteArticle = ({ }, payload) => {
+    console.log("[STORE] [ ] Calling Delete Article from API...")
+    const articleId = payload.articleId;
+    console.log({ payload })
+    console.log({ articleId })
+    return api.post(`/restaurant/${payload.restaurantId}/article/delete`, { articleId: articleId })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => error.response);
+};
+
+const updateArticle = ({ }, payload) => {
+    console.log("[STORE] [ ] Calling Delete Article from API...")
+    console.log({ payload })
+    return api.put(`/restaurant/${payload.restaurantId}/article/update`, { article: payload.articleFields, userId: payload.userId })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => error.response);
+};
+
 export default {
     getRestaurantOrders,
     postArticle,
     postMenu,
-    deleteMenu
+    deleteMenu,
+    deleteArticle,
+    updateArticle
 };

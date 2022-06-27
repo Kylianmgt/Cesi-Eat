@@ -55,13 +55,32 @@ const deleteMenuById = catchAsync(async (req, res) => {
     const menuId = req.body.menuId;
     logger.debug("[ ] [CONTROLLER]  Delete menu by Id: ")
     logger.debug(menuId);
-
     const menuDeleted = await restaurantService.deleteMenuById(menuId);
-
     res.status(httpStatus.NO_CONTENT).send();
-
-
 })
+
+const deleteArticleById = catchAsync(async (req, res) => {
+    const articleId = req.body.articleId;
+    logger.debug("[ ] [CONTROLLER]  Delete article by Id: ")
+    logger.debug(articleId);
+    const articleDeleted = await restaurantService.deleteArticleById(articleId);
+    res.status(httpStatus.NO_CONTENT).send();
+})
+
+const updateArticleById = catchAsync(async (req, res) => {
+    logger.debug("[ ] [CONTROLLER] Update Article...")
+    const article = req.body.article;
+    const articleId = article.id;
+    logger.debug(articleId);
+    const restaurantId = req.params.restaurantId;
+    const userId = req.body.userId;
+    const updateArticle = await restaurantService.updateArticle(restaurantId, article);
+    // const article = await restaurantService.createArticle(restaurantId, articleFields);
+    res.status(httpStatus.CREATED).send(article);
+})
+
+
+
 
 
 module.exports = {
@@ -70,4 +89,6 @@ module.exports = {
     createArticle,
     deleteMenuById,
     createMenu,
+    deleteArticleById,
+    updateArticleById,
 };

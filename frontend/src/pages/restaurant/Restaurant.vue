@@ -55,6 +55,7 @@
                 </li>
                 
                 <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>
+                <!-- DELETE ACTION FOR MENU -->
                 <ion-button color="danger" @click="() => deleteMenu(menu.id)" >Supprimer ce Menu</ion-button>
 
               </div>
@@ -71,7 +72,8 @@
                    | {{ article.price }}€
                 <div>
                   <ion-button @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, userData)) } })" color="secondary">Modifier cet Article</ion-button>
-                  <ion-button color="danger">Supprimer cet Article</ion-button>
+                  <!-- DELETE ACTION FOR ARTICLE -->
+                  <ion-button color="danger" @click="() => deleteArticle(article.id)">Supprimer cet Article</ion-button>
                 </div>
 
                 </li>
@@ -242,14 +244,22 @@ export default {
 
     deleteMenu(menuId){
       console.log("[RESTAURANT] [ ]  Calling Delete Menu")
-
       this.$store.dispatch("restaurant/deleteMenu", {
         restaurantId: this.userData.profil.id,
         userId: this.userData.user.id,
         menuId: menuId,
       });
+    },
 
-    }
+    deleteArticle(articleId){
+      console.log("[RESTAURANT] [ ]  Calling Delete Article")
+      this.$store.dispatch("restaurant/deleteArticle", {
+        restaurantId: this.userData.profil.id,
+        userId: this.userData.user.id,
+        articleId: articleId,
+      });
+    },
+
   },
 };
 </script>
