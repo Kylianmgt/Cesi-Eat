@@ -49,13 +49,12 @@ const updateMenu = async (restaurantId, menuFields) => {
   let articles = menuFields.articles;
   let articlesIds = []
   for (let i = 0; i < articles.length; i++) {
-    logger.debug("[ ] [SERVICE]  Get article by Id: " + articles[i].id)
+    // logger.debug("[ ] [SERVICE]  Get article by Id: " + articles[i].id)
     // let article = articles[i];
-    articlesIds.push(articles[i].id);
   }
 
   menuFields.articles = articlesIds;
-  logger.debug("[ ] [SERVICE]  menuFields.id: " + menuFields.id)
+  // logger.debug("[ ] [SERVICE]  menuFields.id: " + menuFields.id)
 
   const menu = {
     ...menuFields,

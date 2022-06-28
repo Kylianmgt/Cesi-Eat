@@ -89,9 +89,9 @@ export default {
 
   computed: {
     userData() {
-      console.log("[ARTICLE_UPDATE] [+] Get profil Data...")
+      console.log("[ARTICLE_UPDATE] [ ] Get profil Data...")
       let userData = this.$store.state.user.userData;
-      console.log({ userData });
+      // console.log({ userData });
       return userData;
     }
   },
@@ -113,8 +113,8 @@ export default {
     let articlePrice = article.price;
     let articleId = article.id;
 
-    console.log({ articleId })
-    console.log(articleId);
+    // console.log({ articleId })
+    // console.log(articleId);
 
     let articleFields = ref({
       name: articleName,
@@ -134,8 +134,8 @@ export default {
     updateArticle(articleFields){
       console.log("[ARTICLE UPDATE] [ ]  Get articleFields from front...")
       let userData = this.userData;
-      console.log({userData})
-      console.log({articleFields})
+      // console.log({userData})
+      // console.log({articleFields})
 
       this.$store.dispatch("restaurant/updateArticle", {
         restaurantId: userData.profil.id,

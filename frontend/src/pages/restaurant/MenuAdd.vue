@@ -106,7 +106,6 @@ export default {
     userData() {
       console.log("[MENU_ADD] [+] Get profil Data...")
       let userData = this.$store.state.user.userData;
-      console.log({ userData });
       return userData;
     }
   },
@@ -133,9 +132,7 @@ export default {
       console.log("[MENU_ADD] [+]  Create Menu")
       let userData = this.userData;
       let menuArticles = menuFields.articles;
-      console.log({userData})
-      console.log(userData.profil.id)
-      console.log({menuArticles})
+
 
       this.$store.dispatch("restaurant/postMenu", {
         restaurantId: userData.profil.id,
@@ -152,28 +149,19 @@ export default {
       let articles =  this.userData.profil.articles;
       let articleId;
       let articlesId = [];
-      console.log(this.menuFields);
 
       articleNames.forEach(articleName => {
-
-        console.log({articleName})
-
         for(let i = 0; i < articles.length; i++){
           if(articles[i].name == articleName) {
             articleId = articles[i].id;
           }
-
         }
-
-        console.log({articleId});
         articlesId.push(articleId);
       });
 
       console.log("[MENU_ADD] [+]  Checking menuFields")
 
       this.menuFields.articles = articlesId;
-      console.log({ articlesId })
-      console.log(this.menuFields.articles);
     },
 
   },

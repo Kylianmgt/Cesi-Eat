@@ -90,7 +90,7 @@ export default {
     userData() {
       console.log("[MENU_UPDATE] [+] Get profil Data...")
       let userData = this.$store.state.user.userData;
-      console.log({ userData });
+      // console.log({ userData });
       return userData;
     },
   },
@@ -130,8 +130,8 @@ export default {
       updateMenu(menuFields){
       console.log("[MENU UPDATE] [ ]  Get menuFields from front...")
       let userData = this.userData;
-      console.log({userData})
-      console.log({menuFields})
+      // console.log({userData})
+      // console.log({menuFields})
 
       this.$store.dispatch("restaurant/updateMenu", {
         restaurantId: userData.profil.id,

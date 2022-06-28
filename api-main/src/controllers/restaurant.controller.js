@@ -53,25 +53,22 @@ const createMenu = catchAsync(async (req, res) => {
 
 const deleteMenuById = catchAsync(async (req, res) => {
     const menuId = req.body.menuId;
-    logger.debug("[ ] [CONTROLLER]  Delete menu by Id: ")
-    logger.debug(menuId);
+    logger.debug("[ ] [CONTROLLER]  Delete menu by Id: " + menuId)
     const menuDeleted = await restaurantService.deleteMenuById(menuId);
     res.status(httpStatus.NO_CONTENT).send();
 })
 
 const deleteArticleById = catchAsync(async (req, res) => {
     const articleId = req.body.articleId;
-    logger.debug("[ ] [CONTROLLER]  Delete article by Id: ")
-    logger.debug(articleId);
+    logger.debug("[ ] [CONTROLLER]  Delete article by Id: " + articleId)
     const articleDeleted = await restaurantService.deleteArticleById(articleId);
     res.status(httpStatus.NO_CONTENT).send();
 })
 
 const updateArticleById = catchAsync(async (req, res) => {
-    logger.debug("[ ] [CONTROLLER] Update Article...")
     const article = req.body.article;
     const articleId = article.id;
-    logger.debug(articleId);
+    logger.debug("[ ] [CONTROLLER] Update Article..." + articleId)
     const restaurantId = req.params.restaurantId;
     const userId = req.body.userId;
     const updateArticle = await restaurantService.updateArticle(restaurantId, article);
@@ -80,10 +77,10 @@ const updateArticleById = catchAsync(async (req, res) => {
 })
 
 const updateMenuById = catchAsync(async (req, res) => {
-    logger.debug("[ ] [CONTROLLER] Update Menu...")
     const menu = req.body.menu;
     const menuId = menu.id;
-    logger.debug(menuId);
+
+    logger.debug("[ ] [CONTROLLER] Update Menu: " + menuId)
     const restaurantId = req.params.restaurantId;
     const userId = req.body.userId;
     const updateArticle = await restaurantService.updateMenu(restaurantId, menu);
