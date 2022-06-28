@@ -116,19 +116,36 @@
 
             </ion-card-content>
 
-          <!-- * Articles Details for this restaurant -->
+          <!-- ALL ARTICLES DETAILS -->
           <ion-card-content className="p-8">
             <IonTitle class="fs-32" size="large" color="secondary">Mes Articles</IonTitle>
               <ion-button size="large" color="success" @click="() => router.push({ name: 'ArticleAdd' })">Ajouter un Article</ion-button>
                 <ion-item-divider />
 
                 <!-- ALL ARTICLES DETAILS -->
-                <ion-row v-for="(article, articleIndex) in userData.profil.articles" :key="article.id">
+                <ion-grid  class="my-12 p-4 border-dashed border-2 border-sky-500" v-for="(article, articleIndex) in userData.profil.articles" :key="article.id">
                   <ion-col>
-                    <ion-row class="fs-20">Nom: {{ article.name }}</ion-row>
-                    <ion-row class="fs-20">Description: {{ article.description }}</ion-row>
-                    <ion-row class="fs-20">Prix: {{ article.price }}€</ion-row>
-                    <ion-row><ion-img :src="article.image" alt="article image"></ion-img></ion-row>
+                    <ion-title class="fs-30">Article {{ article.name }}</ion-title>
+
+                    <ion-row>
+                      <ion-col>
+                        <ion-item>
+                          <ion-label>
+                            Prix: {{ article.price }}€
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label>
+                            Description: {{ article.description }}
+                          </ion-label>
+                        </ion-item>                  
+                      </ion-col>
+
+                      <ion-col>
+                          <ion-img :src="article.image" alt="menu image"></ion-img>
+                      </ion-col>                       
+                    </ion-row>
                   </ion-col>
 
                   <ion-col-padding-lg class="flex flex-col items-center justify-center">
@@ -138,7 +155,7 @@
                   </ion-col-padding-lg>
 
                   <ion-item-divider />
-                </ion-row>
+                </ion-grid>
                 <!-- END ALL ARTICLES DETAILS -->
 
           </ion-card-content>

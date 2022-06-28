@@ -37,7 +37,7 @@
                 </ion-item>
 
                 <ion-button color="success" @click="() => createArticle(articleFields)">SAVE l'article</ion-button>
-                <ion-button color="primary" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière</ion-button>
+                <ion-button color="warning" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière</ion-button>
 
             </div>
         </ion-content>
