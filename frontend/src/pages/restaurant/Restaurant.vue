@@ -1,64 +1,108 @@
 <template>
   <base-layout :show-menu-button="false" pageTitle="Mon restaurant">
-
     <ion-page>
       <ion-content scroll-y="true">
         <ion-card>
 
             <!-- Mains informations about restaurant -->
-            <IonTitle size="large" color="secondary" class="fs-32">Mes Informations</IonTitle>
-            <div class="flex p-8 ">
-              <ion-grid>
-                <ion-col class="fs-24">
-                  Nom du restaurant: {{ userData.profil.name }}
-                </ion-col>
-                  <br>
-                <ion-col class="fs-24">
-                  Description: {{ userData.profil.description }}
-                  <br>
-                </ion-col>
-                <ion-col class="fs-24">
-                  Ville: {{ userData.profil.city }}
-                  <br>
-                </ion-col>
-                <ion-col class="fs-24">
-                  Address: {{ userData.profil.address }}
-                  <br>
-                </ion-col>
-                <ion-col class="fs-24">
-                  Code Postal: {{ userData.profil.zipCode }}
-                  <br>
-                </ion-col>
-                <ion-col  >
-                  <ion-img :src="userData.profil.image" alt="restaurant image" ></ion-img>
-                </ion-col>
-              </ion-grid>
-              <ion-button color="secondary" size="large" @click="() => router.push({ name: 'RestaurantEdit', params: { restoData: JSON.stringify(userData) } })">Modifier</ion-button>
-            </div>
+            <ion-card-header>
+              <IonTitle size="large" color="secondary" class="fs-32">Mes Informations</IonTitle>
+              <div class="flex flex-col p-8 ">
 
+                  <ion-grid>                    
+                    <ion-row>
+                      <ion-col class="flex flex-col">
+                      <ion-label color="dark"  class="fs-24">
+                          Nom du restaurant: {{ userData.profil.name }}
+                      </ion-label>
+                      <ion-label color="dark"  class="fs-24">
+                        Description: {{ userData.profil.description }}
+                      </ion-label>
+                      <ion-label color="dark"  class="fs-24">
+                        Ville: {{ userData.profil.city }}
+                      </ion-label>
+                      <ion-label color="dark"  class="fs-24">
+                        Address: {{ userData.profil.address }}
+                      </ion-label>
+                      <ion-label color="dark"  class="fs-24">
+                        Code Postal: {{ userData.profil.zipCode }}
+                      </ion-label>
+                      </ion-col>
+                      <ion-col class="flex flex-col">
+                        <ion-label>
+                          <ion-img :src="userData.profil.image" alt="restaurant image" ></ion-img>
+                        </ion-label>
+                        <ion-button color="secondary" size="large" @click="() => router.push({ name: 'RestaurantEdit', params: { restoData: JSON.stringify(userData) } })">Modifier</ion-button>
+                      </ion-col>                   
+                    </ion-row>
+                  </ion-grid>
 
+              </div>
+            </ion-card-header>
+          </ion-card>
+
+          <ion-card>
             <!-- Menus Details for this restaurant -->
-            <ion-card-content class="p-8">
+
+            <ion-card-header>
               <IonTitle size="large" color="secondary" class="fs-32">Mes Menu</IonTitle>
+            </ion-card-header>
+
+              <ion-card-content class="p-4">
               <ion-button size="large" color="success" @click="() => router.push({ name: 'MenuAdd', params: {userData: JSON.stringify(userData) } })">Ajouter un Menu</ion-button>
-                <ion-item-divider />
 
               <!-- ALL MENUS DETAILS -->
-              <ion-grid v-for="(menu, menuIndex) in userData.profil.menus" :key="menu.id">
+              <ion-grid class="my-12 p-4 border-dashed border-2 border-sky-500" color="light" v-for="(menu, menuIndex) in userData.profil.menus" :key="menu.id">
   
-                <ion-title color="secondary" class="fs-30">Menu {{ menu.name }}</ion-title>
-                
-                <ion-row class="fs-20">Description: {{ menu.description }}</ion-row>
-                <ion-row class="fs-20">Prix: {{ menu.price }}€</ion-row>
-                    <ion-row class="w-1/2">
-                  <ion-img :src="menu.image" alt="menu image"></ion-img>
-                </ion-row>
+                <ion-title color="dark" class="fs-30">Menu {{ menu.name }}</ion-title>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label>
+                          Prix: {{ menu.price }}€
+                        </ion-label>
+                      </ion-item>
 
-                <ion-title class="fs-26 pt-12" color="medium">Articles dans le menu</ion-title>
+                      <ion-item>
+                        <ion-label>
+                          Description: {{ menu.description }}
+                        </ion-label>
+                      </ion-item>                  
+                    </ion-col>
+
+                    <ion-col>
+                        <ion-img :src="menu.image" alt="menu image"></ion-img>
+                    </ion-col>                       
+                  </ion-row>
+               
+                </ion-grid>
+
+
+
+                <ion-title class="fs-26 pt-12" color="dark">Articles dans le menu</ion-title>
                 <ion-row v-for="(article, articleIndex) in menu.articles" :key="article.id">
-                  <ion-col class="fs-20">Nom de l'article: {{ article.name }} </ion-col>
-                  <ion-col class="fs-20">Prix: {{ article.price }}€</ion-col>
-                  <ion-col class="fs-20">{{ article.description }}</ion-col>
+                  <ion-col class="fs-20">
+                      <ion-item>
+                        <ion-label>
+                          Nom de l'article: {{ article.name }}
+                        </ion-label>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col class="fs-20">
+                      <ion-item>
+                        <ion-label>
+                          Description: {{ article.description }}
+                        </ion-label>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col class="fs-20">
+                      <ion-item>
+                        <ion-label>
+                          Prix: {{ article.price }}€
+                        </ion-label>
+                      </ion-item>
+                  </ion-col>
                 </ion-row>
                 
                 <ion-row class="flex content-center justify-center">
@@ -67,7 +111,6 @@
                   <ion-button size="large" color="danger" @click="() => deleteMenu(menu.id)" >Supprimer ce Menu</ion-button>
                 </ion-row>
 
-                <ion-item-divider />
               </ion-grid>
               <!-- END OF MENUS DETAILS -->
 
