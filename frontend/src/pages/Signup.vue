@@ -72,6 +72,13 @@
                       v-model="userFields.confirmPassword"
                     ></ion-input>
                   </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Sponsor code</ion-label>
+                    <ion-input
+                      name="sponsorCode"
+                      v-model="userFields.sponsorCode"
+                    ></ion-input>
+                  </ion-item>
                   <ion-button expand="block" @click="signup()"
                     >Signup</ion-button
                   >
@@ -140,6 +147,13 @@
                     >
                     </ion-input>
                   </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Sponsor code</ion-label>
+                    <ion-input
+                      name="sponsorCode"
+                      v-model="userFields.sponsorCode"
+                    ></ion-input>
+                  </ion-item>
                   <ion-button expand="block" @click="signup()"
                     >Signup</ion-button
                   >
@@ -180,6 +194,13 @@
                       type="password"
                       name="confirmPassword"
                       v-model="userFields.confirmPassword"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Sponsor code</ion-label>
+                    <ion-input
+                      name="sponsorCode"
+                      v-model="userFields.sponsorCode"
                     ></ion-input>
                   </ion-item>
                   <ion-button expand="block" @click="signup()"
@@ -297,6 +318,7 @@ export default {
       password: "Test1234",
       confirmPassword: "Test1234",
       role: role,
+      sponsorCode: "",
     });
 
     const clientFields = ref({
