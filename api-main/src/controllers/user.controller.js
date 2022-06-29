@@ -88,6 +88,10 @@ const updateUserOrder = async (action, orderId, deliveryId) => {
       logger.info("J'accepte la ommande");
       deliveryService.assignOrder(orderId, deliveryId);
       break;
+    case 'restaurantAccepted':
+      logger.info("Le restaurant accepte la ommande");
+      deliveryService.restaurantAcceptOrder(orderId);
+      break;
     case 'take-from-restaurant':
       deliveryService.takeFromRestaurant(orderId);
       break;
@@ -96,8 +100,6 @@ const updateUserOrder = async (action, orderId, deliveryId) => {
       break;
     default:
       throw new ApiError(httpStatus.NOT_FOUND, 'Problem orders');
-
-
   }
 }
 

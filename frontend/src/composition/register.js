@@ -1,5 +1,7 @@
 import redirectToHome from "./redirectToHome";
 import useToast from "./useToast";
+import login from "../composition/login";
+
 
 export default function () {
   const { openToast } = useToast();
@@ -21,9 +23,10 @@ export default function () {
     console.log(data);
 
     return this.$store
-      .dispatch("register/register", data)  
+      .dispatch("register/register", data)
       .then((response) => {
         openToast("Registered with sucess", "success", "top");
+
 
         // redirectTo(
         //     response.data.userType,

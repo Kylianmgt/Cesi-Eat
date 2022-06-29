@@ -23,6 +23,13 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
       socket.on('disconnect', () => {
         logger.info('user disconnected');
       });
+      socket.on('restaurantAccept', (data) => {
+        logger.info(data.orderId);
+        userController.updateUserOrder(action = 'restaurantAccept', orderId = data.orderId);
+        socket.emit('ordersupdated');
+      }
+      );
+
       socket.on('assignDelivery', (data) => {
         logger.info(data.orderId);
         userController.updateUserOrder(action = 'accept', orderId = data.orderId, deliveryId = data.deliveryId);

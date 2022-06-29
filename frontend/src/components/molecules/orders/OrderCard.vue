@@ -6,15 +6,16 @@
 </style>
 
 <template>
-  <ion-card class="w-full">
+  <ion-card :class="bgColors[order.status]" class="w-full">
     <ion-card-header>
       <ion-card-title class="text-2xl font-bold">{{
         order.restaurant.name
       }}</ion-card-title>
+
       <ion-card-subtitle>Order n°{{ order.id }}</ion-card-subtitle>
       <ion-card-subtitle>Status : {{ order.status }}</ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content :class="bgColors[order.status]">
       <ion-grid>
         <ion-row
           v-if="order.delivery"
@@ -33,7 +34,7 @@
           </ion-item>
         </ion-row>
       </ion-grid>
-      <ion-list>
+      <ion-list :class="bgColors[order.status]">
         <ion-button
           @click="actions[userData.user.role][order.status].action()"
           >{{ actions[userData.user.role][order.status].title }}</ion-button
@@ -92,6 +93,11 @@ export default defineComponent({
           title: "Marker Order As Done",
           action: () => this.markOrderAsDone(),
         },
+        restaurantAccepted: {
+          title: "",
+          action: () => {return},
+        },
+        }
         accepted: {
           title: "",
           action: {},
@@ -103,6 +109,10 @@ export default defineComponent({
         pending: {
           title: "Assign Order",
           action: () => this.assignOrderToDelivery(),
+        },
+        restaurantAccepted: {
+          title: "",
+          action: () => {return},
         },
         accepted: {
           title: "Declare taken from restaurant",
@@ -123,13 +133,25 @@ export default defineComponent({
           title: "",
           action: {},
         },
+        restaurantAccepted: {
+          title: "",
+          action: () => {return},
+        },
         deliver: { title: "", action: {} },
         done: { title: "", action: {} },
       },
     };
 
+    const bgColors = {
+      pending: "bg-gray-200",
+      accepted: "bg-green-200",
+      deliver: "bg-blue-200",
+      done: "bg-green-200",
+    };
+
     return {
       actions,
+      bgColors,
     };
   },
   computed: mapState({

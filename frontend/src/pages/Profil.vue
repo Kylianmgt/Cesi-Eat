@@ -40,8 +40,11 @@
             <ion-item v-if="userData.sponsoredProfiles">
               <ion-text> Sponsored Profiles </ion-text>
               <ion-list>
-                <ion-item v-for="profil in userData.sponsoredProfiles">
-                  <ion-text>
+                <ion-item
+                  v-if="userData.sponsoredProfiles"
+                  v-for="profil in userData.sponsoredProfiles"
+                >
+                  <ion-text v-if="profil">
                     {{ profil.name }}
                   </ion-text>
                 </ion-item>

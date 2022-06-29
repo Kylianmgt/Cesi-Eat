@@ -32,6 +32,14 @@ const getPendingOrders = async () => {
     return Order.find({ status: 'pending', isPayed: true }).populate('client');
 }
 
+const restaurantAcceptOrder = async (orderId) => {
+    const order = await Order.findById(orderId);
+    order.status = 'restaurantAccepted';
+    order.save();
+    return;
+
+}
+
 const assignOrder = async (orderId, deliveryId) => {
     const profil = await Delivery.findById(deliveryId);
     const order = await Order.findById(orderId);
@@ -65,4 +73,5 @@ module.exports = {
     takeFromRestaurant,
     markOrderAsDone,
     updateDeliveryProfil,
+    restaurantAcceptOrder
 };
