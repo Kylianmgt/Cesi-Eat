@@ -2,6 +2,7 @@ const logger = require('../config/logger');
 const { Restaurant, Order, Article, Menu } = require('../models');
 const ApiError = require('../utils/ApiError');
 const httpStatus = require('http-status');
+const mongoose = require('mongoose');
 
 /**
  * Create a user
@@ -45,13 +46,8 @@ const updateArticle = async (restaurantId, article) => {
 };
 
 const updateMenu = async (restaurantId, menuFields) => {
-
-  let articles = menuFields.articles;
-  let articlesIds = []
-  for (let i = 0; i < articles.length; i++) {
-    // logger.debug("[ ] [SERVICE]  Get article by Id: " + articles[i].id)
-    // let article = articles[i];
-  }
+  logger.debug("[ ] [SERVICE]  Attempt to UPDATE menu: " + menuFields.id);
+  let articlesIds = menuFields.articles;
 
   menuFields.articles = articlesIds;
   // logger.debug("[ ] [SERVICE]  menuFields.id: " + menuFields.id)
@@ -60,7 +56,7 @@ const updateMenu = async (restaurantId, menuFields) => {
     ...menuFields,
     restaurant: restaurantId,
   };
-  return Menu.findOneAndUpdate(menuFields.id, menuFields);
+  return Menu.findOneAndUpdate({ _id: mongoose.Types.ObjectId(menuFields.id) }, menuFields);
 };
 
 const getRestaurantOrders = async (restaurantId) => {

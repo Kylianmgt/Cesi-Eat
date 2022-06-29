@@ -26,7 +26,7 @@ router.route('/:restaurantId/article/update')
     .put(restaurantController.updateArticleById)
 
 router.route('/:restaurantId/menu/update')
-    .put(restaurantController.updateMenuById)
+    .put(validate(restaurantValidation.updateMenuById), restaurantController.updateMenuById)
 
 
 

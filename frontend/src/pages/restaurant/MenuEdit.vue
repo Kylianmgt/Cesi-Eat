@@ -36,9 +36,17 @@
                 <ion-input type="text" v-model="menuFields.price" />
             </ion-item>
 
+            <ion-item>
+              <ion-select placeholder="Sélectionnez les articles de ce Menu" :multiple="true" @ionChange="onChange($event)" >
+                <ion-select-option v-for="article in userData.profil.articles" :key="article.id">
+                  {{ article.name }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
               <ion-button color="secondary"  @click="() => updateMenu(menuFields)">Enregistrer les modifications</ion-button>
 
-              <ion-button color="warning" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière</ion-button>
+              <ion-button color="warning" @click="() => router.push({name: 'MyRestaurant', params: {userData: userData }})">Retour en arrière</ion-button>
             </div>
         </ion-content>
     </ion-page>
@@ -61,6 +69,8 @@ import {
   IonItem,
   IonList,
   IonSelect,
+  IonSelectOption,
+
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref } from "vue";
@@ -85,12 +95,13 @@ export default {
     File,
     IonList,
     IonSelect,
+    IonSelectOption,
   },
   computed: {
     userData() {
       console.log("[MENU_UPDATE] [+] Get profil Data...")
       let userData = this.$store.state.user.userData;
-      // console.log({ userData });
+      console.log({ userData });
       return userData;
     },
   },
@@ -131,15 +142,41 @@ export default {
       console.log("[MENU UPDATE] [ ]  Get menuFields from front...")
       let userData = this.userData;
       // console.log({userData})
-      // console.log({menuFields})
+      console.log({menuFields})
 
       this.$store.dispatch("restaurant/updateMenu", {
         restaurantId: userData.profil.id,
         userId: userData.user.id,
         menuFields: {...menuFields},
-      });
+      }).then((response) => {
+        console.log(response)
+        this.$store.commit("user/setUserDataProfil", response);
+      })
       this.router.back();
-    }
+    },
+    
+    onChange(articleNames){
+      console.log("[MENU_ADD] [ ]  Value change")
+
+      articleNames = articleNames.target.value;
+      let articles =  this.userData.profil.articles;
+      let articleId;
+      let articlesId = [];
+
+      articleNames.forEach(articleName => {
+        for(let i = 0; i < articles.length; i++){
+          if(articles[i].name == articleName) {
+            articleId = articles[i].id;
+          }
+        }
+        articlesId.push(articleId);
+      });
+
+      console.log("[MENU_ADD] [+]  Checking menuFields")
+
+      this.menuFields.articles = articlesId;
+    },
+
   },
 
 };

@@ -125,7 +125,7 @@
                 <!-- ALL ARTICLES DETAILS -->
                 <ion-grid  class="my-12 p-4 border-dashed border-2 border-sky-500" v-for="(article, articleIndex) in userData.profil.articles" :key="article.id">
                   <ion-col>
-                    <ion-title class="fs-30">Article {{ article.name }}</ion-title>
+                    <ion-title class="fs-30" color="dark">Article {{ article.name }}</ion-title>
 
                     <ion-row>
                       <ion-col>
@@ -148,11 +148,11 @@
                     </ion-row>
                   </ion-col>
 
-                  <ion-col-padding-lg class="flex flex-col items-center justify-center">
+                  <ion-col class="flex flex-col items-center justify-center">
                     <ion-button size="large" expand="full" @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, userData)) } })" color="secondary">Modifier</ion-button>
                     <!-- DELETE ACTION FOR ARTICLE -->
                     <ion-button  size="large" expand="block" color="danger" @click="() => deleteArticle(article.id)">Supprimer</ion-button>
-                  </ion-col-padding-lg>
+                  </ion-col>
 
                   <ion-item-divider />
                 </ion-grid>
@@ -184,6 +184,10 @@ import {
   IonImg,
   IonThumbnail,
   IonItemDivider,
+  IonLabel,
+  IonRow,
+  IonCardHeader,
+  IonItem,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 
@@ -205,6 +209,10 @@ export default {
     IonImg,
     IonThumbnail,
     IonItemDivider,
+    IonLabel,
+    IonRow,
+    IonCardHeader,
+    IonItem,
   },
 
   computed: {
@@ -216,11 +224,18 @@ export default {
     }
   },
 
+  ionViewWillEnter(){
+      console.log("[WillEnter] [+] Get profil Data...")
+      let userData = this.$store.state.user.userData;
+      console.log({ userData });
+      return userData;
+  },
+
   setup() {
     const router = useRouter();
 
     return {
-      router
+      router,
     };
   },
   methods: {

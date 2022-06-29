@@ -13,5 +13,8 @@ export default {
   },
   setPendingOrders(state, pendingOrders) {
     state.pendingOrders = pendingOrders;
+  },
+  setUserDataProfil(state, profil) {
+    state.userData.profil = profil;
   }
 };

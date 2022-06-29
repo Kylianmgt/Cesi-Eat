@@ -2,6 +2,7 @@ const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
 const { restaurantService } = require('../services');
 const logger = require('../config/logger');
+const { getRestaurantProfil } = require('../services/restaurant.service');
 
 const getRestaurantOrders = catchAsync(async (req, res) => {
     const orders = await restaurantService.getRestaurantOrders(req.params.restaurantId);
@@ -28,7 +29,8 @@ const createArticle = catchAsync(async (req, res) => {
     restaurant.articles.push(article);
     restaurant.save();
 
-    res.status(httpStatus.CREATED).send(article);
+    const restaurantProfil = restaurantService.getRestaurantProfil(userId);
+    res.status(httpStatus.DELETE).send(restaurantProfil);
 
 })
 
@@ -47,7 +49,8 @@ const createMenu = catchAsync(async (req, res) => {
     restaurant.menus.push(menu);
     restaurant.save();
 
-    res.status(httpStatus.CREATED).send(menu);
+    const restaurantProfil = restaurantService.getRestaurantProfil(userId);
+    res.status(httpStatus.CREATED).send(restaurantProfil);
 
 })
 
@@ -55,14 +58,18 @@ const deleteMenuById = catchAsync(async (req, res) => {
     const menuId = req.body.menuId;
     logger.debug("[ ] [CONTROLLER]  Delete menu by Id: " + menuId)
     const menuDeleted = await restaurantService.deleteMenuById(menuId);
-    res.status(httpStatus.NO_CONTENT).send();
+    const userId = req.body.userId;
+    const restaurantProfil = restaurantService.getRestaurantProfil(userId);
+    res.status(httpStatus.DELETE).send(restaurantProfil);
 })
 
 const deleteArticleById = catchAsync(async (req, res) => {
     const articleId = req.body.articleId;
     logger.debug("[ ] [CONTROLLER]  Delete article by Id: " + articleId)
     const articleDeleted = await restaurantService.deleteArticleById(articleId);
-    res.status(httpStatus.NO_CONTENT).send();
+    const userId = req.body.userId;
+    const restaurantProfil = restaurantService.getRestaurantProfil(userId);
+    res.status(httpStatus.DELETE).send(restaurantProfil);
 })
 
 const updateArticleById = catchAsync(async (req, res) => {
@@ -72,20 +79,23 @@ const updateArticleById = catchAsync(async (req, res) => {
     const restaurantId = req.params.restaurantId;
     const userId = req.body.userId;
     const updateArticle = await restaurantService.updateArticle(restaurantId, article);
-    // const article = await restaurantService.createArticle(restaurantId, articleFields);
-    res.status(httpStatus.CREATED).send(article);
+    const restaurantProfil = restaurantService.getRestaurantProfil(userId);
+    res.status(httpStatus.CREATED).send(restaurantProfil);
 })
 
 const updateMenuById = catchAsync(async (req, res) => {
     const menu = req.body.menu;
+    const articlesLength = menu.articles.length;
     const menuId = menu.id;
 
     logger.debug("[ ] [CONTROLLER] Update Menu: " + menuId)
+    logger.debug("[+] [CONTROLLER] Get " + articlesLength + " articles.")
     const restaurantId = req.params.restaurantId;
     const userId = req.body.userId;
     const updateArticle = await restaurantService.updateMenu(restaurantId, menu);
-    // const article = await restaurantService.createArticle(restaurantId, articleFields);
-    res.status(httpStatus.CREATED).send(updateArticle);
+    const restaurantProfil = await restaurantService.getRestaurantProfil(userId);
+    // logger.debug("[ ] [CONTROLLER] useId: " + restaurantProfil)
+    res.status(httpStatus.CREATED).send(restaurantProfil);
 })
 
 
