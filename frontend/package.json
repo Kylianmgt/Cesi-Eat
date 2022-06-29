@@ -1,5 +1,5 @@
 {
-  "name": "cesi-eat",
+  "name": "cesi-eats-frontend",
   "description": "CesiEat is a platform for students to order food from the best restaurants in the city.",
   "version": "0.0.1",
   "private": false,
@@ -56,5 +56,7 @@
     "eslint-plugin-vue": "^7.17.0",
     "postcss": "^7.0.39",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
-  }
+  },
+  "main": "./src/main.js",
+  "license": "MIT"
 }

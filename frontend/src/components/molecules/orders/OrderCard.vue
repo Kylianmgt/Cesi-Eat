@@ -17,7 +17,10 @@
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
-        <ion-row class="flex align-left justify-left border-2 rounded-lg">
+        <ion-row
+          v-if="order.delivery"
+          class="flex align-left justify-left border-2 rounded-lg"
+        >
           <ion-img
             v-if="order.delivery.image"
             :src="order.delivery.image"

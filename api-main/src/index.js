@@ -18,7 +18,7 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
     const io = require('socket.io')(server, {
       allowEIO3: true,
       cors: {
-        origin: "http://localhost:8080",
+        origin: "http://cesi-eats.de",
         methods: ["GET", "POST"],
         allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
         credentials: true,

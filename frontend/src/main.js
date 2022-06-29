@@ -97,7 +97,7 @@ import './assets/css/bootstrap-grid.min.css';
 
 const socket = new VueSocketIO({
   debug: true,
-  connection: 'http://localhost:3000',
+  connection: 'http://35.242.246.26/v1',
   vuex: {
     store,
     actionPrefix: 'SOCKET_',
