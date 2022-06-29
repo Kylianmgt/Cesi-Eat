@@ -29,7 +29,7 @@ const getDeliveryOrders = async (deliveryId) => {
 };
 
 const getPendingOrders = async () => {
-    return Order.find({ status: 'pending', isPayed: true }).populate('client');
+    return Order.find({ status: 'restaurantAccepted', isPayed: true }).populate('client');
 }
 
 const restaurantAcceptOrder = async (orderId) => {

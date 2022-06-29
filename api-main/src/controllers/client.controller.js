@@ -80,8 +80,6 @@ const checkoutSessionHandler = catchAsync(async (request, response) => {
     // Fulfill the purchase...
     const order = await clientService.markOrderAsPaid(session.metadata.order_id);
     testSocket();
-
-
   }
   return response.send();
 });

@@ -34,7 +34,10 @@
           </ion-item>
         </ion-row>
       </ion-grid>
-      <ion-list :class="bgColors[order.status]">
+      <ion-list
+        :class="bgColors[order.status]"
+        v-if="actions[userData.user.role][order.status].title !== ''"
+      >
         <ion-button
           @click="actions[userData.user.role][order.status].action()"
           >{{ actions[userData.user.role][order.status].title }}</ion-button
@@ -90,8 +93,10 @@ export default defineComponent({
     const actions = {
       client: {
         pending: {
-          title: "Marker Order As Done",
-          action: () => this.markOrderAsDone(),
+          title: "",
+          action: () => {
+            return;
+          },
         },
         restaurantAccepted: {
           title: "",
@@ -108,14 +113,14 @@ export default defineComponent({
       },
       delivery: {
         pending: {
-          title: "Assign Order",
-          action: () => this.assignOrderToDelivery(),
-        },
-        restaurantAccepted: {
           title: "",
           action: () => {
             return;
           },
+        },
+        restaurantAccepted: {
+          title: "Assign Order",
+          action: () => this.assignOrderToDelivery(),
         },
         accepted: {
           title: "Declare taken from restaurant",
@@ -126,12 +131,17 @@ export default defineComponent({
           action: () => this.markOrderAsDone(),
         },
         done: {
-          title: "La commande est livrée",
-          action: () => this.markOrderAsDone(),
+          title: "",
+          action: () => {
+            return;
+          },
         },
       },
       restaurant: {
-        pending: { title: "", action: {} },
+        pending: {
+          title: "Accept Order",
+          action: () => this.acceptOrderAsRestaurant(),
+        },
         accepted: {
           title: "",
           action: {},
@@ -193,6 +203,11 @@ export default defineComponent({
   methods: {
     goToOrder() {
       return;
+    },
+    acceptOrderAsRestaurant() {
+      this.$socket.emit("restaurantAccept", {
+        orderId: this.order.id,
+      });
     },
     assignOrderToDelivery() {
       this.$socket.emit("assignDelivery", {
