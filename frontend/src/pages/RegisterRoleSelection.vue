@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content>
-      <ion-list>
+      <ion-col>
         <ion-item>
           <ion-label>Client</ion-label>
           <ion-button
@@ -47,7 +47,7 @@
             >DeliveryRegister</ion-button
           >
         </ion-item>
-      </ion-list>
+      </ion-col>
     </ion-content>
     <ion-content>
       <ion-button

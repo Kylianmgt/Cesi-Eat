@@ -95,9 +95,10 @@ export default defineComponent({
         },
         restaurantAccepted: {
           title: "",
-          action: () => {return},
+          action: () => {
+            return;
+          },
         },
-        }
         accepted: {
           title: "",
           action: {},
@@ -112,7 +113,9 @@ export default defineComponent({
         },
         restaurantAccepted: {
           title: "",
-          action: () => {return},
+          action: () => {
+            return;
+          },
         },
         accepted: {
           title: "Declare taken from restaurant",
@@ -135,7 +138,9 @@ export default defineComponent({
         },
         restaurantAccepted: {
           title: "",
-          action: () => {return},
+          action: () => {
+            return;
+          },
         },
         deliver: { title: "", action: {} },
         done: { title: "", action: {} },

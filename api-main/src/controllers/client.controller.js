@@ -25,7 +25,7 @@ const createCheckoutSession = catchAsync(async (req, res) => {
     order.menus.forEach(menu => {
       orderItems.push({
         name: menu.name,
-        amount: menu.price,
+        amount: menu.price * 100,
         currency: 'eur',
         quantity: '1'
       });
@@ -33,7 +33,7 @@ const createCheckoutSession = catchAsync(async (req, res) => {
     order.articles.forEach(article => {
       orderItems.push({
         name: article.name,
-        amount: article.price,
+        amount: article.price * 100,
         currency: 'eur',
         quantity: '1'
       });
