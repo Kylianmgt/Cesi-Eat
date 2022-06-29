@@ -1,0 +1,8 @@
+{
+	"appId": "com.app.cesieat",
+	"appName": "CesiEat by CesiGang",
+	"bundledWebRuntime": false,
+	"webDir": "dist",
+	"npmClient": "npm",
+	"cordova": {}
+}

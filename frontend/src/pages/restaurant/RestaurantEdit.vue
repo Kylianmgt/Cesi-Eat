@@ -22,18 +22,18 @@
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Note du restaurant </ion-label>
-                <ion-input type="text" v-model="restaurant.rating" />
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating">Note du restaurant </ion-label>
-                <ion-input type="text" v-model="restaurant.distance" />
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating">Note du restaurant </ion-label>
+                <ion-label position="floating">Ville du restaurant </ion-label>
                 <ion-input type="text" v-model="restaurant.city" />
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Code Postal du restaurant </ion-label>
+                <ion-input type="text" v-model="restaurant.zipCode" />
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Image du restaurant </ion-label>
+              <ion-img :src="restaurant.image" alt="restaurant image" ></ion-img>
             </ion-item>
 
               <ion-button color="secondary" @click="() => router.push({ name: 'MyRestaurant' })">Enregistrer les modifications</ion-button>
@@ -59,6 +59,7 @@ import {
     IonCardContent,
     IonContent,
     IonLabel,
+    IonImg,
 
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
@@ -75,6 +76,7 @@ export default {
     IonCol,
     IonGrid,
     IonButton,
+    IonImg,
     IonCard,
     IonCardContent,
     IonContent,
@@ -82,7 +84,7 @@ export default {
   },
 
   props: route => ({
-    restoDatas: data,
+    restoData: data,
     ...route.params
   }),
 
@@ -90,21 +92,25 @@ export default {
     const router = useRouter();
     const route = useRoute();
 
-    let restoDatas = JSON.parse(route.params.restoDatas);
-    let restoName = restoDatas[0].name;
-    let restoDescription = restoDatas[0].description;
-    let restoAddress = restoDatas[0].address;
-    let restoRating = restoDatas[0].rating;
-    let restoDistance = restoDatas[0].distance;
-    let restoCity = restoDatas[0].city;
+    console.log("Edit Restaurant")
+    let restoDatas = JSON.parse(route.params.restoData);
+    console.log({ restoDatas })
+    let restoName = restoDatas.profil.name;
+    let restoDescription = restoDatas.profil.description;
+    let restoAddress = restoDatas.profil.address;
+    let restoZipCode = restoDatas.profil.zipCode;
+    let restoDistance = restoDatas.profil.distance;
+    let restoCity = restoDatas.profil.city;
+    let restoImage = restoDatas.profil.image;
 
     let restaurant = {
-        name: restoName,
-        description: restoDescription,
-        address: restoAddress,
-        rating: restoRating,
-        distance: restoDistance,
-        city: restoCity,
+        name: restoName || "sample",
+        description: restoDescription || "sample",
+        address: restoAddress || "sample",
+        zipCode: restoZipCode,
+        distance: restoDistance || "sample",
+        city: restoCity || "sample",
+        image: restoImage
     }
     
     return {

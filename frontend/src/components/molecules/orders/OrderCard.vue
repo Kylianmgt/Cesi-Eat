@@ -12,7 +12,6 @@
         order.restaurant.name
       }}</ion-card-title>
       <ion-card-subtitle>Order n°{{ order.id }}</ion-card-subtitle>
-      <ion-card-subtitle>Date :</ion-card-subtitle>
       <ion-card-subtitle>Status : {{ order.status }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>

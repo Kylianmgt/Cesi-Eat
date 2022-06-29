@@ -1,79 +1,163 @@
 <template>
   <base-layout :show-menu-button="false" pageTitle="Mon restaurant">
-
     <ion-page>
       <ion-content scroll-y="true">
         <ion-card>
 
             <!-- Mains informations about restaurant -->
-            <IonTitle size="large" color="primary">Mes Informations</IonTitle>
-            <div class="flex p-8">
-              <ion-grid>
-                <ion-col>
-                  Nom du restaurant: {{ data[0].name }}
-                </ion-col>
-                  <br>
-                <ion-col>
-                  Description: {{ data[0].description }}
-                  <br>
-                </ion-col>
-                <ion-col>
-                  Ville: {{ data[0].city }}
-                  <br>
-                </ion-col>
-                <ion-col>
-                  Address: {{ data[0].address }}
-                  <br>
-                </ion-col>
-                <ion-col>
-                  Note des utilisateurs: {{ data[0].rating }}
-                </ion-col>
-              </ion-grid>
-              <ion-button @click="() => router.push({ name: 'RestaurantEdit', params: { restoDatas: JSON.stringify(data) } })">Modifier</ion-button>
-            </div>
+            <ion-card-header>
+              <IonTitle size="large" color="secondary" class="fs-32">Mes Informations</IonTitle>
+              <div class="flex flex-col p-8 ">
 
-
-            <!-- Menus Details for this restaurant -->
-            <ion-card-content class="p-8">
-              <IonTitle size="large" color="primary">Mes Menu</IonTitle>
-              <ion-button color="success" @click="() => router.push({ name: 'MenuAdd' })">Ajouter un Menu</ion-button>
-
-              <div v-for="(menu, menuIndex) in data[0].menus" :key="menu.id">
-                <h2>{{ menu.name }}</h2>
-                <p>Description: {{ menu.description }}</p>
-                <p>Image: {{ menu.image }}</p>
-                <p>Prix: {{ menu.price }}€</p>
-                <h2>Articles :</h2>
-
-                <!--
-                  ! ERROR While getCurrentMenu => State don't uptate himself while navigate
-                  -->
-                <li v-for="(article, articleIndex) in data[0].menus[menuIndex].articles" :key="article.id">
-                  {{ getArticleNameFromMenu(articleIndex, data[0].menus[menuIndex]) }} {{ getArticlePriceFromMenu(articleIndex, data[0].menus[menuIndex]) }} €
-                </li>
-                <ion-button @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu) } })" color="secondary">Modifier ce Menu</ion-button>
-                <ion-button color="danger">Supprimer ce Menu</ion-button>
+                  <ion-grid>                    
+                    <ion-row>
+                      <ion-col class="flex flex-col">
+                      <ion-label color="dark"  class="fs-24">
+                          Nom du restaurant: {{ userData.profil.name }}
+                      </ion-label>
+                      <ion-label color="dark"  class="fs-24">
+                        Description: {{ userData.profil.description }}
+                      </ion-label>
+                      <ion-label color="dark"  class="fs-24">
+                        Ville: {{ userData.profil.city }}
+                      </ion-label>
+                      <ion-label color="dark"  class="fs-24">
+                        Address: {{ userData.profil.address }}
+                      </ion-label>
+                      <ion-label color="dark"  class="fs-24">
+                        Code Postal: {{ userData.profil.zipCode }}
+                      </ion-label>
+                      </ion-col>
+                      <ion-col class="flex flex-col">
+                        <ion-label>
+                          <ion-img :src="userData.profil.image" alt="restaurant image" ></ion-img>
+                        </ion-label>
+                        <ion-button color="secondary" size="large" @click="() => router.push({ name: 'RestaurantEdit', params: { restoData: JSON.stringify(userData) } })">Modifier</ion-button>
+                      </ion-col>                   
+                    </ion-row>
+                  </ion-grid>
 
               </div>
-              
+            </ion-card-header>
+          </ion-card>
+
+          <ion-card>
+            <!-- Menus Details for this restaurant -->
+
+            <ion-card-header>
+              <IonTitle size="large" color="secondary" class="fs-32">Mes Menu</IonTitle>
+            </ion-card-header>
+
+              <ion-card-content class="p-4">
+              <ion-button size="large" color="success" @click="() => router.push({ name: 'MenuAdd', params: {userData: JSON.stringify(userData) } })">Ajouter un Menu</ion-button>
+
+              <!-- ALL MENUS DETAILS -->
+              <ion-grid class="my-12 p-4 border-dashed border-2 border-sky-500" color="light" v-for="(menu, menuIndex) in userData.profil.menus" :key="menu.id">
+  
+                <ion-title color="dark" class="fs-30">Menu {{ menu.name }}</ion-title>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label>
+                          Prix: {{ menu.price }}€
+                        </ion-label>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label>
+                          Description: {{ menu.description }}
+                        </ion-label>
+                      </ion-item>                  
+                    </ion-col>
+
+                    <ion-col>
+                        <ion-img :src="menu.image" alt="menu image"></ion-img>
+                    </ion-col>                       
+                  </ion-row>
+               
+                </ion-grid>
+
+
+
+                <ion-title class="fs-26 pt-12" color="dark">Articles dans le menu</ion-title>
+                <ion-row v-for="(article, articleIndex) in menu.articles" :key="article.id">
+                  <ion-col class="fs-20">
+                      <ion-item>
+                        <ion-label>
+                          Nom de l'article: {{ article.name }}
+                        </ion-label>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col class="fs-20">
+                      <ion-item>
+                        <ion-label>
+                          Description: {{ article.description }}
+                        </ion-label>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col class="fs-20">
+                      <ion-item>
+                        <ion-label>
+                          Prix: {{ article.price }}€
+                        </ion-label>
+                      </ion-item>
+                  </ion-col>
+                </ion-row>
+                
+                <ion-row class="flex content-center justify-center">
+                  <ion-button size="large" @click="() => router.push({ name: 'MenuEdit', params: {menu: JSON.stringify(menu), userData: userData  } })" color="secondary">Modifier ce Menu</ion-button>
+                  <!-- DELETE ACTION FOR MENU -->
+                  <ion-button size="large" color="danger" @click="() => deleteMenu(menu.id)" >Supprimer ce Menu</ion-button>
+                </ion-row>
+
+              </ion-grid>
+              <!-- END OF MENUS DETAILS -->
+
             </ion-card-content>
 
-          <!-- * Articles Details for this restaurant -->
+          <!-- ALL ARTICLES DETAILS -->
           <ion-card-content className="p-8">
-            <IonTitle size="large" color="primary">Mes Articles</IonTitle>
-              <ion-button color="success" @click="() => router.push({ name: 'ArticleAdd' })">Ajouter un Article</ion-button>
+            <IonTitle class="fs-32" size="large" color="secondary">Mes Articles</IonTitle>
+              <ion-button size="large" color="success" @click="() => router.push({ name: 'ArticleAdd' })">Ajouter un Article</ion-button>
+                <ion-item-divider />
 
-                <!-- 
-                  TODO: Réparer la modification du state lors de la navogation entre les pages pour l'article et les Menus
-                 -->
-                <li v-for="(article, articleIndex) in data[0].articles" :key="article.id">
-                  {{ article.name }}    {{ article.price }}€
-                <div>
-                  <ion-button @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, data)) } })" color="secondary">Modifier cet Article</ion-button>
-                  <ion-button color="danger">Supprimer cet Article</ion-button>
-                </div>
+                <!-- ALL ARTICLES DETAILS -->
+                <ion-grid  class="my-12 p-4 border-dashed border-2 border-sky-500" v-for="(article, articleIndex) in userData.profil.articles" :key="article.id">
+                  <ion-col>
+                    <ion-title class="fs-30" color="dark">Article {{ article.name }}</ion-title>
 
-                </li>
+                    <ion-row>
+                      <ion-col>
+                        <ion-item>
+                          <ion-label>
+                            Prix: {{ article.price }}€
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label>
+                            Description: {{ article.description }}
+                          </ion-label>
+                        </ion-item>                  
+                      </ion-col>
+
+                      <ion-col>
+                          <ion-img :src="article.image" alt="menu image"></ion-img>
+                      </ion-col>                       
+                    </ion-row>
+                  </ion-col>
+
+                  <ion-col class="flex flex-col items-center justify-center">
+                    <ion-button size="large" expand="full" @click="() => router.push({ name: 'ArticleEdit', params: {article: (getCurrentArticle(articleIndex, userData)) } })" color="secondary">Modifier</ion-button>
+                    <!-- DELETE ACTION FOR ARTICLE -->
+                    <ion-button  size="large" expand="block" color="danger" @click="() => deleteArticle(article.id)">Supprimer</ion-button>
+                  </ion-col>
+
+                  <ion-item-divider />
+                </ion-grid>
+                <!-- END ALL ARTICLES DETAILS -->
+
           </ion-card-content>
 
         </ion-card>
@@ -96,7 +180,14 @@ import {
   IonButton,
   IonCard,
   IonCardContent,
-  IonContent
+  IonContent,
+  IonImg,
+  IonThumbnail,
+  IonItemDivider,
+  IonLabel,
+  IonRow,
+  IonCardHeader,
+  IonItem,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 
@@ -114,99 +205,50 @@ export default {
     IonButton,
     IonCardContent,
     IonCard,
-    IonContent
+    IonContent,
+    IonImg,
+    IonThumbnail,
+    IonItemDivider,
+    IonLabel,
+    IonRow,
+    IonCardHeader,
+    IonItem,
   },
+
+  computed: {
+    userData() {
+      console.log("[+] Get profil Data...")
+      let userData = this.$store.state.user.userData;
+      console.log({ userData });
+      return userData;
+    }
+  },
+
+  ionViewWillEnter(){
+      console.log("[WillEnter] [+] Get profil Data...")
+      let userData = this.$store.state.user.userData;
+      console.log({ userData });
+      return userData;
+  },
+
   setup() {
     const router = useRouter();
-    const data = [{
-                  "id": 0,
-                  "name": "My tacos",
-                  "description": "Tacos de la meilleure qualité",
-                  "address": "1 rue de la paix",
-                  "rating": 4.5,
-                  "distance": 2,
-                  "city": "Bordeaux",
-                  "articles": [
-                    {
-                      "id": 0,
-                      "name": "Tacos",
-                      "description": "Tacos de la meilleure qualité",
-                      "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-                      "price": 8.5
-                    },
-                    {
-                      "id": 1,
-                      "name": "Frites",
-                      "description": "Tacos de la meilleure qualité",
-                      "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-                      "price": 8.5
-                    }
-                  ],
-                  "menus": [
-                    {
-                      "id": 0,
-                      "name": "Menu 1",
-                      "description": "Menu de la meilleure qualité",
-                      "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-                      "price": 8.5,
-                      "articles": [
-                        {
-                          "id": 0,
-                          "name": "Tacos",
-                          "description": "Tacos de la meilleure qualité",
-                          "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-                          "price": 8.5
-                        },
-                        {
-                          "id": 1,
-                          "name": "Super tacos",
-                          "description": "Tacos de la meilleure qualité",
-                          "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-                          "price": 8.5
-                        }
-                      ]
-                    },
-                    {
-                      "id": 0,
-                      "name": "Menu 2",
-                      "description": "Menu secondaire",
-                      "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-                      "price": 8.5,
-                      "articles": [
-                        {
-                          "id": 0,
-                          "name": "Frites",
-                          "description": "Tacos de la meilleure qualité",
-                          "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-                          "price": 8.5
-                        },
-                        {
-                          "id": 1,
-                          "name": "Maxi frites",
-                          "description": "Tacos de la meilleure qualité",
-                          "image": "https://img1.freepng.fr/20180717/yfu/kisspng-el-risitas-issou-laughter-jeuxvideo-com-sticker-issou-hd-5b4d7d6b1b77c2.1011126415318050351125.jpg",
-                          "price": 8.5
-                        }
-                      ]
-                    }
-                  ]
-                }];
+
     return {
       router,
-      data,
     };
   },
   methods: {
 
-    getCurrentMenu(menuIndex, data) {
-      let currentMenu = data[0].menus[menuIndex];
+    getCurrentMenu(menuIndex, userData) {
+      let currentMenu = userData.profil.menus[menuIndex];
       console.log({ currentMenu })
       currentMenu = JSON.stringify(currentMenu);
       return currentMenu;
     },
 
-    getCurrentArticle(articleIndex, data) {
-      let currentArticle = data[0].articles[articleIndex];
+    getCurrentArticle(articleIndex, userData) {
+      let currentArticle = userData.profil.articles[articleIndex];
       console.log({ currentArticle });
       currentArticle = JSON.stringify(currentArticle);
       return currentArticle;
@@ -218,38 +260,45 @@ export default {
       return articleName;
     },
 
-      getArticlePriceFromMenu(articleIndex, menu){
+    getArticlePriceFromMenu(articleIndex, menu){
       let articlePrice = menu.articles[articleIndex].price;
       // console.log({ articlePrice });
       return articlePrice;
-    }
+    },
+
+    deleteMenu(menuId){
+      console.log("[RESTAURANT] [ ]  Calling Delete Menu")
+      this.$store.dispatch("restaurant/deleteMenu", {
+        restaurantId: this.userData.profil.id,
+        userId: this.userData.user.id,
+        menuId: menuId,
+      });
+    },
+
+    deleteArticle(articleId){
+      console.log("[RESTAURANT] [ ]  Calling Delete Article")
+      this.$store.dispatch("restaurant/deleteArticle", {
+        restaurantId: this.userData.profil.id,
+        userId: this.userData.user.id,
+        articleId: articleId,
+      });
+    },
+
   },
 };
 </script>
 
 <style scoped>
-    ionic-content {
-        display: flex;
-        position:absolute;
-        top:10%;
-        left:5%;
-        justify-content: space-around;
-    }
 
     ion-card-content {
         display:flex;
         flex-direction:column;
     }
 
-    ion-toolbar {
-      background-color:red;
-    }
 
     ion-title {
         text-align:center;
     }
 
-    ion-button {
-      --background: var(--ion-color-secondary);
-    }
+
 </style>
