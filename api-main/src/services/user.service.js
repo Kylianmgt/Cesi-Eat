@@ -1,5 +1,5 @@
 const httpStatus = require('http-status');
-const { User } = require('../models');
+const { User, Client, Restaurant, Delivery } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -11,6 +11,10 @@ const createUser = async (userBody) => {
   if (await User.isEmailTaken(userBody.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
+  if (userBody.sponsorCode && !checkSponsorCode(userBody.sponsorCode, userBody.role)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid sponsor code');
+  }
+  userBody.publicSponsorCode = await generateSponsorCode();
   return User.create(userBody);
 };
 
@@ -86,6 +90,64 @@ const deleteUserById = async (userId) => {
   return user;
 };
 
+const checkSponsorCode = async (sponsorCode, role) => {
+  const user = await User.findOne({ publicSponsorCode: sponsorCode });
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Wrong sponsor code");
+  }
+  if (user.role !== role) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Wrong sponsor code, different Role");
+  }
+  return true;
+
+}
+const generateSponsorCode = async () => {
+  return Date.now() + Math.floor(Math.random() * 1000000);
+}
+
+const getProfilBySponsorCode = async (sponsorCode) => {
+  const user = await User.findOne({ publicSponsorCode: sponsorCode });
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Wrong sponsor code");
+  }
+  switch (user.role) {
+    case "client":
+      return await Client.findOne({ user: user.id });
+    case "restaurant":
+      return await Restaurant.findOne({ user: user.id });
+    case "delivery":
+      return await Delivery.findOne({ user: user.id });
+    default:
+      throw new ApiError(httpStatus.NOT_FOUND, "Wrong sponsor code");
+  }
+}
+
+const getSponsoredProfiles = async (publicSponsorCode) => {
+  const users = await User.find({ sponsorCode: publicSponsorCode });
+  if (!users) {
+    return [];
+  }
+  let profiles = [];
+  for (let i = 0; i < users.length; i++) {
+    switch (users[i].role) {
+      case "client":
+        profiles.push(await Client.findOne({ user: users[i].id }));
+        break;
+      case "restaurant":
+        profiles.push(await Restaurant.findOne({ user: users[i].id }));
+        break;
+      case "delivery":
+        profiles.push(await Delivery.findOne({ user: users[i].id }));
+        break;
+      default:
+        throw new ApiError(httpStatus.NOT_FOUND, "Wrong sponsor code");
+    }
+  }
+  return profiles;
+}
+
+
+
 module.exports = {
   createUser,
   queryUsers,
@@ -93,4 +155,6 @@ module.exports = {
   getUserByEmail,
   updateUserById,
   deleteUserById,
+  getProfilBySponsorCode,
+  getSponsoredProfiles
 };

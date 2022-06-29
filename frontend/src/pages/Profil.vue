@@ -32,6 +32,29 @@
             <ion-item>
               <ion-text> Address: {{ userData.profil.address }} </ion-text>
             </ion-item>
+            <ion-item>
+              <ion-text class="text-bold text-2xl">
+                MySponsorCOde: {{ userData.user.publicSponsorCode }}
+              </ion-text>
+            </ion-item>
+            <ion-item v-if="userData.sponsoredProfiles">
+              <ion-text> Sponsored Profiles </ion-text>
+              <ion-list>
+                <ion-item v-for="profil in userData.sponsoredProfiles">
+                  <ion-text>
+                    {{ profil.name }}
+                  </ion-text>
+                </ion-item>
+              </ion-list>
+            </ion-item>
+            <ion-item v-if="userData.sponsorProfil">
+              <ion-text> My Sponsor Profil </ion-text>
+              <ion-item>
+                <ion-text>
+                  {{ userData.sponsorProfil.name }}
+                </ion-text>
+              </ion-item>
+            </ion-item>
           </ion-col>
         </ion-grid>
 
@@ -85,7 +108,7 @@ export default {
   },
   computed: {
     userData() {
-      console.log(this.$store.state.user.userData);
+      console.log({ ...this.$store.state.user.userData });
       return this.$store.state.user.userData;
     },
   },
