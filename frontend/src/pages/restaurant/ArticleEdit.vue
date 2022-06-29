@@ -141,6 +141,9 @@ export default {
         restaurantId: userData.profil.id,
         userId: userData.user.id,
         articleFields: {...articleFields},
+      }).then((response) => {
+        console.log(response)
+        this.$store.commit("user/setUserDataProfil", response);
       });
       this.router.back();
     }

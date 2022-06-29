@@ -79,7 +79,8 @@ const updateArticleById = catchAsync(async (req, res) => {
     const restaurantId = req.params.restaurantId;
     const userId = req.body.userId;
     const updateArticle = await restaurantService.updateArticle(restaurantId, article);
-    const restaurantProfil = restaurantService.getRestaurantProfil(userId);
+    const restaurantProfil = await restaurantService.getRestaurantProfil(userId);
+    logger.debug(restaurantProfil);
     res.status(httpStatus.CREATED).send(restaurantProfil);
 })
 
