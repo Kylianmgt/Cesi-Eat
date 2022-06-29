@@ -218,7 +218,7 @@ import {
   IonIcon,
   IonToast,
   IonGrid,
-  IonImage,
+  IonImg,
 } from "@ionic/vue";
 import {
   person,
@@ -245,7 +245,7 @@ import useToast from "../composition/useToast";
 import register from "../composition/register";
 
 //validations
-import { email, password } from "../utils/validations";
+// import { email } from "../utils/validations";
 
 export default {
   name: "Signup",
@@ -270,7 +270,7 @@ export default {
     IonIcon,
     IonToast,
     IonGrid,
-    IonImage,
+    IonImg,
     File,
   },
   setup() {

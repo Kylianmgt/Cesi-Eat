@@ -13,6 +13,8 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 
@@ -22,11 +24,18 @@ if (config.env !== 'test') {
 }
 
 // set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
 
 // parse json request body
 
-app.use(express.json({ limit: '50mb' }));
+// app.use(express.json({ limit: '50mb' }));
+app.use((req, res, next) => {
+  if (req.originalUrl.includes('/webhook')) {
+    next();
+  } else {
+    express.json({ limit: '50mb' })(req, res, next);
+  }
+});
 
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
@@ -41,6 +50,8 @@ app.use(compression());
 // enable cors
 app.use(cors());
 app.options('*', cors());
+
+
 
 // jwt authentication
 app.use(passport.initialize());

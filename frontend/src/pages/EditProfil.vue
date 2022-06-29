@@ -86,7 +86,7 @@ import {
   IonLabel,
   IonIcon,
   IonText,
-  IonImage,
+  IonImg,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
 import { mapGetters, mapState, useStore } from "vuex";
@@ -101,7 +101,7 @@ export default {
     IonInput,
     IonText,
     IonPage,
-    IonImage,
+    IonImg,
     IonItem,
     IonLabel,
     IonRow,

@@ -1,10 +1,19 @@
 import router from '../router';
 import redirectToHome from './redirectToHome';
 import useToast from './useToast';
+import { Storage } from '@capacitor/storage';
+
 
 export default function () {
   const { openToast } = useToast();
   const { redirectTo } = redirectToHome();
+
+  async function storeUserData(userCredentials) {
+    await Storage.set({
+      key: 'userCredentials',
+      value: JSON.stringify(userCredentials)
+    });
+  }
 
   async function userLogin(userCredentials) {
     const data = {
@@ -18,6 +27,7 @@ export default function () {
         this.$store.commit('user/setUserData', response);
         console.log(this.$store.state.user.userData);
         this.$store.commit('user/setUserType', response.user.role);
+        storeUserData(userCredentials);  // store user credentials in local storage
         router.push('/' + response.user.role);
         return Promise.resolve();
       })

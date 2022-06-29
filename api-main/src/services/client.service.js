@@ -22,17 +22,32 @@ const updateClientProfil = async (userId, profil) => {
     return client;
 };
 const getClientOrders = async (clientId) => {
-    return Order.find({ client: clientId }).populate(['restaurant', 'delivery']);
+    return Order.find({ client: clientId, isPayed: true }).populate(['restaurant', 'delivery']);
 };
 
 const createClientOrder = async (order) => {
     return Order.create(order);
 };
 
+const getOrderById = async (orderId) => {
+    return Order.findById(orderId).populate(["articles", "menus"]);
+}
+
+const markOrderAsPaid = async (orderId) => {
+    const order = await Order.findById(orderId);
+    order.isPayed = true;
+    await order.save();
+    return order;
+}
+
+
+
 module.exports = {
     createClientProfil,
     getClientProfil,
     getClientOrders,
     updateClientProfil,
-    createClientOrder
+    createClientOrder,
+    getOrderById,
+    markOrderAsPaid
 };

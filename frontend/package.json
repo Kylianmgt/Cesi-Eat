@@ -9,13 +9,16 @@
     "build:qa": "vue-cli-service build --dest dist-qa --mode staging && npm run postbuild",
     "postbuild": "npx cap copy",
     "resources:android": "cordova-res android --skip-config --copy",
-    "resources:ios": "cordova-res ios --skip-config --copy"
+    "resources:ios": "cordova-res ios --skip-config --copy",
+    "ionic:build": "vue-cli-service build && npm run postbuild",
+    "ionic:serve": "vue-cli-service serve"
   },
   "dependencies": {
     "@awesome-cordova-plugins/web-socket-server": "^5.43.0",
-    "@capacitor/android": "^3.2.0",
+    "@capacitor/android": "3.5.1",
+    "@capacitor/browser": "^1.0.7",
     "@capacitor/camera": "^1.1.0",
-    "@capacitor/core": "^3.2.0",
+    "@capacitor/core": "3.6.0",
     "@capacitor/ios": "^3.2.0",
     "@capacitor/share": "^1.0.4",
     "@capacitor/storage": "^1.1.0",

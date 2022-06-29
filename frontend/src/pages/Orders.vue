@@ -7,7 +7,7 @@
             <span class="text-4xl">My orders</span>
           </h1>
         </ion-text>
-        <ion-list v-if="userData.user.role == 'delivery'">
+        <ion-list>
           <ion-text class="text-center">
             <h2>
               <span class="text-2xl ml-2">PendingOrders</span>
@@ -65,6 +65,8 @@ import {
 import { useRouter } from "vue-router";
 import OrderCard from "../components/molecules/orders/OrderCard.vue";
 import { mapActions, useStore, mapState } from "vuex";
+import login from "../composition/login";
+import { Storage } from "@capacitor/storage";
 
 export default {
   name: "Orders",
@@ -80,11 +82,40 @@ export default {
     IonLabel,
     OrderCard,
   },
+  beforeMount() {
+    const store = useStore();
+    if (!store.state.user.userData.user) {
+      console.log("je vais la");
+      const data = Storage.get({ key: "userCredentials" }).then((response) => {
+        console.log(response.value);
+        const userCredentials = JSON.parse(response.value);
+        this.userLogin(userCredentials).then((response) => {
+          this.router.push("/orders");
+          this.fetchOrders();
+          this.fetchPendingOrders();
+        });
+      });
+    }
+    // await store
+    //   .dispatch("login/login", userCredentials)
+    //   .then((response) => {
+    //     store.commit("user/setUserData", response);
+    //     console.log(store.state.user.userData.user.role);
+    //     store.dispatch(
+    //       "user/getUserOrders",
+    //       store.state.user.userData.user.id
+    //     );
+    //     // this.fetchOrders();
+    //     // this.fetchPendingOrders();
+    //   });
+  },
   mounted() {
     this.fetchOrders();
-    if (this.userData.user.role == "delivery") {
-      this.fetchPendingOrders();
-    }
+    this.fetchPendingOrders();
+  },
+  ionViewWillEnter() {
+    this.fetchOrders();
+    this.fetchPendingOrders();
   },
   computed: mapState({
     userOrders: (state) => state.user.userOrders,
@@ -111,23 +142,39 @@ export default {
   setup() {
     const router = useRouter();
     const store = useStore();
+    const { userLogin } = login();
 
     // const userData = store.state.user.userData;
     // const fetchOrdersActions = {...mapActions{"client", ["getClientOrders"]}, ...mapActions{"delivery", ["getDeliveryOrders"]}, ...mapActions{"restaurant", ["getRestaurantOrders"]}};
 
     return {
       router,
+      userLogin,
+      router,
       // userData,
     };
   },
   methods: {
     fetchOrders() {
-      this.$store.dispatch("user/getUserOrders", this.userData.user.id);
+      this.$store.dispatch(
+        "user/getUserOrders",
+        this.$store.state.user.userData.user.id
+      );
     },
     fetchPendingOrders() {
-      this.$store.dispatch("user/getPendingOrders");
-      console.log(this.$store.state.user.pendingOrders);
+      if (this.$store.state.user.userData.user.role == "delivery") {
+        this.$store.dispatch("user/getPendingOrders");
+      }
     },
+    async getUserCredentials() {
+      const userCredentials = await Storage.get({ key: "userCredentials" });
+      return JSON.parse(userCredentials.value);
+    },
+    // async userLogin(userCredentials) {
+    //   const { userLogin } = login();
+    //   await userLogin(userCredentials);
+    //   return;
+    // },
   },
 };
 </script>
