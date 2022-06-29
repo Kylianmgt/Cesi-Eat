@@ -1,5 +1,8 @@
 <template>
-  <base-layout :show-menu-button="false">
+  <base-layout
+    page-default-back-link="/client/restaurant"
+    :show-menu-button="false"
+  >
     <ion-page>
       <ion-text>
         <h1>
@@ -74,6 +77,9 @@ import {
 } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 import OrderedItemCard from "@/components/molecules/orders/OrderedItemCard.vue";
+import useToast from "../../composition/useToast";
+import { Browser } from "@capacitor/browser";
+import { isPlatform } from "@ionic/vue";
 
 export default {
   name: "OrderCheck",
@@ -90,10 +96,25 @@ export default {
     user: userData,
     ...route.params,
   }),
+  sockets: {
+    connect: function () {
+      console.log("test connected");
+    },
+    disconnect: function () {
+      console.log("socket to notification channel disconnected");
+    },
+    paymentDone: function () {
+      console.log("socket dooooooonttte");
+      Browser.close();
+      this.openToast("Order success", "success");
+      this.router.push({ name: "Orders" });
+    },
+  },
 
   setup() {
     const router = useRouter();
     const route = useRoute();
+    const { openToast } = useToast();
     const data = JSON.parse(route.params.data);
     const selected_menus = route.params.selected_menus;
     const selected_articles = route.params.selected_articles;
@@ -113,13 +134,19 @@ export default {
         }
       });
     });
+
+    const openCapacitorSite = async () => {
+      await Browser.open({ url: response.url });
+    };
     return {
+      openToast,
       router,
       selected_articles,
       selected_menus,
       selected_all,
       selected_items,
       data,
+      openCapacitorSite,
     };
   },
 
@@ -138,7 +165,22 @@ export default {
         articles: this.selected_articles,
         client: this.$store.state.user.userData.profil.id,
       };
-      this.$store.dispatch("client/createOrder", { order: order });
+      this.$store
+        .dispatch("client/createCheckoutSession", {
+          clientId: this.$store.state.user.userData.profil.id,
+          order: order,
+        })
+        .then(function (response) {
+          console.log(response);
+
+          if (isPlatform("ios") || isPlatform("android")) {
+            Browser.open({ url: response.url });
+          } else {
+            Browser.open({ url: response.url });
+          }
+        });
+
+      // this.$store.dispatch("client/createOrder", { order: order });
     },
   },
 };

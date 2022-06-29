@@ -85,7 +85,7 @@ import {
   IonLabel,
   IonIcon,
   IonText,
-  IonImage,
+  IonImg,
   IonButton,
 } from "@ionic/vue";
 import { useRouter } from "vue-router";
@@ -103,7 +103,7 @@ export default {
     IonText,
     IonPage,
     Button,
-    IonImage,
+    IonImg,
     IonButton,
   },
   computed: {

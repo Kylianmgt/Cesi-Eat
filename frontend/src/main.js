@@ -105,11 +105,14 @@ const socket = new VueSocketIO({
   }
 });
 
+const stripe = Stripe('pk_test_51LEAlbLhNfISaHcDyPFUqUz2L4dro10Dj9LHWYpeUTg0isQESNIClDsERc7Gm7l6LaiDiRrJ7koijJGFvWtq6AY100g3MeaXpr');
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
   .use(store)
   .use(socket)
+  .use(stripe)
 
 app.config.globalProperties.emitter = mitt();
 app.config.globalProperties.$validate = Utils.validations;

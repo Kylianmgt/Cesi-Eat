@@ -20,8 +20,16 @@ const getRestaurants = ({ commit }) => {
     .catch((error) => error.response);
 };
 
+const createCheckoutSession = ({ }, payload) => {
+
+  return api.post(`/client/${payload.clientId}/create-checkout-session`, { order: payload.order }).then((response) => {
+    return response.data;
+  }
+  );
+}
+
 const createOrder = ({ commit }, payload) => {
-  return api.post(`/client/${payload.order.client}/create-order/`, {order: payload.order});
+  return api.post(`/client/${payload.order.client}/create-order/`, { order: payload.order });
 };
 
 
@@ -29,4 +37,5 @@ export default {
   getClientOrders,
   getRestaurants,
   createOrder,
+  createCheckoutSession
 };

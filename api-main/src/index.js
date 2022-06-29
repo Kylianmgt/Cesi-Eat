@@ -6,6 +6,7 @@ const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
 const userController = require('./controllers/user.controller')
+const { socketConnected } = require('./controllers/socket.controller');
 
 // var WebSocketServer = require("ws").Server;
 
@@ -15,17 +16,10 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
   server = app.listen(config.port, () => {
     logger.info(`Listening to port ${config.port}`);
-    const io = require('socket.io')(server, {
-      allowEIO3: true,
-      cors: {
-        origin: "http://localhost:8080",
-        methods: ["GET", "POST"],
-        allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
-        credentials: true,
-      }
-    });
+    const io = require('./socket.js').init(server);
     io.on('connection', (socket) => {
       logger.info('a user connected');
+      socketConnected(socket, io);
       socket.on('disconnect', () => {
         logger.info('user disconnected');
       });
@@ -48,7 +42,6 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
         logger.info(data);
         userController.updateUserOrder('deliver', data.orderId);
         socket.emit('ordersupdated');
-
       }
       );
     });
@@ -105,3 +98,4 @@ process.on('SIGTERM', () => {
     server.close();
   }
 });
+

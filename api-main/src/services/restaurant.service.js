@@ -60,7 +60,7 @@ const updateMenu = async (restaurantId, menuFields) => {
 };
 
 const getRestaurantOrders = async (restaurantId) => {
-  return Order.find({ restaurant: restaurantId }).populate('client');
+  return Order.find({ restaurant: restaurantId, isPayed: true }).populate('client');
 };
 
 const getRestaurants = async () => {

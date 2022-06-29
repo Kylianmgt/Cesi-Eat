@@ -41,6 +41,10 @@ const orderSchema = mongoose.Schema(
         ref: 'Article',
       },
     ],
+    isPayed: {
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timestamps: true,

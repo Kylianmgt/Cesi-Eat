@@ -11,9 +11,10 @@ async function setToken(token) {
 
 
 export default {
-  login({ }, userCredentials) {
+  login({ commit }, userCredentials) {
     return api.post('/auth/login', userCredentials)
       .then(async (response) => {
+        commit('setUserData', response.data);
         await setToken(response.data.tokens.access.token);
         return response.data;
       })

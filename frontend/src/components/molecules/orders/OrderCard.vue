@@ -21,7 +21,7 @@
           class="flex align-left justify-left border-2 rounded-lg"
         >
           <ion-img
-            v-if="order.delivery.image"
+            v-if="order.delivery"
             :src="order.delivery.image"
             class="order-delivery-img rounded-full"
           ></ion-img>
