@@ -10,7 +10,6 @@ const { socketConnected } = require('./controllers/socket.controller');
 
 // var WebSocketServer = require("ws").Server;
 
-
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
@@ -23,9 +22,9 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
       socket.on('disconnect', () => {
         logger.info('user disconnected');
       });
-      socket.on('restaurantAccept', (data) => {
+      socket.on('restaurantAccepted', (data) => {
         logger.info(data.orderId);
-        userController.updateUserOrder(action = 'restaurantAccept', orderId = data.orderId);
+        userController.updateUserOrder(action = 'restaurantAccepted', orderId = data.orderId);
         socket.emit('ordersupdated');
       }
       );
@@ -52,32 +51,7 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
       }
       );
     });
-
-
   });
-
-
-
-
-
-
-
-  // var wss = new WebSocketServer({ port: 7007 });
-  // logger.info('WebSocketServer started');
-  // wss.broadcast = function broadcastMsg(msg) {
-  //   wss.clients.forEach(function each(client) {
-  //     client.send(msg);
-  //   });
-  // };
-  // wss.on('connection', function connection(ws) {
-  //   var remoteIp = ws.upgradeReq.connection.remoteAddress;
-  //   logger.info('WebSocketServer connection from ' + remoteIp);
-  //   ws.on('message', function incoming(message) {
-  //     logger.info('WebSocketServer received: ' + message);
-  //     wss.broadcast(message);
-  //   }
-  //   );
-  // });
 });
 
 const exitHandler = () => {

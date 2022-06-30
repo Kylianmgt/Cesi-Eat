@@ -10,8 +10,6 @@ const getRestaurantOrders = ({ commit }, restaurantId) => {
 };
 
 const postArticle = ({ }, payload) => {
-    console.log("[STORE} [ ] postArticle store...")
-    // console.log({ payload })
     return api.post(`/restaurant/${payload.restaurantId}/article/create`, { article: payload.article, userId: payload.userId })
         .then(response => {
             return response.data;
@@ -20,8 +18,6 @@ const postArticle = ({ }, payload) => {
 };
 
 const postMenu = ({ }, payload) => {
-    console.log("[STORE] [ ] postMenu store...")
-    // console.log({ payload })
     return api.post(`/restaurant/${payload.restaurantId}/menu/create`, { menu: payload.menu, userId: payload.userId })
         .then(response => {
             return response.data;
@@ -30,10 +26,7 @@ const postMenu = ({ }, payload) => {
 };
 
 const deleteMenu = ({ }, payload) => {
-    console.log("[STORE] [ ] deleteMenu store...")
     const menuId = payload.menuId;
-    // console.log({ payload })
-    // console.log({ menuId })
     return api.post(`/restaurant/${payload.restaurantId}/menu/delete`, { menuId: menuId })
         .then(response => {
             return response.data;
@@ -42,10 +35,7 @@ const deleteMenu = ({ }, payload) => {
 };
 
 const deleteArticle = ({ }, payload) => {
-    console.log("[STORE] [ ] Calling Delete Article from API...")
     const articleId = payload.articleId;
-    // console.log({ payload })
-    // console.log({ articleId })
     return api.post(`/restaurant/${payload.restaurantId}/article/delete`, { articleId: articleId })
         .then(response => {
             return response.data;
@@ -54,8 +44,6 @@ const deleteArticle = ({ }, payload) => {
 };
 
 const updateArticle = ({ }, payload) => {
-    console.log("[STORE] [ ] Calling Update Article from API...")
-    // console.log({ payload })
     return api.put(`/restaurant/${payload.restaurantId}/article/update`, { article: payload.articleFields, userId: payload.userId })
         .then(response => {
             return response.data;
@@ -64,8 +52,6 @@ const updateArticle = ({ }, payload) => {
 };
 
 const updateMenu = ({ }, payload) => {
-    console.log("[STORE] [ ] Calling Update Menu from API...")
-    // console.log({ payload })
     return api.put(`/restaurant/${payload.restaurantId}/menu/update`, { menu: payload.menuFields, userId: payload.userId })
         .then(response => {
             return response.data;

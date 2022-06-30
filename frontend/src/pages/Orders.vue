@@ -26,10 +26,7 @@
         </ion-text>
         <ion-list>
           <ion-item v-for="order in userOrders">
-            <OrderCard
-              v-bind:order="order"
-              v-if="order.status != 'done'"
-            ></OrderCard>
+            <OrderCard v-bind:order="order" v-if="order.status != 'done'"></OrderCard>
           </ion-item>
         </ion-list>
         <ion-text class="text-center">
@@ -39,10 +36,7 @@
         </ion-text>
         <ion-list>
           <ion-item v-for="order in userOrders">
-            <OrderCard
-              v-bind:order="order"
-              v-if="order.status == 'done'"
-            ></OrderCard>
+            <OrderCard v-bind:order="order" v-if="order.status == 'done'"></OrderCard>
           </ion-item>
         </ion-list>
       </ion-content>
@@ -85,9 +79,7 @@ export default {
   beforeMount() {
     const store = useStore();
     if (!store.state.user.userData.user) {
-      console.log("je vais la");
       const data = Storage.get({ key: "userCredentials" }).then((response) => {
-        console.log(response.value);
         const userCredentials = JSON.parse(response.value);
         this.userLogin(userCredentials).then((response) => {
           this.router.push("/orders");
@@ -96,18 +88,6 @@ export default {
         });
       });
     }
-    // await store
-    //   .dispatch("login/login", userCredentials)
-    //   .then((response) => {
-    //     store.commit("user/setUserData", response);
-    //     console.log(store.state.user.userData.user.role);
-    //     store.dispatch(
-    //       "user/getUserOrders",
-    //       store.state.user.userData.user.id
-    //     );
-    //     // this.fetchOrders();
-    //     // this.fetchPendingOrders();
-    //   });
   },
   mounted() {
     this.fetchOrders();
@@ -143,15 +123,10 @@ export default {
     const router = useRouter();
     const store = useStore();
     const { userLogin } = login();
-
-    // const userData = store.state.user.userData;
-    // const fetchOrdersActions = {...mapActions{"client", ["getClientOrders"]}, ...mapActions{"delivery", ["getDeliveryOrders"]}, ...mapActions{"restaurant", ["getRestaurantOrders"]}};
-
     return {
       router,
       userLogin,
       router,
-      // userData,
     };
   },
   methods: {
@@ -170,11 +145,7 @@ export default {
       const userCredentials = await Storage.get({ key: "userCredentials" });
       return JSON.parse(userCredentials.value);
     },
-    // async userLogin(userCredentials) {
-    //   const { userLogin } = login();
-    //   await userLogin(userCredentials);
-    //   return;
-    // },
+
   },
 };
 </script>

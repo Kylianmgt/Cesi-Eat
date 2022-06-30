@@ -1,8 +1,5 @@
 <template>
-  <base-layout
-    page-default-back-link="/client/restaurant"
-    :show-menu-button="false"
-  >
+  <base-layout page-default-back-link="/client/restaurant" :show-menu-button="false">
     <ion-page>
       <ion-text>
         <h1>
@@ -16,10 +13,7 @@
           </h2>
         </ion-text>
         <ion-grid>
-          <OrderedItemCard
-            v-for="selected_item in selected_items"
-            :selected_item="selected_item"
-          ></OrderedItemCard>
+          <OrderedItemCard v-for="selected_item in selected_items" :selected_item="selected_item"></OrderedItemCard>
           <h1>Total : {{ totalCalculation() }}€</h1>
         </ion-grid>
       </ion-content>
@@ -34,9 +28,7 @@
           <p>Code postal</p>
           <p>Indication</p>
         </ion-card>
-        <ion-button size="small" color="light"
-          >Modifier l'adresse de livraison</ion-button
-        >
+        <ion-button size="small" color="light">Modifier l'adresse de livraison</ion-button>
       </ion-content>
       <ion-content>
         <ion-text>
@@ -51,9 +43,7 @@
           <p>Nom</p>
           <p>Prénom</p>
         </ion-card>
-        <ion-button size="small" color="light"
-          >Modifier la méthode de paiement</ion-button
-        >
+        <ion-button size="small" color="light">Modifier la méthode de paiement</ion-button>
       </ion-content>
       <ion-button @click="() => formatAndSendOrder()">
         <ion-icon name="buy" />
@@ -104,7 +94,6 @@ export default {
       console.log("socket to notification channel disconnected");
     },
     paymentDone: function () {
-      console.log("socket dooooooonttte");
       Browser.close();
       this.openToast("Order success", "success");
       this.router.push({ name: "Orders" });
@@ -179,8 +168,6 @@ export default {
             Browser.open({ url: response.url });
           }
         });
-
-      // this.$store.dispatch("client/createOrder", { order: order });
     },
   },
 };

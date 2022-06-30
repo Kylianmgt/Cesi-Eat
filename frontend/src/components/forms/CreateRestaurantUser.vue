@@ -2,13 +2,7 @@
   <ion-content>
     <ion-grid>
       <ion-row>
-        <ion-col
-          size-xs="12"
-          size-sm="12"
-          size-md="12"
-          size-lg="12"
-          size-xl="12"
-        >
+        <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
           <ion-card>
             <ion-card-header>
               <ion-card-title>{{ "Create Restaurant User" }}</ion-card-title>
@@ -37,25 +31,19 @@
                 </ion-item>
                 <ion-item>
                   <ion-label position="stacked">{{ "Password" }}</ion-label>
-                  <ion-input
-                    type="password"
-                    v-model="Fields.password"
-                  ></ion-input>
+                  <ion-input type="password" v-model="Fields.password"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="stacked">{{
-                    "Confirm Password"
+                      "Confirm Password"
                   }}</ion-label>
-                  <ion-input
-                    type="password"
-                    v-model="Fields.confirmPassword"
-                  ></ion-input>
+                  <ion-input type="password" v-model="Fields.confirmPassword"></ion-input>
                 </ion-item>
               </ion-list>
             </ion-card-content>
             <ion-card-content>
               <ion-button expand="block" @click="signup()">{{
-                "Create"
+                  "Create"
               }}</ion-button>
             </ion-card-content>
           </ion-card>
