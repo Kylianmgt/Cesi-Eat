@@ -5,6 +5,8 @@ const clientProfil = Joi.object().keys({
   name: Joi.string().required(),
   firstName: Joi.string().required(),
   address: Joi.string().required(),
+  zipCode: Joi.string().required(),
+  city: Joi.string().required(),
   image: Joi.string().allow(null, ""),
 });
 
@@ -14,7 +16,7 @@ const deliveryProfil = Joi.object().keys({
   address: Joi.string().required(),
   zipCode: Joi.string().required(),
   city: Joi.string().required(),
-  image: Joi.string().required(),
+  image: Joi.string().allow(null, ""),
 
 });
 
