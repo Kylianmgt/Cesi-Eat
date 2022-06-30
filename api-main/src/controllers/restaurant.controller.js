@@ -30,7 +30,7 @@ const createArticle = catchAsync(async (req, res) => {
     restaurant.save();
 
     const restaurantProfil = restaurantService.getRestaurantProfil(userId);
-    res.status(httpStatus.DELETE).send(restaurantProfil);
+    res.status(httpStatus.CREATED).send(restaurantProfil);
 
 })
 
