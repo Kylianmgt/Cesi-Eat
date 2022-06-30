@@ -10,7 +10,6 @@
 export default {
   name: "Checkout",
   data() {
-    console.log("test");
     return {
       stripe: "",
     };

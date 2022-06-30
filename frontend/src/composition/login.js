@@ -25,7 +25,6 @@ export default function () {
       .then((response) => {
         openToast('Logged with sucess', 'success', 'top');
         this.$store.commit('user/setUserData', response);
-        console.log(this.$store.state.user.userData);
         this.$store.commit('user/setUserType', response.user.role);
         storeUserData(userCredentials);  // store user credentials in local storage
         router.push('/' + response.user.role);
