@@ -23,9 +23,9 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
       socket.on('disconnect', () => {
         logger.info('user disconnected');
       });
-      socket.on('restaurantAccept', (data) => {
+      socket.on('restaurantAccepted', (data) => {
         logger.info(data.orderId);
-        userController.updateUserOrder(action = 'restaurantAccept', orderId = data.orderId);
+        userController.updateUserOrder(action = 'restaurantAccepted', orderId = data.orderId);
         socket.emit('ordersupdated');
       }
       );
