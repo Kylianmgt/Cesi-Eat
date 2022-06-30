@@ -8,6 +8,12 @@
 <template>
   <ion-card :class="bgColors[order.status]" class="w-full">
     <ion-card-header>
+      <ion-img
+        v-if="order.restaurant.image"
+        :src="order.restaurant.image"
+        class=".order-delivery-img"
+      >
+      </ion-img>
       <ion-card-title class="text-2xl font-bold">{{
         order.restaurant.name
       }}</ion-card-title>

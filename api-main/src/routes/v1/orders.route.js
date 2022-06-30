@@ -9,7 +9,7 @@ const userValidation = require('../../validations/user.validation');
 const router = express.Router();
 
 router.route('/:userId')
-    .get(validate(userValidation.getUser), userController.getUserOrders)
+    .get(auth(), validate(userValidation.getUser), userController.getUserOrders)
 
 router.route('/').get(deliveryController.getPendingOrders)
 
