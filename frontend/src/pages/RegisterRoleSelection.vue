@@ -150,7 +150,7 @@ export default {
   }
 }
 
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+/* If the screen size is 750px wide or less, set the font-size of <div> to 30px */
 @media screen and (max-width: 750px) {
   ion-card {
     display: block;
