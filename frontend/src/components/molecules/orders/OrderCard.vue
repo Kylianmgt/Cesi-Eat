@@ -211,7 +211,7 @@ export default defineComponent({
       return;
     },
     acceptOrderAsRestaurant() {
-      this.$socket.emit("restaurantAccept", {
+      this.$socket.emit("restaurantAccepted", {
         orderId: this.order.id,
       });
     },
