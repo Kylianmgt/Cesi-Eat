@@ -42,8 +42,8 @@ const createCheckoutSession = catchAsync(async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: orderItems(order),
     mode: 'payment',
-    success_url: 'https://google.fr/',
-    cancel_url: 'http://localhost:8080/client/restaurants',
+    success_url: 'http://cesi-eats.de/login',
+    cancel_url: 'http://cesi-eats.de/login',
     metadata: {
       order_id: order.id
     }
