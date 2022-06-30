@@ -14,12 +14,12 @@ const stripe = require('stripe')('sk_test_51LEAlbLhNfISaHcD8OZv3CwsgLas8yqCN08Yr
 
 const router = express.Router();
 
-router.route('/:clientId/orders').get(validate(clientValidation.getClientOrders), clientController.getClientOrders);
+router.route('/:clientId/orders').get(auth(), validate(clientValidation.getClientOrders), clientController.getClientOrders);
 
 // router.route('/:clientId/create-order').post(validate(clientValidation.createClientOrder), clientController.createOrder);
-router.route('/:clientId/create-order').post(clientController.createOrder);
+router.route('/:clientId/create-order').post(auth(), clientController.createOrder);
 
-router.route('/:clientId/create-checkout-session').post(clientController.createCheckoutSession);
+router.route('/:clientId/create-checkout-session').post(auth(), clientController.createCheckoutSession);
 
 router.route('/webhook').post(express.raw({ type: 'application/json' }), clientController.checkoutSessionHandler);
 

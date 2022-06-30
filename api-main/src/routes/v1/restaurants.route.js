@@ -8,5 +8,5 @@ const restaurantValidation = require('../../validations/restaurant.validation');
 const router = express.Router();
 
 router.route('/')
-    .get(restaurantController.getRestaurants)
+    .get(auth(), restaurantController.getRestaurants)
 module.exports = router;

@@ -1,3 +1,12 @@
+<style>
+.profil-img::part(image) {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+</style>
+
 <template>
   <base-layout :show-menu-button="false">
     <ion-page>
@@ -16,9 +25,9 @@
             v-model="clientFields.address"
           ></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label position="floating">Image</ion-label>
+        <ion-col>
           <ion-img
+            class=".profil-img"
             :src="clientFields.image"
             v-if="clientFields.image"
           ></ion-img>
@@ -32,7 +41,7 @@
               }
             "
           />
-        </ion-item>
+        </ion-col>
       </ion-content>
       <ion-content v-if="userData.user.role == 'delivery'">
         <ion-item>
@@ -49,9 +58,10 @@
             v-model="deliveryFields.address"
           ></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-col>
           <ion-label position="floating">Image</ion-label>
           <ion-img
+            class=".profil-img"
             :src="deliveryFields.image"
             v-if="deliveryFields.image"
           ></ion-img>
@@ -65,7 +75,7 @@
               }
             "
           />
-        </ion-item>
+        </ion-col>
       </ion-content>
 
       <ion-button @click="() => updateProfil()" class="ion-text-center">
