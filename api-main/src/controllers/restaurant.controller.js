@@ -87,14 +87,12 @@ const updateMenuById = catchAsync(async (req, res) => {
     const menu = req.body.menu;
     const articlesLength = menu.articles.length;
     const menuId = menu.id;
-
     logger.debug("[ ] [CONTROLLER] Update Menu: " + menuId)
     logger.debug("[+] [CONTROLLER] Get " + articlesLength + " articles.")
     const restaurantId = req.params.restaurantId;
     const userId = req.body.userId;
     const updateArticle = await restaurantService.updateMenu(restaurantId, menu);
     const restaurantProfil = await restaurantService.getRestaurantProfil(userId);
-    // logger.debug("[ ] [CONTROLLER] useId: " + restaurantProfil)
     res.status(httpStatus.CREATED).send(restaurantProfil);
 })
 
