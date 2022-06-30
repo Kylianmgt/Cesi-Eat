@@ -8,6 +8,7 @@ const createUser = {
     password: Joi.string().required().custom(password),
     name: Joi.string(),
     role: Joi.string().required().valid('user', 'admin'),
+    sponsorCode: Joi.string().allow(null, ""),
   }),
 };
 

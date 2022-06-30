@@ -37,19 +37,28 @@
                 MySponsorCOde: {{ userData.user.publicSponsorCode }}
               </ion-text>
             </ion-item>
-            <ion-item v-if="userData.sponsoredProfiles">
-              <ion-text> Sponsored Profiles </ion-text>
-              <ion-list>
+            <ion-col v-if="userData.sponsoredProfiles">
+              <ion-text class="text-bold text-2xl">
+                Sponsored Profiles
+              </ion-text>
+              <ion-row>
                 <ion-item
                   v-if="userData.sponsoredProfiles"
                   v-for="profil in userData.sponsoredProfiles"
                 >
-                  <ion-text v-if="profil">
-                    {{ profil.name }}
-                  </ion-text>
+                  <ion-col>
+                    <ion-img
+                      class="profil-img"
+                      v-if="profil && profil.image"
+                      :src="profil.image"
+                    ></ion-img>
+                    <ion-text v-if="profil">
+                      {{ profil.name }}
+                    </ion-text>
+                  </ion-col>
                 </ion-item>
-              </ion-list>
-            </ion-item>
+              </ion-row>
+            </ion-col>
             <ion-item v-if="userData.sponsorProfil">
               <ion-text> My Sponsor Profil </ion-text>
               <ion-item>
