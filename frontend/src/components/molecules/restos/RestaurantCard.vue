@@ -1,16 +1,24 @@
 <template>
-  <ion-card class="rounded-lg" @click="goToRestaurantPage()">
-    <ion-card-header>
-      <ion-thumbnail class="card-image-container">
-        <Image :src="data.image" />
-      </ion-thumbnail>
-      <ion-card-subtitle class="card-subtitle">{{
-        data.address
-      }}</ion-card-subtitle>
-      <ion-card-title class="card-title">{{ data.name }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="text-sm"> </ion-card-content>
-  </ion-card>
+  <ion-item>
+    <ion-card class="rounded-lg" @click="goToRestaurantPage()">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-thumbnail class="card-image-container">
+              <Image :src="data.image" />
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col>
+            <ion-card-subtitle class="card-subtitle">{{
+                data.address
+            }}</ion-card-subtitle>
+            <ion-card-title class="card-title">{{ data.name }}</ion-card-title>
+            <ion-card-content class="text-sm"> </ion-card-content>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-item>
 </template>
 
 <script>
@@ -73,6 +81,26 @@ export default defineComponent({
 </script>
 
 <style scoped>
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+
+@media screen and (max-width: 750px) {}
+
+@media screen and (min-width: 751px) {}
+
+ion-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-card {
+  width: 100vw;
+  height: 19vw;
+  border-radius: 0;
+  border: none;
+}
+
 .card-image {
   width: 100%;
   height: 100%;
@@ -82,8 +110,8 @@ export default defineComponent({
 }
 
 .card-image-container {
-  width: 100%;
-  height: 100%;
+  width: 15vw;
+  height: 12vw;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

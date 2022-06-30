@@ -243,5 +243,9 @@ export default {
     width: 100vw;
   }
 
+  .myOverlay {
+    display: none;
+  }
+
 }
 </style>

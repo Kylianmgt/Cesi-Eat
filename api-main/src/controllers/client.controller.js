@@ -10,7 +10,6 @@ const getClientOrders = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(orders);
 });
 
-
 const createOrder = catchAsync(async (req, res) => {
   const order = await clientService.createClientOrder(req.body.order);
   res.status(httpStatus.CREATED).send(order);
@@ -83,11 +82,6 @@ const checkoutSessionHandler = catchAsync(async (request, response) => {
   }
   return response.send();
 });
-
-
-
-
-
 
 module.exports = {
   getClientOrders,

@@ -216,8 +216,6 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const role = route.params.role;
-    console.log(role);
-
     const showPassword = ref(false);
 
     const Icon = ref({
