@@ -507,4 +507,22 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@media screen and (min-width: 751px) {
+  ion-row {
+    padding: 0.2vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    align-content: center;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  ion-row {
+    padding: 0.2vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    align-content: center;
+  }
+}
+</style>
