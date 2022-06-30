@@ -108,8 +108,8 @@ export default {
     });
 
     const Fields = ref({
-      email: "kylianmigot@km.com",
-      password: "Test1234",
+      email: "",
+      password: "",
     });
 
     const ErrorMessages = ref({

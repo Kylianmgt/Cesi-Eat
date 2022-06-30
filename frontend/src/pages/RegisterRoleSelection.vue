@@ -110,8 +110,8 @@ export default {
   }
 
   ion-img {
-    width: 62vw;
-    height: 12vw;
+    width: 60vw;
+    height: 10vw;
     object-fit: cover;
   }
 
@@ -133,6 +133,7 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    height: 3rem;
     width: 100vw;
   }
 
