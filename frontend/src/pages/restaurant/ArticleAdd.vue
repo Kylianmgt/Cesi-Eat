@@ -109,7 +109,9 @@ export default {
         restaurantId: userData.profil.id,
         userId: userData.user.id,
         article: { ...articleFields },
-      });
+      }).then((response) => {
+        this.$store.commit("user/setUserDataProfil", response);
+      })
       this.router.back();
     },
 

@@ -133,6 +133,8 @@ export default {
         restaurantId: userData.profil.id,
         userId: userData.user.id,
         menu: { ...menuFields },
+      }).then((response) => {
+        this.$store.commit("user/setUserDataProfil", response);
       });
       this.router.back();
     },
