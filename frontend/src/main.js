@@ -40,7 +40,7 @@ import './assets/css/bootstrap-grid.min.css';
 
 const socket = new VueSocketIO({
   debug: true,
-  connection: 'http://35.242.246.26/v1',
+  connection: 'http://35.242.246.26',
   vuex: {
     store,
     actionPrefix: 'SOCKET_',
