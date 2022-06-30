@@ -12,7 +12,9 @@ const deliveryProfil = Joi.object().keys({
   name: Joi.string().required(),
   firstName: Joi.string().required(),
   address: Joi.string().required(),
-  image: Joi.string().allow(null, ""),
+  zipCode: Joi.string().required(),
+  city: Joi.string().required(),
+  image: Joi.string().required(),
 
 });
 
