@@ -69,6 +69,7 @@
     "pm2": "^5.1.0",
     "query-string": "^7.1.1",
     "socket.io": "^4.5.1",
+    "stripe": "^9.10.0",
     "swagger-jsdoc": "^6.0.8",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.0.0",

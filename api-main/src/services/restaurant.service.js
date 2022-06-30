@@ -42,7 +42,7 @@ const updateRestaurantProfil = async (userId, profil) => {
 };
 
 const updateArticle = async (restaurantId, article) => {
-  return Article.findOneAndUpdate({ restaurant: restaurantId }, article);
+  return Article.findOneAndUpdate({ _id: mongoose.Types.ObjectId(article.id) }, article);
 };
 
 const updateMenu = async (restaurantId, menuFields) => {
@@ -60,7 +60,7 @@ const updateMenu = async (restaurantId, menuFields) => {
 };
 
 const getRestaurantOrders = async (restaurantId) => {
-  return Order.find({ restaurant: restaurantId }).populate('client');
+  return Order.find({ restaurant: restaurantId, isPayed: true }).populate('client');
 };
 
 const getRestaurants = async () => {

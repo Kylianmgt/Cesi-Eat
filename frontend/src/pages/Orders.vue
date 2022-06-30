@@ -7,7 +7,7 @@
             <span class="text-4xl">My orders</span>
           </h1>
         </ion-text>
-        <ion-list v-if="userData.user.role == 'delivery'">
+        <ion-list>
           <ion-text class="text-center">
             <h2>
               <span class="text-2xl ml-2">PendingOrders</span>
@@ -26,10 +26,7 @@
         </ion-text>
         <ion-list>
           <ion-item v-for="order in userOrders">
-            <OrderCard
-              v-bind:order="order"
-              v-if="order.status != 'done'"
-            ></OrderCard>
+            <OrderCard v-bind:order="order" v-if="order.status != 'done'"></OrderCard>
           </ion-item>
         </ion-list>
         <ion-text class="text-center">
@@ -39,10 +36,7 @@
         </ion-text>
         <ion-list>
           <ion-item v-for="order in userOrders">
-            <OrderCard
-              v-bind:order="order"
-              v-if="order.status == 'done'"
-            ></OrderCard>
+            <OrderCard v-bind:order="order" v-if="order.status == 'done'"></OrderCard>
           </ion-item>
         </ion-list>
       </ion-content>
@@ -65,6 +59,8 @@ import {
 import { useRouter } from "vue-router";
 import OrderCard from "../components/molecules/orders/OrderCard.vue";
 import { mapActions, useStore, mapState } from "vuex";
+import login from "../composition/login";
+import { Storage } from "@capacitor/storage";
 
 export default {
   name: "Orders",
@@ -80,11 +76,26 @@ export default {
     IonLabel,
     OrderCard,
   },
+  beforeMount() {
+    const store = useStore();
+    if (!store.state.user.userData.user) {
+      const data = Storage.get({ key: "userCredentials" }).then((response) => {
+        const userCredentials = JSON.parse(response.value);
+        this.userLogin(userCredentials).then((response) => {
+          this.router.push("/orders");
+          this.fetchOrders();
+          this.fetchPendingOrders();
+        });
+      });
+    }
+  },
   mounted() {
     this.fetchOrders();
-    if (this.userData.user.role == "delivery") {
-      this.fetchPendingOrders();
-    }
+    this.fetchPendingOrders();
+  },
+  ionViewWillEnter() {
+    this.fetchOrders();
+    this.fetchPendingOrders();
   },
   computed: mapState({
     userOrders: (state) => state.user.userOrders,
@@ -111,23 +122,30 @@ export default {
   setup() {
     const router = useRouter();
     const store = useStore();
-
-    // const userData = store.state.user.userData;
-    // const fetchOrdersActions = {...mapActions{"client", ["getClientOrders"]}, ...mapActions{"delivery", ["getDeliveryOrders"]}, ...mapActions{"restaurant", ["getRestaurantOrders"]}};
-
+    const { userLogin } = login();
     return {
       router,
-      // userData,
+      userLogin,
+      router,
     };
   },
   methods: {
     fetchOrders() {
-      this.$store.dispatch("user/getUserOrders", this.userData.user.id);
+      this.$store.dispatch(
+        "user/getUserOrders",
+        this.$store.state.user.userData.user.id
+      );
     },
     fetchPendingOrders() {
-      this.$store.dispatch("user/getPendingOrders");
-      console.log(this.$store.state.user.pendingOrders);
+      if (this.$store.state.user.userData.user.role == "delivery") {
+        this.$store.dispatch("user/getPendingOrders");
+      }
     },
+    async getUserCredentials() {
+      const userCredentials = await Storage.get({ key: "userCredentials" });
+      return JSON.parse(userCredentials.value);
+    },
+
   },
 };
 </script>

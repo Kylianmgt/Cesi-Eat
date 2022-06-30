@@ -1,62 +1,59 @@
 <template>
   <base-layout :show-menu-button="true" pageTitle="Ajouter un Menu">
     <ion-page>
-        <ion-content class="p-8">
-            <!-- Menu Add Form -->
-            <IonTitle size="large" color="primary">Informations de votre nouveau Menu</IonTitle>
-            <div class="flex flex-col p-8 ">
+      <ion-content class="p-8">
+        <!-- Menu Add Form -->
+        <IonTitle size="large" color="primary">Informations de votre nouveau Menu</IonTitle>
+        <div class="flex flex-col p-8 ">
 
-                <ion-item>
-                    <ion-label position="floating">Nom du Menu</ion-label>
-                    <ion-input type="text" v-model="menuFields.name" />
-                </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nom du Menu</ion-label>
+            <ion-input type="text" v-model="menuFields.name" />
+          </ion-item>
 
-                <ion-item>
-                    <ion-label position="floating" >Description du Menu</ion-label>
-                    <ion-input type="text" v-model="menuFields.description" value="test" />
-                </ion-item>
+          <ion-item>
+            <ion-label position="floating">Description du Menu</ion-label>
+            <ion-input type="text" v-model="menuFields.description" value="test" />
+          </ion-item>
 
-                <ion-item>
-                  <ion-label position="fixe">Image du Menu</ion-label>
-                  <ion-img :src="menuFields.image" />
-                  <File
-                    name="menuInfo.image"
-                    open-camera
-                    label="Open camera and gallery"
-                    @files="
-                      (files) => {
-                        menuFields.image = files[0];
-                      }
-                    "
-                  />
-                </ion-item>
+          <ion-item>
+            <ion-label position="fixe">Image du Menu</ion-label>
+            <ion-img :src="menuFields.image" />
+            <File name="menuInfo.image" open-camera label="Open camera and gallery" @files="
+              (files) => {
+                menuFields.image = files[0];
+              }
+            " />
+          </ion-item>
 
-                <ion-item>
-                    <ion-label position="floating">Prix du Menu</ion-label>
-                    <ion-input type="text" v-model="menuFields.price" value="test" />
-                </ion-item>
+          <ion-item>
+            <ion-label position="floating">Prix du Menu</ion-label>
+            <ion-input type="text" v-model="menuFields.price" value="test" />
+          </ion-item>
 
-                <ion-list>
-                  <ion-item>
+          <ion-list>
+            <ion-item>
 
-                    <ion-select placeholder="Sélectionnez les articles de ce Menu" :multiple="true" @ionChange="onChange($event)">
+              <ion-select placeholder="Sélectionnez les articles de ce Menu" :multiple="true"
+                @ionChange="onChange($event)">
 
-                      <ion-select-option v-for="article in userData.profil.articles" :key="article.id">
-                        {{ article.name }}
-                      </ion-select-option>
+                <ion-select-option v-for="article in userData.profil.articles" :key="article.id">
+                  {{ article.name }}
+                </ion-select-option>
 
-                    </ion-select>
+              </ion-select>
 
-                  </ion-item>
-                </ion-list>
+            </ion-item>
+          </ion-list>
 
-                <ion-button color="success" @click="() => createMenu(menuFields)">Enregistrer le Menu</ion-button>
-                <ion-button color="warning" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière</ion-button>
+          <ion-button color="success" @click="() => createMenu(menuFields)">Enregistrer le Menu</ion-button>
+          <ion-button color="warning" @click="() => router.back({ name: 'MyRestaurant' })">Retour en arrière
+          </ion-button>
 
-            </div>
-        </ion-content>
+        </div>
+      </ion-content>
     </ion-page>
-   </base-layout>
+  </base-layout>
 </template>
 
 
@@ -65,7 +62,7 @@ import {
   IonIcon,
   IonLabel,
   IonContent,
-  IonButton,  
+  IonButton,
   IonInput,
   IonText,
   IonImg,
@@ -75,7 +72,7 @@ import {
   IonItem,
   IonList,
   IonSelect,
-  
+
 } from "@ionic/vue";
 
 import { useRouter, useRoute } from "vue-router";
@@ -89,7 +86,7 @@ export default {
     IonIcon,
     IonLabel,
     IonContent,
-    IonButton,  
+    IonButton,
     IonInput,
     IonText,
     IonImg,
@@ -100,11 +97,10 @@ export default {
     File,
     IonList,
     IonSelect,
-   },
+  },
 
   computed: {
     userData() {
-      console.log("[MENU_ADD] [+] Get profil Data...")
       let userData = this.$store.state.user.userData;
       return userData;
     }
@@ -129,7 +125,6 @@ export default {
 
   methods: {
     createMenu(menuFields) {
-      console.log("[MENU_ADD] [+]  Create Menu")
       let userData = this.userData;
       let menuArticles = menuFields.articles;
 
@@ -137,30 +132,25 @@ export default {
       this.$store.dispatch("restaurant/postMenu", {
         restaurantId: userData.profil.id,
         userId: userData.user.id,
-        menu: {...menuFields},
+        menu: { ...menuFields },
       });
       this.router.back();
     },
 
-    onChange(articleNames){
-      console.log("[MENU_ADD] [ ]  Value change")
-
+    onChange(articleNames) {
       articleNames = articleNames.target.value;
-      let articles =  this.userData.profil.articles;
+      let articles = this.userData.profil.articles;
       let articleId;
       let articlesId = [];
 
       articleNames.forEach(articleName => {
-        for(let i = 0; i < articles.length; i++){
-          if(articles[i].name == articleName) {
+        for (let i = 0; i < articles.length; i++) {
+          if (articles[i].name == articleName) {
             articleId = articles[i].id;
           }
         }
         articlesId.push(articleId);
       });
-
-      console.log("[MENU_ADD] [+]  Checking menuFields")
-
       this.menuFields.articles = articlesId;
     },
 

@@ -1,5 +1,7 @@
 import redirectToHome from "./redirectToHome";
 import useToast from "./useToast";
+import login from "../composition/login";
+
 
 export default function () {
   const { openToast } = useToast();
@@ -18,19 +20,10 @@ export default function () {
     };
     delete data.user.confirmPassword;
 
-    console.log(data);
-
     return this.$store
-      .dispatch("register/register", data)  
+      .dispatch("register/register", data)
       .then((response) => {
         openToast("Registered with sucess", "success", "top");
-
-        // redirectTo(
-        //     response.data.userType,
-        //     { anyCustomParams: response.customParams },
-        //     true,
-        // );
-
         return Promise.resolve();
       })
       .catch(() => {
@@ -38,79 +31,6 @@ export default function () {
         Promise.reject();
       });
   }
-  // async function clientRegister(userCredentials) {
-  //     const data = {
-  //         email: userCredentials.email,
-  //         password: userCredentials.password,
-  //         name: 'test'
-  //     };
-
-  //     return this.$store.dispatch('register/register', data)
-  //         .then((response) => {
-  //             openToast('Registered with sucess', 'success', 'top');
-
-  //             // redirectTo(
-  //             //     response.data.userType,
-  //             //     { anyCustomParams: response.customParams },
-  //             //     true,
-  //             // );
-
-  //             return Promise.resolve();
-  //         })
-  //         .catch(() => {
-  //             openToast('Something was wrong on register', 'danger', 'top');
-  //             Promise.reject();
-  //         });
-  // }
-  // async function restoRegister(userCredentials) {
-  //     const data = {
-  //         email: userCredentials.email,
-  //         password: userCredentials.password,
-  //         name: 'test'
-  //     };
-
-  //     return this.$store.dispatch('register/register', data)
-  //         .then((response) => {
-  //             openToast('Registered with sucess', 'success', 'top');
-
-  //             // redirectTo(
-  //             //     response.data.userType,
-  //             //     { anyCustomParams: response.customParams },
-  //             //     true,
-  //             // );
-
-  //             return Promise.resolve();
-  //         })
-  //         .catch(() => {
-  //             openToast('Something was wrong on register', 'danger', 'top');
-  //             Promise.reject();
-  //         });
-  // }
-  // async function deliveryRegister(userCredentials) {
-  //     const data = {
-  //         email: userCredentials.email,
-  //         password: userCredentials.password,
-  //         name: 'test'
-  //     };
-
-  //     return this.$store.dispatch('register/register', data)
-  //         .then((response) => {
-  //             openToast('Registered with sucess', 'success', 'top');
-
-  //             // redirectTo(
-  //             //     response.data.userType,
-  //             //     { anyCustomParams: response.customParams },
-  //             //     true,
-  //             // );
-
-  //             return Promise.resolve();
-  //         })
-  //         .catch(() => {
-  //             openToast('Something was wrong on register', 'danger', 'top');
-  //             Promise.reject();
-  //         });
-  // }
-
   return {
     userRegister,
     openToast,

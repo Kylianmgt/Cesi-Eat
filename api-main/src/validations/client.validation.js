@@ -7,11 +7,7 @@ const getClientOrders = {
   }),
 };
 
-// TO COMPLETE
 const createClientOrder = {
-    // params: Joi.object().keys({
-    //     clientId: Joi.string().custom(objectId),
-    // }),
     body : Joi.object().keys({
         order: Joi.object().keys({
             restaurant: Joi.string().custom(objectId),

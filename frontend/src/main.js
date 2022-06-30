@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import { IonicVue } from '@ionic/vue';
-import { Storage } from '@capacitor/storage';
 import mitt from 'mitt';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
@@ -9,13 +8,8 @@ import router from './router';
 import store from './store';
 import Utils from './utils/index';
 import VueSocketIO from 'vue-3-socket.io'
-
-import redirectToHome from './composition/redirectToHome';
-import { mapGetters } from 'vuex';
-
 import BaseLayout from './components/base/BaseLayout.vue';
 import { DynamicScroller } from 'vue-virtual-scroller';
-import VueVirtualScroller from 'vue-virtual-scroller';
 import ErrorMessage from './components/ErrorMessage.vue';
 import Loading from './components/Loading.vue';
 
@@ -44,57 +38,6 @@ import './theme/core.css';
 /* Bootstrap utilities */
 import './assets/css/bootstrap-grid.min.css';
 
-// router.beforeEach(async (to, from, next) => {
-//   const userDataString = await Storage.get({ key: 'user' });
-//   console.log(userDataString);
-//   const user = JSON.parse(userDataString);
-//   let lUserId = 0;
-//   let lUserType = 0;
-//   console.log(user)
-
-//   if (user.value) {
-//     const { userId, userType } = JSON.parse(user.value);
-//     lUserId = userId;
-//     lUserType = userType;
-//   }
-
-//   if (['login', 'home', 'register'].includes(to.name) && user.value) {
-//     next({ name: redirectToHome().routes[lUserType] });
-//     return;
-//   }
-
-//   if (!to.meta.userType) {
-//     next();
-//     return;
-//   }
-
-//   if (!user.value) {
-//     next({ name: 'logout' });
-//     return;
-//   }
-
-//   if (!lUserId || !lUserType) {
-//     next({ name: 'logout' });
-//     return;
-//   }
-
-//   to.matched.some((route) => {
-//     if (typeof route.meta.userType === 'object') {
-//       if (!route.meta.userType.some((type) => type === lUserType)) {
-//         next({ name: 'not-authorized' });
-//         return;
-//       }
-//     }
-
-//     if (!route.meta.userType === lUserType) {
-//       next({ name: 'not-authorized' });
-//       return;
-//     }
-
-//     next();
-//   });
-// });
-
 const socket = new VueSocketIO({
   debug: true,
   connection: 'http://35.242.246.26/v1',
@@ -105,11 +48,14 @@ const socket = new VueSocketIO({
   }
 });
 
+const stripe = Stripe('pk_test_51LEAlbLhNfISaHcDyPFUqUz2L4dro10Dj9LHWYpeUTg0isQESNIClDsERc7Gm7l6LaiDiRrJ7koijJGFvWtq6AY100g3MeaXpr');
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
   .use(store)
   .use(socket)
+  .use(stripe)
 
 app.config.globalProperties.emitter = mitt();
 app.config.globalProperties.$validate = Utils.validations;

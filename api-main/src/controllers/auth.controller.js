@@ -5,6 +5,9 @@ const logger = require('../config/logger');
 
 const register = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body.user);
+  if (!user) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'User not created');
+  };
   const tokens = await tokenService.generateAuthTokens(user);
   let profil;
   switch (user.role) {

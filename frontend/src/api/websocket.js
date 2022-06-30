@@ -10,12 +10,6 @@ wsserver.start(port, {
     },
     // WebSocket Connection handlers
     'onOpen': function (conn) {
-        /* conn: {
-         'uuid' : '8e176b14-a1af-70a7-3e3d-8b341977a16e',
-         'remoteAddr' : '192.168.1.10',
-         'httpFields' : {...},
-         'resource' : '/?param1=value1&param2=value2'
-         } */
         console.log('A user connected from %s', conn.remoteAddr);
     },
     'onMessage': function (conn, msg) {

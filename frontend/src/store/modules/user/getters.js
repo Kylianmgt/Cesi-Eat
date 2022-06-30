@@ -1,12 +1,6 @@
 import { Storage } from '@capacitor/storage';
 
 export default {
-  // async getUserData() {
-  //   const data = await Storage.get({ key: 'user' });
-  //   console.log(data);
-  //   return JSON.parse(data);
-
-  // },
   async getUserId() {
     const user = await Storage.get({ key: 'user' });
 
@@ -19,7 +13,6 @@ export default {
   async getUserType() {
     const user = await Storage.get({ key: 'user' });
 
-    console.log(user);
 
     if (!user.value) return 0;
 

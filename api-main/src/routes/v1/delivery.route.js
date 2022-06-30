@@ -8,7 +8,7 @@ const deliveryValidation = require('../../validations/delivery.validation');
 const router = express.Router();
 
 router.route('/:deliveryId/orders')
-    .get(validate(deliveryValidation.getDelievryOrders), deliveryController.getDeliveryOrders)
+    .get(auth(), validate(deliveryValidation.getDelievryOrders), deliveryController.getDeliveryOrders)
 
 // router.route('/pending')
 //     .get(deliveryController.getPendingOrders)

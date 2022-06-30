@@ -141,7 +141,6 @@ export default {
       errors.push(`You selected more than ${maxNumberOfFiles} files`);
     }
 
-    // eslint-disable-next-line no-restricted-syntax
     for (const image of files) {
       if (!validateFileType(image) || !validateFileSize(image)) {
         return errors;

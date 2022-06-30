@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const { User, Client, Restaurant, Delivery } = require('../models');
 const ApiError = require('../utils/ApiError');
+const logger = require('../config/logger');
 
 /**
  * Create a user
@@ -90,13 +91,14 @@ const deleteUserById = async (userId) => {
   return user;
 };
 
-const checkSponsorCode = async (sponsorCode, role) => {
-  const user = await User.findOne({ publicSponsorCode: sponsorCode });
+const checkSponsorCode = (sponsorCode, role) => {
+  const user = User.findOne({ publicSponsorCode: sponsorCode });
+  logger.info(user);
   if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Wrong sponsor code");
+    return false;
   }
   if (user.role !== role) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Wrong sponsor code, different Role");
+    return false;
   }
   return true;
 

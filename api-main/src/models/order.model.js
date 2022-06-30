@@ -24,7 +24,7 @@ const orderSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['pending', 'accepted', 'rejected', 'deliver', 'done'],
+      enum: ['pending', 'accepted', 'rejected', 'deliver', 'done', 'restaurantAccepted'],
       default: 'pending',
       required: false,
 
@@ -41,6 +41,10 @@ const orderSchema = mongoose.Schema(
         ref: 'Article',
       },
     ],
+    isPayed: {
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timestamps: true,

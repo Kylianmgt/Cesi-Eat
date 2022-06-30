@@ -4,10 +4,7 @@
       <ion-row>
         <ion-col size="15">
           <ion-card-header>
-            <ion-img
-              style="width: 200px; height: 200px"
-              :src="data.image"
-            ></ion-img>
+            <ion-img style="width: 200px; height: 200px" :src="data.image"></ion-img>
             <ion-card-title>{{ data.name }}</ion-card-title>
           </ion-card-header>
         </ion-col>
@@ -74,9 +71,6 @@ export default defineComponent({
       type: Array,
       required: false,
     },
-  },
-  setup(props) {
-    console.log("Menu data :", props);
   },
   methods: {
     increase: function (id) {
