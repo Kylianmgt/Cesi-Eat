@@ -31,6 +31,14 @@ const deliverySchema = mongoose.Schema(
             type: String,
             required: false,
         },
+        zipCode: {
+            type: String,
+            required: true,
+        },
+        city: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,

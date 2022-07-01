@@ -1,3 +1,4 @@
+const logger = require('../config/logger');
 const { Client, Order } = require('../models');
 
 /**
@@ -19,6 +20,7 @@ const getClientProfil = async (userId) => {
 };
 const updateClientProfil = async (userId, profil) => {
     const client = await Client.findOneAndUpdate({ user: userId }, profil, { new: true });
+    logger.debug(`Update client ${client.name}`);
     return client;
 };
 const getClientOrders = async (clientId) => {

@@ -31,6 +31,13 @@ const clientSchema = mongoose.Schema(
             type: String,
             required: false,
         },
+        city: {
+            type: String,
+            required: true,
+        }, zipCode: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,
