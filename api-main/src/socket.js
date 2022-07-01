@@ -11,6 +11,7 @@ module.exports = {
                 origin: '*',
             },
             forceNew: true,
+            rejectUnauthorized: "false",
         });
         return io;
     },
