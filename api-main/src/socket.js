@@ -5,10 +5,7 @@ module.exports = {
         io = require('socket.io')(server, {
             allowEIO3: true,
             cors: {
-                origin: "http://cesi-eats.de",
-                methods: ["GET", "POST"],
-                allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
-                credentials: true,
+                origin: '*',
             }
         });
         return io;
