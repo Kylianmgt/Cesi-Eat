@@ -20,6 +20,7 @@ import '@ionic/vue/css/core.css';
 import '@ionic/vue/css/normalize.css';
 import '@ionic/vue/css/structure.css';
 import '@ionic/vue/css/typography.css';
+import SocketIO from 'socket.io-client'
 
 /* Optional CSS utils that can be commented out */
 import '@ionic/vue/css/padding.css';
@@ -37,10 +38,13 @@ import './theme/core.css';
 
 /* Bootstrap utilities */
 import './assets/css/bootstrap-grid.min.css';
-
+const socketConnection = SocketIO('http://35.242.246.26', {
+  withCredentials: false,
+},
+);
 const socket = new VueSocketIO({
   debug: true,
-  connection: 'http://35.242.246.26',
+  connection: socketConnection,
   vuex: {
     store,
     actionPrefix: 'SOCKET_',

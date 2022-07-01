@@ -10,6 +10,7 @@ module.exports = {
             cors: {
                 origin: '*',
             },
+            credentials: false,
             forceNew: true,
             rejectUnauthorized: "false",
         });
