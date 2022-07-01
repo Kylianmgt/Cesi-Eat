@@ -3,7 +3,7 @@ const catchAsync = require('../utils/catchAsync');
 const { clientService } = require('../services');
 const logger = require('../config/logger');
 const stripe = require('stripe')('sk_test_51LEAlbLhNfISaHcD8OZv3CwsgLas8yqCN08YrZUVMREgzVN0XdjDq1cH9WC7NKlc6fexCaavX6VkZmsD9wXHU3C400eWwGJ3zL');
-const endpointSecret = "whsec_ac623eeef5178ae226579fe1853fb4f565a82f44202662ef66ca05ad67024b7e";
+const endpointSecret = "we_1LGSQNLhNfISaHcDY5pGAizJ";
 
 const getClientOrders = catchAsync(async (req, res) => {
   const orders = await clientService.getClientOrders(req.params.clientId);
