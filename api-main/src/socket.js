@@ -12,7 +12,6 @@ module.exports = {
             },
             credentials: false,
             forceNew: true,
-            rejectUnauthorized: "false",
         });
         return io;
     },
