@@ -48,6 +48,8 @@ const updateProfil = catchAsync(async (req, res) => {
     default:
       break;
   }
+  logger.debug(profil);
+  logger.debug(user);
   res.send({ user: user, profil: profil });
 });
 

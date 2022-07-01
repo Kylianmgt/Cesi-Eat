@@ -10,7 +10,7 @@ const swaggerDef = {
   },
   servers: [
     {
-      url: `http://localhost:${config.port}/v1`,
+      url: `http://35.242.246.26/v1`,
     },
   ],
 };

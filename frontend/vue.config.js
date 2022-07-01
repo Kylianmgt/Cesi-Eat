@@ -6,6 +6,8 @@ module.exports = {
     : '/',
   devServer: {
     port: process.env.VUE_APP_PORT || '8080',
+    compress: true,
+    public: 'cesi-eats.de'
   },
   lintOnSave: false,
   chainWebpack: (config) => {

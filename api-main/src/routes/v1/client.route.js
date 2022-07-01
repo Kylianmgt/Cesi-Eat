@@ -19,7 +19,7 @@ router.route('/:clientId/orders').get(auth(), validate(clientValidation.getClien
 // router.route('/:clientId/create-order').post(validate(clientValidation.createClientOrder), clientController.createOrder);
 router.route('/:clientId/create-order').post(auth(), clientController.createOrder);
 
-router.route('/:clientId/create-checkout-session').post(auth(), clientController.createCheckoutSession);
+router.route('/:clientId/create-checkout-session').post(clientController.createCheckoutSession);
 
 router.route('/webhook').post(express.raw({ type: 'application/json' }), clientController.checkoutSessionHandler);
 

@@ -4,12 +4,15 @@ module.exports = {
     init: (server) => {
         io = require('socket.io')(server, {
             allowEIO3: true,
+
+            methods: ["GET", "POST"],
+            allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
             cors: {
-                origin: "http://localhost:8080",
-                methods: ["GET", "POST"],
-                allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
-                credentials: true,
-            }
+                origin: '*',
+            },
+            credentials: false,
+            forceNew: true,
+            credentials: false
         });
         return io;
     },

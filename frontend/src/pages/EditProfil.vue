@@ -13,38 +13,96 @@
       <ion-content v-if="userData.user.role == 'client'">
         <ion-item>
           <ion-label position="floating">Name</ion-label>
-          <ion-input :value="clientFields.name" v-model="clientFields.name"></ion-input>
+          <ion-input
+            :value="clientFields.name"
+            v-model="clientFields.name"
+          ></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Address</ion-label>
-          <ion-input :value="clientFields.address" v-model="clientFields.address"></ion-input>
+          <ion-input
+            :value="clientFields.address"
+            v-model="clientFields.address"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">ZipCode</ion-label>
+          <ion-input
+            :value="clientFields.zipCode"
+            v-model="clientFields.zipCode"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">City</ion-label>
+          <ion-input
+            :value="clientFields.city"
+            v-model="clientFields.city"
+          ></ion-input>
         </ion-item>
         <ion-col>
-          <ion-img class=".profil-img" :src="clientFields.image" v-if="clientFields.image"></ion-img>
-          <File open-camera label="Open camera and gallery" class="mb-2" @files="
-            (files) => {
-              clientFields.image = files[0];
-            }
-          " />
+          <ion-img
+            class=".profil-img"
+            :src="clientFields.image"
+            v-if="clientFields.image"
+          ></ion-img>
+          <File
+            open-camera
+            label="Open camera and gallery"
+            class="mb-2"
+            @files="
+              (files) => {
+                clientFields.image = files[0];
+              }
+            "
+          />
         </ion-col>
       </ion-content>
       <ion-content v-if="userData.user.role == 'delivery'">
         <ion-item>
           <ion-label position="floating">Name</ion-label>
-          <ion-input :value="deliveryFields.name" v-model="deliveryFields.name"></ion-input>
+          <ion-input
+            :value="deliveryFields.name"
+            v-model="deliveryFields.name"
+          ></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Address</ion-label>
-          <ion-input :value="deliveryFields.address" v-model="deliveryFields.address"></ion-input>
+          <ion-input
+            :value="deliveryFields.address"
+            v-model="deliveryFields.address"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">ZipCode</ion-label>
+          <ion-input
+            :value="deliveryFields.zipCode"
+            v-model="deliveryFields.zipCode"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">City</ion-label>
+          <ion-input
+            :value="deliveryFields.city"
+            v-model="deliveryFields.city"
+          ></ion-input>
         </ion-item>
         <ion-col>
           <ion-label position="floating">Image</ion-label>
-          <ion-img class=".profil-img" :src="deliveryFields.image" v-if="deliveryFields.image"></ion-img>
-          <File open-camera label="Open camera and gallery" class="mb-2" @files="
-            (files) => {
-              deliveryFields.image = files[0];
-            }
-          " />
+          <ion-img
+            class=".profil-img"
+            :src="deliveryFields.image"
+            v-if="deliveryFields.image"
+          ></ion-img>
+          <File
+            open-camera
+            label="Open camera and gallery"
+            class="mb-2"
+            @files="
+              (files) => {
+                deliveryFields.image = files[0];
+              }
+            "
+          />
         </ion-col>
       </ion-content>
 
@@ -102,6 +160,8 @@ export default {
       firstName: store.state.user.userData.profil.firstName,
       address: store.state.user.userData.profil.address,
       image: store.state.user.userData.profil.image,
+      city: store.state.user.userData.profil.city,
+      zipCode: store.state.user.userData.profil.zipCode,
     });
 
     const deliveryFields = ref({
@@ -109,6 +169,8 @@ export default {
       firstName: store.state.user.userData.profil.firstName,
       address: store.state.user.userData.profil.address,
       image: store.state.user.userData.profil.image,
+      city: store.state.user.userData.profil.city,
+      zipCode: store.state.user.userData.profil.zipCode,
     });
     return {
       router,

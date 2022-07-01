@@ -1,20 +1,22 @@
 <template>
   <ion-page>
-    <ion-content scroll-y="false">
+    <ion-content scroll-y="true">
       <ion-col>
         <ion-item>
           <h1>Select a user type</h1>
         </ion-item>
         <ion-item>
-          <ion-card @click="
-            () =>
-              router.push({
-                name: 'Signup',
-                params: {
-                  role: 'client',
-                },
-              })
-          ">
+          <ion-card
+            @click="
+              () =>
+                router.push({
+                  name: 'Signup',
+                  params: {
+                    role: 'client',
+                  },
+                })
+            "
+          >
             <ion-img :src="require('@/assets/images/client.png')"></ion-img>
             <div class="myOverlay">
               <div class="card-title">Client</div>
@@ -22,15 +24,17 @@
           </ion-card>
         </ion-item>
         <ion-item>
-          <ion-card @click="
-            () =>
-              router.push({
-                name: 'Signup',
-                params: {
-                  role: 'restaurant',
-                },
-              })
-          ">
+          <ion-card
+            @click="
+              () =>
+                router.push({
+                  name: 'Signup',
+                  params: {
+                    role: 'restaurant',
+                  },
+                })
+            "
+          >
             <ion-img :src="require('@/assets/images/restaurant.png')"></ion-img>
             <div class="myOverlay">
               <div class="card-title">Restaurant owner</div>
@@ -38,15 +42,17 @@
           </ion-card>
         </ion-item>
         <ion-item>
-          <ion-card @click="
-            () =>
-              router.push({
-                name: 'Signup',
-                params: {
-                  role: 'delivery',
-                },
-              })
-          ">
+          <ion-card
+            @click="
+              () =>
+                router.push({
+                  name: 'Signup',
+                  params: {
+                    role: 'delivery',
+                  },
+                })
+            "
+          >
             <ion-img :src="require('@/assets/images/delivery.png')"></ion-img>
             <div class="myOverlay">
               <div class="card-title">Delivery</div>
@@ -56,12 +62,14 @@
       </ion-col>
     </ion-content>
     <ion-item>
-      <ion-button @click="
-        () =>
-          router.push({
-            name: 'Login',
-          })
-      ">
+      <ion-button
+        @click="
+          () =>
+            router.push({
+              name: 'Login',
+            })
+        "
+      >
         You already have an account ? Go to Login
       </ion-button>
     </ion-item>
@@ -102,7 +110,6 @@ export default {
 
 <style scoped>
 @media screen and (min-width: 751px) {
-
   h1 {
     font-size: 4vw;
     margin-left: 1.5rem;
@@ -150,7 +157,7 @@ export default {
   }
 }
 
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+/* If the screen size is 750px wide or less, set the font-size of <div> to 30px */
 @media screen and (max-width: 750px) {
   ion-card {
     display: block;
