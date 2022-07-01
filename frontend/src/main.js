@@ -44,7 +44,7 @@ const socketConnection = SocketIO('http://35.242.246.26', {
 );
 const socket = new VueSocketIO({
   debug: true,
-  connection: 'http://35.242.246.26',
+  connection: socketConnection,
   vuex: {
     store,
     actionPrefix: 'SOCKET_',

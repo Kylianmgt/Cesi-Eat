@@ -8,10 +8,11 @@ module.exports = {
             methods: ["GET", "POST"],
             allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
             cors: {
-                origin: 'http://cesi-eats.de/',
+                origin: '*',
             },
             credentials: false,
             forceNew: true,
+            credentials: false
         });
         return io;
     },
