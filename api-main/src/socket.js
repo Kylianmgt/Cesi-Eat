@@ -8,7 +8,7 @@ module.exports = {
             methods: ["GET", "POST"],
             allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
             cors: {
-                origin: '*',
+                origin: 'http://cesi-eats.de/',
             },
             credentials: false,
             forceNew: true,
