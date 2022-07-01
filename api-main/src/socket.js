@@ -9,7 +9,8 @@ module.exports = {
             allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-Socket-ID"],
             cors: {
                 origin: '*',
-            }
+            },
+            forceNew: true,
         });
         return io;
     },
